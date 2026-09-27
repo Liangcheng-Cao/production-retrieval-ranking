@@ -1,0 +1,2 @@
+# Canonical source/manifest bytes must survive Windows checkouts unchanged.
+* text=auto eol=lf

@@ -1,0 +1,14 @@
+random_seed = 42
+
+[paths]
+raw = "data/raw"
+processed = "data/processed"
+artifacts = "artifacts"
+reports = "reports"
+
+# Frozen algorithm/proportions live in product_search.data.splits and the manifest.
+# Changing the seed cannot overwrite existing processed artifacts.
+
+# Names are scope declarations, not implemented/configured algorithms.
+[future_retrieval]
+pipelines = ["bm25", "hybrid", "hybrid_rerank"]
