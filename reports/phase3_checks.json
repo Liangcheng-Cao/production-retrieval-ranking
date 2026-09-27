@@ -1,0 +1,46 @@
+{
+  "full_unit_tests": "48 passed in 0.41s",
+  "pip_check": "No broken requirements found",
+  "diff_check": "passed",
+  "frozen_phase1_and_phase2_tracked_files_unchanged": true,
+  "phase3_checksums_verified": true,
+  "tracked_or_eligible_large_artifacts": [],
+  "ignored_file_counts": {
+    "data/raw/": 3,
+    ".venv/": 39334,
+    "artifacts/model_cache/": 30,
+    "artifacts/phase2/": 30,
+    "artifacts/phase3/": 5
+  },
+  "phase3_manifest_sha256": "fef7ff4e731b5bddd6beb83c611216191849745db663fabdce3de1ecad2cc4fb",
+  "tracked_modified_files": [
+    "README.md"
+  ],
+  "new_git_eligible_files": [
+    "artifacts/phase3/manifest.json",
+    "configs/phase3_plan.json",
+    "configs/phase3_selected.json",
+    "reports/phase2_commits.json",
+    "reports/phase3/REPORT.md",
+    "reports/phase3/boundary_development.json",
+    "reports/phase3/boundary_validation.json",
+    "reports/phase3/development.json",
+    "reports/phase3/error_analysis.md",
+    "reports/phase3/error_examples.json",
+    "reports/phase3/integration_smoke.json",
+    "reports/phase3/metric_sanity.json",
+    "reports/phase3/paired.json",
+    "reports/phase3/validation.json",
+    "scripts/check_phase2_metrics.py",
+    "scripts/run_phase3.py",
+    "scripts/smoke_reranker.py",
+    "scripts/summarize_phase3.py",
+    "src/product_search/paired.py",
+    "src/product_search/reranking.py",
+    "tests/test_reranking.py"
+  ],
+  "phase2_commits_record": "reports/phase2_commits.json",
+  "phase3_committed": false,
+  "pushed": false,
+  "final_test_labels_accessed": false
+}

@@ -12,9 +12,10 @@ Planned serving variants: BM25, hybrid, hybrid with CrossEncoder reranking.
 
 ## Current status
 
-Phase 2 complete: frozen canonical data plus BM25, dense and RRF hybrid candidate
-retrieval. Validation-only quality and diagnostic single-query latency are measured.
-No CrossEncoder or API exists. **No final-test or production benchmark results exist.** No online
+Phase 3 complete: frozen canonical data, BM25/dense/RRF retrieval and optional
+pretrained CrossEncoder reranking. Validation quality, paired comparisons and
+sequential single-query latency are measured. No API exists.
+**No final-test or production benchmark results exist.** No online
 traffic or A/B experiment exists; future simulated comparisons must be described
 as offline replay or synthetic traffic simulation.
 
@@ -129,5 +130,61 @@ file for IDs but only decodes/encodes train or validation query text. A process 
 blocks raw labels, final-test judgment files and the mixed conflict audit. Phase 1
 code and the frozen split were not modified; test-access unit tests use synthetic data.
 
-Phase 3 (not started) is CrossEncoder reranking and offline ranking comparison.
+## CrossEncoder reranking and offline comparison
+
+Actual selected path: query → Hybrid top-100 → first 20 candidates → CrossEncoder
+→ ranked 20 (top-10 is a prefix). `CrossEncoderReranker.rerank` in
+`src/product_search/reranking.py` accepts candidates without retrieving them and
+preserves original score, rank and source. Model errors return retrieval ordering
+with null reranker scores and an explicit fallback flag; malformed requests raise.
+Experiments disable fallback so failed inference cannot silently affect evidence.
+
+Selected model: `cross-encoder/ms-marco-MiniLM-L6-v2`, revision
+`233902d25c440f23af6f7d6e94d2946bac0bee0a`, Apache-2.0, 22,713,601 parameters.
+Use product name, raw relevance logits, RTX 4070, float32, batch 32, max length 256,
+paired longest-first/right truncation and dynamic batch padding. No fine-tuning.
+
+The predefined development rule maximized NDCG@10 subject to reranker P95 ≤150 ms.
+One model, two representations and depths 20/50/100 produced six trials on 288
+train queries. Name-only at depth 20 won; selection was frozen before validation.
+Batch size was fixed, not exhaustively optimized. No observed pairs were truncated.
+
+Validation (96 queries, zero metric exclusions):
+
+| Pipeline | Recall@20 | Recall@50 | Recall@100 | NDCG@10 | NDCG@20 |
+|---|---:|---:|---:|---:|---:|
+| Hybrid | .1187 | .2442 | .3805 | .7130 | .7033 |
+| Hybrid + CE-20 | .1187 | N/A | N/A | .7522 | .7180 |
+
+CE-20 returns only 20 items, with no unscored tail. Recall@20 is invariant;
+larger cutoffs are N/A, not inherited candidate-pool recall. Paired mean NDCG@10
+delta is +.03919, 95% bootstrap CI [.01522, .06373] (45 improved /35 unchanged /
+16 worsened). NDCG@20 delta is +.01465, CI [.00483, .02486] (43/27/26).
+Both median deltas are zero. These 10,000 paired query resamples quantify validation
+query uncertainty, not production effects or uncertainty from model selection.
+
+Warm sequential pipeline P50/P95 is 15.370/17.113 ms for CE-20,
+20.803/23.323 ms for CE-50 and 32.200/36.322 ms for CE-100. Measurements use
+24 train queries, five warmups and three repeats; startup is separate.
+Hybrid alone measured 9.779/10.819 ms in the prior Phase 2 session.
+CE-20 supports an optional quality-oriented mode; deeper reranking did not improve
+the primary development objective, although CE-50 improved development NDCG@20.
+These are diagnostic timings, not production latency, an SLA or an A/B test.
+Incomplete relevance judgments can penalize promoted unjudged items, and the
+small validation set does not establish general performance beyond WANDS.
+
+See [Phase 3 evidence](reports/phase3/REPORT.md),
+[error analysis](reports/phase3/error_analysis.md),
+[artifact provenance](artifacts/phase3/manifest.json), and
+[Phase 2 commit history](reports/phase2_commits.json).
+`scripts/run_phase3.py` separates development and validation and refuses to
+overwrite completed results. `scripts/smoke_reranker.py` checks the real model
+using synthetic text; ordinary unit tests do not download or load model weights.
+
+**Final-test relevance labels remained untouched throughout Phase 3.** The guard
+blocks raw data, actual test judgments and the global conflict audit. Shared query
+bytes are hashed/scanned for IDs; only train/validation text is decoded for inference.
+Phase 1 frozen files and Phase 2 reports/configuration remain unchanged.
+
+Phase 4 production search core and artifact lifecycle is not started.
 No frontend, LLM features, distributed services or additional infrastructure are planned.
