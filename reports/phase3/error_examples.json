@@ -1,0 +1,428 @@
+[
+  {
+    "after": [
+      {
+        "label_grade": null,
+        "product_id": 10138,
+        "product_name": "trinsic 18 '' wall mounted towel bar",
+        "rank": 1
+      },
+      {
+        "label_grade": null,
+        "product_id": 6599,
+        "product_name": "trinsic 18 '' wall mounted towel bar",
+        "rank": 2
+      },
+      {
+        "label_grade": null,
+        "product_id": 10115,
+        "product_name": "trinsic\u00ae bathroom towel ring",
+        "rank": 3
+      },
+      {
+        "label_grade": null,
+        "product_id": 10183,
+        "product_name": "trinsic 24 '' wall mounted towel bar",
+        "rank": 4
+      },
+      {
+        "label_grade": null,
+        "product_id": 6598,
+        "product_name": "trinsic 30 '' wall mounted towel bar",
+        "rank": 5
+      }
+    ],
+    "before": [
+      {
+        "label_grade": 1,
+        "product_id": 4804,
+        "product_name": "stainless steel towel rack punch-free towel single rod rack bath towel holder",
+        "rank": 1
+      },
+      {
+        "label_grade": 1,
+        "product_id": 4805,
+        "product_name": "stainless steel painted towel rack punch-free towel single rod rack bath towel holder",
+        "rank": 2
+      },
+      {
+        "label_grade": 1,
+        "product_id": 2924,
+        "product_name": "single rod wall mounted towel rack",
+        "rank": 3
+      },
+      {
+        "label_grade": 1,
+        "product_id": 2925,
+        "product_name": "multi-rod wall mounted towel rack",
+        "rank": 4
+      },
+      {
+        "label_grade": null,
+        "product_id": 10115,
+        "product_name": "trinsic\u00ae bathroom towel ring",
+        "rank": 5
+      }
+    ],
+    "delta": -0.5001676694912738,
+    "ndcg10_after": 0.3510684246681534,
+    "ndcg10_before": 0.8512360941594272,
+    "query": "trinaic towel rod",
+    "query_id": 219
+  },
+  {
+    "after": [
+      {
+        "label_grade": null,
+        "product_id": 17618,
+        "product_name": "kids desk and chair set , height adjustable children study table students interactive workstation , with wood tiltable anti-reflective table",
+        "rank": 1
+      },
+      {
+        "label_grade": null,
+        "product_id": 17619,
+        "product_name": "kids desk and chair set , height adjustable children study table with wood tiltable anti-reflective tabletop , bookstand , pull-out drawer s",
+        "rank": 2
+      },
+      {
+        "label_grade": null,
+        "product_id": 17617,
+        "product_name": "kids desk and chair set , height adjustable school children study table with led lamp , bookstand , wood tilting tabletop , drawer storage ,",
+        "rank": 3
+      },
+      {
+        "label_grade": null,
+        "product_id": 17616,
+        "product_name": "kids desk and chair set , height adjustable school children study table with arc-shaped crossbar , lamp , bookstand , wood tilting tabletop ",
+        "rank": 4
+      },
+      {
+        "label_grade": 2,
+        "product_id": 6634,
+        "product_name": "kids desk with cup holder",
+        "rank": 5
+      }
+    ],
+    "before": [
+      {
+        "label_grade": null,
+        "product_id": 17618,
+        "product_name": "kids desk and chair set , height adjustable children study table students interactive workstation , with wood tiltable anti-reflective table",
+        "rank": 1
+      },
+      {
+        "label_grade": 2,
+        "product_id": 17053,
+        "product_name": "kids desk",
+        "rank": 2
+      },
+      {
+        "label_grade": 2,
+        "product_id": 41389,
+        "product_name": "desk",
+        "rank": 3
+      },
+      {
+        "label_grade": 2,
+        "product_id": 38502,
+        "product_name": "oundle kids study desk",
+        "rank": 4
+      },
+      {
+        "label_grade": 0,
+        "product_id": 15788,
+        "product_name": "myposture kids desk",
+        "rank": 5
+      }
+    ],
+    "delta": -0.2635879206298397,
+    "ndcg10_after": 0.15850703974098104,
+    "ndcg10_before": 0.4220949603708208,
+    "query": "desk for kids",
+    "query_id": 441
+  },
+  {
+    "after": [
+      {
+        "label_grade": 1,
+        "product_id": 33191,
+        "product_name": "smeg classic 36 '' french door 22 cu . ft. refrigerator with ice maker",
+        "rank": 1
+      },
+      {
+        "label_grade": 1,
+        "product_id": 35269,
+        "product_name": "36 '' energy star counter-depth french door 22.6 cu . ft. refrigerator with ice maker",
+        "rank": 2
+      },
+      {
+        "label_grade": 1,
+        "product_id": 22648,
+        "product_name": "36 '' french door 26.1 cu . ft. smart energy star refrigerator with interior ice maker",
+        "rank": 3
+      },
+      {
+        "label_grade": 1,
+        "product_id": 2328,
+        "product_name": "apec water icemaker-kit-38-14-ro refrigerator/icemaker installation accessory",
+        "rank": 4
+      },
+      {
+        "label_grade": 1,
+        "product_id": 3441,
+        "product_name": "800 series 21 cu . ft. smart energy star counter depth french door refrigerator with internal water dispenser",
+        "rank": 5
+      }
+    ],
+    "before": [
+      {
+        "label_grade": 1,
+        "product_id": 33191,
+        "product_name": "smeg classic 36 '' french door 22 cu . ft. refrigerator with ice maker",
+        "rank": 1
+      },
+      {
+        "label_grade": 1,
+        "product_id": 22648,
+        "product_name": "36 '' french door 26.1 cu . ft. smart energy star refrigerator with interior ice maker",
+        "rank": 2
+      },
+      {
+        "label_grade": 1,
+        "product_id": 35269,
+        "product_name": "36 '' energy star counter-depth french door 22.6 cu . ft. refrigerator with ice maker",
+        "rank": 3
+      },
+      {
+        "label_grade": 1,
+        "product_id": 3441,
+        "product_name": "800 series 21 cu . ft. smart energy star counter depth french door refrigerator with internal water dispenser",
+        "rank": 4
+      },
+      {
+        "label_grade": 2,
+        "product_id": 16160,
+        "product_name": "36 '' french door 27.8 cu . ft. fingerprint resistant refrigerator with door-in-door",
+        "rank": 5
+      }
+    ],
+    "delta": -0.20246873026733087,
+    "ndcg10_after": 0.37750281563625937,
+    "ndcg10_before": 0.5799715459035902,
+    "query": "refrigerator with ice an water in door",
+    "query_id": 406
+  },
+  {
+    "after": [
+      {
+        "label_grade": 2,
+        "product_id": 37923,
+        "product_name": "pirouette frameless 0.375 '' clear glass shower door in , 36 ''",
+        "rank": 1
+      },
+      {
+        "label_grade": 2,
+        "product_id": 38178,
+        "product_name": "glass 60 '' w x 72 '' h bypass framed shower door",
+        "rank": 2
+      },
+      {
+        "label_grade": 2,
+        "product_id": 10050,
+        "product_name": "crest 58 '' - 60 '' w x 76.62 '' h single sliding frameless shower door with clearmax glass treatment",
+        "rank": 3
+      },
+      {
+        "label_grade": 2,
+        "product_id": 38177,
+        "product_name": "glass barn 60 '' w x 76 '' h single sliding frameless shower door",
+        "rank": 4
+      },
+      {
+        "label_grade": 0,
+        "product_id": 34041,
+        "product_name": "glass wood french doors",
+        "rank": 5
+      }
+    ],
+    "before": [
+      {
+        "label_grade": 0,
+        "product_id": 34041,
+        "product_name": "glass wood french doors",
+        "rank": 1
+      },
+      {
+        "label_grade": 1,
+        "product_id": 34042,
+        "product_name": "glass sliding closet doors",
+        "rank": 2
+      },
+      {
+        "label_grade": 0,
+        "product_id": 34043,
+        "product_name": "lucia glass french doors",
+        "rank": 3
+      },
+      {
+        "label_grade": 0,
+        "product_id": 34044,
+        "product_name": "quadro glass french doors",
+        "rank": 4
+      },
+      {
+        "label_grade": 0,
+        "product_id": 29034,
+        "product_name": "glass sliding closet doors with installation hardware",
+        "rank": 5
+      }
+    ],
+    "delta": 0.44764346121932025,
+    "ndcg10_after": 0.6302238688869316,
+    "ndcg10_before": 0.18258040766761136,
+    "query": "glass doors for bath",
+    "query_id": 138
+  },
+  {
+    "after": [
+      {
+        "label_grade": 2,
+        "product_id": 9168,
+        "product_name": "23.5 '' w x 68 '' h x 7.5 '' d over-the-toilet cabinet",
+        "rank": 1
+      },
+      {
+        "label_grade": 2,
+        "product_id": 2398,
+        "product_name": "soderville 26.93 '' w x 62.28 '' h over the toilet cabinet",
+        "rank": 2
+      },
+      {
+        "label_grade": 1,
+        "product_id": 8937,
+        "product_name": "roberts 26 '' w x 34 '' h x 13 '' d free-standing bathroom cabinet",
+        "rank": 3
+      },
+      {
+        "label_grade": 1,
+        "product_id": 14694,
+        "product_name": "macarthur 17 '' w x 30.25 '' h x 13.5 '' d free-standing bathroom cabinet",
+        "rank": 4
+      },
+      {
+        "label_grade": 1,
+        "product_id": 1877,
+        "product_name": "somerset 23.6 '' w x 40.25 '' h x 11.81 '' d free-standing bathroom cabinet",
+        "rank": 5
+      }
+    ],
+    "before": [
+      {
+        "label_grade": 0,
+        "product_id": 22275,
+        "product_name": "purist vertical toilet tissue holder",
+        "rank": 1
+      },
+      {
+        "label_grade": 0,
+        "product_id": 10421,
+        "product_name": "26 '' high free standing toilet tissue holder",
+        "rank": 2
+      },
+      {
+        "label_grade": 2,
+        "product_id": 2398,
+        "product_name": "soderville 26.93 '' w x 62.28 '' h over the toilet cabinet",
+        "rank": 3
+      },
+      {
+        "label_grade": null,
+        "product_id": 6903,
+        "product_name": "aqualuminator above ground swimming pool light",
+        "rank": 4
+      },
+      {
+        "label_grade": 0,
+        "product_id": 6706,
+        "product_name": "under the sink cabinet mat",
+        "rank": 5
+      }
+    ],
+    "delta": 0.409188236941617,
+    "ndcg10_after": 0.6549195654818234,
+    "ndcg10_before": 0.2457313285402064,
+    "query": "above toilet cabinet",
+    "query_id": 442
+  },
+  {
+    "after": [
+      {
+        "label_grade": 2,
+        "product_id": 14967,
+        "product_name": "satty bed led kit",
+        "rank": 1
+      },
+      {
+        "label_grade": 2,
+        "product_id": 7099,
+        "product_name": "johnnie bed led light",
+        "rank": 2
+      },
+      {
+        "label_grade": 2,
+        "product_id": 37142,
+        "product_name": "galway upholstered led storage platform bed",
+        "rank": 3
+      },
+      {
+        "label_grade": 2,
+        "product_id": 37141,
+        "product_name": "sabara upholstered led storage platform bed",
+        "rank": 4
+      },
+      {
+        "label_grade": 2,
+        "product_id": 37143,
+        "product_name": "jovenko upholstered led storage platform bed",
+        "rank": 5
+      }
+    ],
+    "before": [
+      {
+        "label_grade": 1,
+        "product_id": 25696,
+        "product_name": "goodland standard bed",
+        "rank": 1
+      },
+      {
+        "label_grade": 1,
+        "product_id": 7929,
+        "product_name": "celeste canopy bed",
+        "rank": 2
+      },
+      {
+        "label_grade": 1,
+        "product_id": 40379,
+        "product_name": "litchville king bed",
+        "rank": 3
+      },
+      {
+        "label_grade": 1,
+        "product_id": 1847,
+        "product_name": "matheney platform bed",
+        "rank": 4
+      },
+      {
+        "label_grade": 0,
+        "product_id": 3530,
+        "product_name": "graham panel bed",
+        "rank": 5
+      }
+    ],
+    "delta": 0.38745213950581747,
+    "ndcg10_after": 0.7153669865285526,
+    "ndcg10_before": 0.3279148470227351,
+    "query": "beds that have leds",
+    "query_id": 14
+  }
+]

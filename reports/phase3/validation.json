@@ -1,0 +1,135 @@
+{
+  "baselines_from_phase2": {
+    "BM25": {
+      "excluded_queries": {
+        "NDCG@10": 0,
+        "NDCG@20": 0,
+        "Recall@10": 0,
+        "Recall@100": 0,
+        "Recall@20": 0,
+        "Recall@50": 0,
+        "judged_fraction@100": 0
+      },
+      "metrics": {
+        "NDCG@10": 0.6671693286442933,
+        "NDCG@20": 0.6671984569895969,
+        "Recall@10": 0.06153951700445926,
+        "Recall@100": 0.3587215069957521,
+        "Recall@20": 0.1201660988971661,
+        "Recall@50": 0.24083493850788903,
+        "judged_fraction@100": 0.7478125000000001
+      },
+      "query_count": 96
+    },
+    "Dense": {
+      "excluded_queries": {
+        "NDCG@10": 0,
+        "NDCG@20": 0,
+        "Recall@10": 0,
+        "Recall@100": 0,
+        "Recall@20": 0,
+        "Recall@50": 0,
+        "judged_fraction@100": 0
+      },
+      "metrics": {
+        "NDCG@10": 0.6638544529794941,
+        "NDCG@20": 0.6453672376001031,
+        "Recall@10": 0.05967482920547317,
+        "Recall@100": 0.3465315690287183,
+        "Recall@20": 0.10451921293218464,
+        "Recall@50": 0.21616572693155015,
+        "judged_fraction@100": 0.6699999999999999
+      },
+      "query_count": 96
+    },
+    "Hybrid": {
+      "excluded_queries": {
+        "NDCG@10": 0,
+        "NDCG@20": 0,
+        "Recall@10": 0,
+        "Recall@100": 0,
+        "Recall@20": 0,
+        "Recall@50": 0,
+        "judged_fraction@100": 0
+      },
+      "metrics": {
+        "NDCG@10": 0.7129837611693931,
+        "NDCG@20": 0.7033327040217682,
+        "Recall@10": 0.06419479958865686,
+        "Recall@100": 0.3804770644355071,
+        "Recall@20": 0.11869325710314153,
+        "Recall@50": 0.2442171896655098,
+        "judged_fraction@100": 0.7132291666666667
+      },
+      "query_count": 96
+    }
+  },
+  "candidate_depth": 20,
+  "candidate_recall": {
+    "after": 0.11869325710314153,
+    "all_queries_invariant": true,
+    "before": 0.11869325710314153
+  },
+  "fallback_count": 0,
+  "hybrid_cross_encoder": {
+    "excluded_queries": {
+      "NDCG@10": 0,
+      "NDCG@20": 0,
+      "Recall@10": 0,
+      "Recall@100": null,
+      "Recall@20": 0,
+      "Recall@50": null,
+      "judged_fraction@100": 0
+    },
+    "metrics": {
+      "NDCG@10": 0.7521762462827221,
+      "NDCG@20": 0.7179829961017387,
+      "Recall@10": 0.0660250196115687,
+      "Recall@100": null,
+      "Recall@20": 0.11869325710314153,
+      "Recall@50": null,
+      "judged_fraction@100": 0.8552083333333332
+    },
+    "query_count": 96,
+    "returned_candidate_depth": 20
+  },
+  "hybrid_recomputed": {
+    "excluded_queries": {
+      "NDCG@10": 0,
+      "NDCG@20": 0,
+      "Recall@10": 0,
+      "Recall@100": 0,
+      "Recall@20": 0,
+      "Recall@50": 0,
+      "judged_fraction@100": 0
+    },
+    "metrics": {
+      "NDCG@10": 0.7129837611693931,
+      "NDCG@20": 0.7033327040217682,
+      "Recall@10": 0.06419479958865686,
+      "Recall@100": 0.3804770644355071,
+      "Recall@20": 0.11869325710314153,
+      "Recall@50": 0.2442171896655098,
+      "judged_fraction@100": 0.7132291666666667
+    },
+    "query_count": 96
+  },
+  "partition": "validation",
+  "recorded_at_utc": "2026-09-27T15:49:24.016794+00:00",
+  "representation": "A",
+  "selection_sha256": "a05f64b3f84a3cb13c6ef828438dab7f5992c2283cddb3bbce9e0b37c316d6d1",
+  "startup": {
+    "cross_encoder_startup_ms": 679.7249000082957,
+    "device": "cuda:0",
+    "dtype": "torch.float32",
+    "model_class": "BertForSequenceClassification",
+    "parameters": 22713601,
+    "retrieval_startup_ms": 3908.6410000018077
+  },
+  "truncation": {
+    "max_length": 256,
+    "max_untruncated_length": 73,
+    "pairs": 1920,
+    "pairs_over_max_length": 0
+  }
+}
