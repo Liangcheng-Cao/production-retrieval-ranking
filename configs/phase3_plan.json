@@ -1,0 +1,36 @@
+{
+  "version": "phase3-plan-v1",
+  "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+  "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+  "license": "Apache-2.0",
+  "device": "cuda",
+  "dtype": "float32",
+  "batch_size": 32,
+  "max_length": 256,
+  "truncation": "longest_first",
+  "representations": [
+    "A",
+    "B"
+  ],
+  "candidate_depths": [
+    20,
+    50,
+    100
+  ],
+  "score": "raw single relevance logit, no sigmoid",
+  "selection_rule": "maximum development NDCG@10 among reranker P95 <=150 ms; tie by NDCG@20 then smaller depth then A/B; if none eligible, no promotion",
+  "latency_budget_rerank_p95_ms": 150,
+  "latency": {
+    "partition": "train",
+    "query_count": 24,
+    "warmup": 5,
+    "repeats": 3,
+    "blas_threads": 1
+  },
+  "paired_bootstrap": {
+    "seed": 42,
+    "samples": 10000,
+    "confidence": 0.95
+  },
+  "candidate_policy": "truncate frozen Hybrid top-100 at candidate depth; rerank exactly that membership; no tail append; metrics beyond candidate depth are N/A"
+}

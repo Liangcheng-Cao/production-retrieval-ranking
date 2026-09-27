@@ -1,0 +1,528 @@
+{
+  "depth_score_policy": "score each representation top-100 once; derive depth subsets from those logits; each latency trial performs real depth-specific inference",
+  "hybrid_baseline": {
+    "excluded_queries": {
+      "NDCG@10": 0,
+      "NDCG@20": 0,
+      "Recall@10": 0,
+      "Recall@100": 0,
+      "Recall@20": 0,
+      "Recall@50": 0,
+      "judged_fraction@100": 0
+    },
+    "metrics": {
+      "NDCG@10": 0.7071877227465249,
+      "NDCG@20": 0.6986506238305417,
+      "Recall@10": 0.06127758439484632,
+      "Recall@100": 0.38148986429734305,
+      "Recall@20": 0.11506683658935495,
+      "Recall@50": 0.24551009301174787,
+      "judged_fraction@100": 0.7323263888888889
+    },
+    "query_count": 288
+  },
+  "plan": {
+    "batch_size": 32,
+    "candidate_depths": [
+      20,
+      50,
+      100
+    ],
+    "candidate_policy": "truncate frozen Hybrid top-100 at candidate depth; rerank exactly that membership; no tail append; metrics beyond candidate depth are N/A",
+    "device": "cuda",
+    "dtype": "float32",
+    "latency": {
+      "blas_threads": 1,
+      "partition": "train",
+      "query_count": 24,
+      "repeats": 3,
+      "warmup": 5
+    },
+    "latency_budget_rerank_p95_ms": 150,
+    "license": "Apache-2.0",
+    "max_length": 256,
+    "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "paired_bootstrap": {
+      "confidence": 0.95,
+      "samples": 10000,
+      "seed": 42
+    },
+    "representations": [
+      "A",
+      "B"
+    ],
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "score": "raw single relevance logit, no sigmoid",
+    "selection_rule": "maximum development NDCG@10 among reranker P95 <=150 ms; tie by NDCG@20 then smaller depth then A/B; if none eligible, no promotion",
+    "truncation": "longest_first",
+    "version": "phase3-plan-v1"
+  },
+  "startup": {
+    "cross_encoder_startup_ms": 13551.697600007174,
+    "device": "cuda:0",
+    "dtype": "torch.float32",
+    "model_class": "BertForSequenceClassification",
+    "parameters": 22713601,
+    "retrieval_startup_ms": 4122.950999997556
+  },
+  "trials": [
+    {
+      "batch_size": 32,
+      "candidate_depth": 20,
+      "candidate_recall": {
+        "after": 0.11506683658935495,
+        "all_queries_invariant": true,
+        "before": 0.11506683658935495
+      },
+      "latency": {
+        "candidate_depth": 20,
+        "effective_batch_sizes": [
+          20
+        ],
+        "samples": 72,
+        "stages": {
+          "gpu_forward_ms": {
+            "p50_ms": 3.972099999373313,
+            "p95_ms": 5.1398399999015965
+          },
+          "pipeline_ms": {
+            "p50_ms": 15.369950000604149,
+            "p95_ms": 17.113305006205337
+          },
+          "postprocess_ms": {
+            "p50_ms": 0.022149994038045406,
+            "p95_ms": 0.024789999588392675
+          },
+          "retrieval_ms": {
+            "p50_ms": 9.920900003635325,
+            "p95_ms": 10.995184999774212
+          },
+          "tokenization_ms": {
+            "p50_ms": 0.9245000037481077,
+            "p95_ms": 1.2194050003017767
+          },
+          "total_ms": {
+            "p50_ms": 5.321499993442558,
+            "p95_ms": 6.468659995152848
+          },
+          "transfer_ms": {
+            "p50_ms": 0.28775000100722536,
+            "p95_ms": 0.5833300027006771
+          }
+        }
+      },
+      "quality": {
+        "excluded_queries": {
+          "NDCG@10": 0,
+          "NDCG@20": 0,
+          "Recall@10": 0,
+          "Recall@100": null,
+          "Recall@20": 0,
+          "Recall@50": null,
+          "judged_fraction@100": 0
+        },
+        "metrics": {
+          "NDCG@10": 0.7251272606092396,
+          "NDCG@20": 0.7052166957002339,
+          "Recall@10": 0.061175662555789816,
+          "Recall@100": null,
+          "Recall@20": 0.11506683658935495,
+          "Recall@50": null,
+          "judged_fraction@100": 0.8788194444444445
+        },
+        "query_count": 288,
+        "returned_candidate_depth": 20
+      },
+      "representation": "A",
+      "truncation_top100": {
+        "max_length": 256,
+        "max_untruncated_length": 73,
+        "pairs": 28800,
+        "pairs_over_max_length": 0
+      }
+    },
+    {
+      "batch_size": 32,
+      "candidate_depth": 50,
+      "candidate_recall": {
+        "after": 0.24551009301174787,
+        "all_queries_invariant": true,
+        "before": 0.24551009301174787
+      },
+      "latency": {
+        "candidate_depth": 50,
+        "effective_batch_sizes": [
+          32,
+          18
+        ],
+        "samples": 72,
+        "stages": {
+          "gpu_forward_ms": {
+            "p50_ms": 8.166999999957625,
+            "p95_ms": 9.81773500534473
+          },
+          "pipeline_ms": {
+            "p50_ms": 20.802900005946867,
+            "p95_ms": 23.32310500132735
+          },
+          "postprocess_ms": {
+            "p50_ms": 0.044399996113497764,
+            "p95_ms": 0.05163500172784554
+          },
+          "retrieval_ms": {
+            "p50_ms": 9.78120000945637,
+            "p95_ms": 10.730679990228964
+          },
+          "tokenization_ms": {
+            "p50_ms": 2.1608499955618754,
+            "p95_ms": 3.112155006238027
+          },
+          "total_ms": {
+            "p50_ms": 11.009000001649838,
+            "p95_ms": 13.401624992548022
+          },
+          "transfer_ms": {
+            "p50_ms": 0.4980000012437813,
+            "p95_ms": 0.69043498733663
+          }
+        }
+      },
+      "quality": {
+        "excluded_queries": {
+          "NDCG@10": 0,
+          "NDCG@20": 0,
+          "Recall@10": 0,
+          "Recall@100": null,
+          "Recall@20": 0,
+          "Recall@50": 0,
+          "judged_fraction@100": 0
+        },
+        "metrics": {
+          "NDCG@10": 0.7208197802492583,
+          "NDCG@20": 0.7198094003569133,
+          "Recall@10": 0.05978975669901949,
+          "Recall@100": null,
+          "Recall@20": 0.11693113801540266,
+          "Recall@50": 0.24551009301174787,
+          "judged_fraction@100": 0.8193750000000001
+        },
+        "query_count": 288,
+        "returned_candidate_depth": 50
+      },
+      "representation": "A",
+      "truncation_top100": {
+        "max_length": 256,
+        "max_untruncated_length": 73,
+        "pairs": 28800,
+        "pairs_over_max_length": 0
+      }
+    },
+    {
+      "batch_size": 32,
+      "candidate_depth": 100,
+      "candidate_recall": {
+        "after": 0.38148986429734305,
+        "all_queries_invariant": true,
+        "before": 0.38148986429734305
+      },
+      "latency": {
+        "candidate_depth": 100,
+        "effective_batch_sizes": [
+          32,
+          32,
+          32,
+          4
+        ],
+        "samples": 72,
+        "stages": {
+          "gpu_forward_ms": {
+            "p50_ms": 16.508699998666998,
+            "p95_ms": 19.925044995034114
+          },
+          "pipeline_ms": {
+            "p50_ms": 32.20034999685595,
+            "p95_ms": 36.321515002055094
+          },
+          "postprocess_ms": {
+            "p50_ms": 0.08369999704882503,
+            "p95_ms": 0.11858500074595213
+          },
+          "retrieval_ms": {
+            "p50_ms": 9.838400001171976,
+            "p95_ms": 10.501190006471006
+          },
+          "tokenization_ms": {
+            "p50_ms": 4.369649999716785,
+            "p95_ms": 5.437564993917476
+          },
+          "total_ms": {
+            "p50_ms": 22.218849997443613,
+            "p95_ms": 26.349579999077836
+          },
+          "transfer_ms": {
+            "p50_ms": 0.9695999979157932,
+            "p95_ms": 1.4063949951378165
+          }
+        }
+      },
+      "quality": {
+        "excluded_queries": {
+          "NDCG@10": 0,
+          "NDCG@20": 0,
+          "Recall@10": 0,
+          "Recall@100": 0,
+          "Recall@20": 0,
+          "Recall@50": 0,
+          "judged_fraction@100": 0
+        },
+        "metrics": {
+          "NDCG@10": 0.720385714767034,
+          "NDCG@20": 0.7166913772947034,
+          "Recall@10": 0.059231952951685006,
+          "Recall@100": 0.38148986429734305,
+          "Recall@20": 0.11562982357787985,
+          "Recall@50": 0.2533883903746205,
+          "judged_fraction@100": 0.7323263888888889
+        },
+        "query_count": 288,
+        "returned_candidate_depth": 100
+      },
+      "representation": "A",
+      "truncation_top100": {
+        "max_length": 256,
+        "max_untruncated_length": 73,
+        "pairs": 28800,
+        "pairs_over_max_length": 0
+      }
+    },
+    {
+      "batch_size": 32,
+      "candidate_depth": 20,
+      "candidate_recall": {
+        "after": 0.11506683658935495,
+        "all_queries_invariant": true,
+        "before": 0.11506683658935495
+      },
+      "latency": {
+        "candidate_depth": 20,
+        "effective_batch_sizes": [
+          20
+        ],
+        "samples": 72,
+        "stages": {
+          "gpu_forward_ms": {
+            "p50_ms": 3.9632499974686652,
+            "p95_ms": 5.6581299984827655
+          },
+          "pipeline_ms": {
+            "p50_ms": 15.51820000167936,
+            "p95_ms": 17.66296499845339
+          },
+          "postprocess_ms": {
+            "p50_ms": 0.02144999598385766,
+            "p95_ms": 0.026270010857842863
+          },
+          "retrieval_ms": {
+            "p50_ms": 9.677399990323465,
+            "p95_ms": 10.707515003014123
+          },
+          "tokenization_ms": {
+            "p50_ms": 1.429149997420609,
+            "p95_ms": 1.925909991405206
+          },
+          "total_ms": {
+            "p50_ms": 5.747399998654146,
+            "p95_ms": 7.649585000763182
+          },
+          "transfer_ms": {
+            "p50_ms": 0.28640000527957454,
+            "p95_ms": 0.3906499994627666
+          }
+        }
+      },
+      "quality": {
+        "excluded_queries": {
+          "NDCG@10": 0,
+          "NDCG@20": 0,
+          "Recall@10": 0,
+          "Recall@100": null,
+          "Recall@20": 0,
+          "Recall@50": null,
+          "judged_fraction@100": 0
+        },
+        "metrics": {
+          "NDCG@10": 0.7197079279129499,
+          "NDCG@20": 0.7028770158885622,
+          "Recall@10": 0.0606958297943644,
+          "Recall@100": null,
+          "Recall@20": 0.11506683658935495,
+          "Recall@50": null,
+          "judged_fraction@100": 0.8788194444444445
+        },
+        "query_count": 288,
+        "returned_candidate_depth": 20
+      },
+      "representation": "B",
+      "truncation_top100": {
+        "max_length": 256,
+        "max_untruncated_length": 89,
+        "pairs": 28800,
+        "pairs_over_max_length": 0
+      }
+    },
+    {
+      "batch_size": 32,
+      "candidate_depth": 50,
+      "candidate_recall": {
+        "after": 0.24551009301174787,
+        "all_queries_invariant": true,
+        "before": 0.24551009301174787
+      },
+      "latency": {
+        "candidate_depth": 50,
+        "effective_batch_sizes": [
+          32,
+          18
+        ],
+        "samples": 72,
+        "stages": {
+          "gpu_forward_ms": {
+            "p50_ms": 8.85670001298422,
+            "p95_ms": 12.013029996887783
+          },
+          "pipeline_ms": {
+            "p50_ms": 22.730749995389488,
+            "p95_ms": 26.895440008229347
+          },
+          "postprocess_ms": {
+            "p50_ms": 0.04435000300873071,
+            "p95_ms": 0.060765005036955706
+          },
+          "retrieval_ms": {
+            "p50_ms": 9.786149996216409,
+            "p95_ms": 10.511275003227638
+          },
+          "tokenization_ms": {
+            "p50_ms": 3.4559000050649047,
+            "p95_ms": 4.504805004398805
+          },
+          "total_ms": {
+            "p50_ms": 12.957099999766797,
+            "p95_ms": 17.24812000466045
+          },
+          "transfer_ms": {
+            "p50_ms": 0.5310999913490377,
+            "p95_ms": 0.7057200084091165
+          }
+        }
+      },
+      "quality": {
+        "excluded_queries": {
+          "NDCG@10": 0,
+          "NDCG@20": 0,
+          "Recall@10": 0,
+          "Recall@100": null,
+          "Recall@20": 0,
+          "Recall@50": 0,
+          "judged_fraction@100": 0
+        },
+        "metrics": {
+          "NDCG@10": 0.7160895495420405,
+          "NDCG@20": 0.7100888754222368,
+          "Recall@10": 0.059058443978129066,
+          "Recall@100": null,
+          "Recall@20": 0.11376865863366148,
+          "Recall@50": 0.24551009301174787,
+          "judged_fraction@100": 0.8193750000000001
+        },
+        "query_count": 288,
+        "returned_candidate_depth": 50
+      },
+      "representation": "B",
+      "truncation_top100": {
+        "max_length": 256,
+        "max_untruncated_length": 89,
+        "pairs": 28800,
+        "pairs_over_max_length": 0
+      }
+    },
+    {
+      "batch_size": 32,
+      "candidate_depth": 100,
+      "candidate_recall": {
+        "after": 0.38148986429734305,
+        "all_queries_invariant": true,
+        "before": 0.38148986429734305
+      },
+      "latency": {
+        "candidate_depth": 100,
+        "effective_batch_sizes": [
+          32,
+          32,
+          32,
+          4
+        ],
+        "samples": 72,
+        "stages": {
+          "gpu_forward_ms": {
+            "p50_ms": 18.54500000627013,
+            "p95_ms": 21.841775001666974
+          },
+          "pipeline_ms": {
+            "p50_ms": 36.867750000965316,
+            "p95_ms": 41.75580999435624
+          },
+          "postprocess_ms": {
+            "p50_ms": 0.08340000204043463,
+            "p95_ms": 0.10571499806246722
+          },
+          "retrieval_ms": {
+            "p50_ms": 9.872900001937523,
+            "p95_ms": 10.924435003107646
+          },
+          "tokenization_ms": {
+            "p50_ms": 6.93395001871977,
+            "p95_ms": 8.0561700015096
+          },
+          "total_ms": {
+            "p50_ms": 26.649799998267554,
+            "p95_ms": 31.17300500452984
+          },
+          "transfer_ms": {
+            "p50_ms": 1.0345999835408293,
+            "p95_ms": 1.4598250156268477
+          }
+        }
+      },
+      "quality": {
+        "excluded_queries": {
+          "NDCG@10": 0,
+          "NDCG@20": 0,
+          "Recall@10": 0,
+          "Recall@100": 0,
+          "Recall@20": 0,
+          "Recall@50": 0,
+          "judged_fraction@100": 0
+        },
+        "metrics": {
+          "NDCG@10": 0.7131346077352025,
+          "NDCG@20": 0.7071186624894968,
+          "Recall@10": 0.05865593282667671,
+          "Recall@100": 0.38148986429734305,
+          "Recall@20": 0.11351287777641723,
+          "Recall@50": 0.2513075241896998,
+          "judged_fraction@100": 0.7323263888888889
+        },
+        "query_count": 288,
+        "returned_candidate_depth": 100
+      },
+      "representation": "B",
+      "truncation_top100": {
+        "max_length": 256,
+        "max_untruncated_length": 89,
+        "pairs": 28800,
+        "pairs_over_max_length": 0
+      }
+    }
+  ]
+}

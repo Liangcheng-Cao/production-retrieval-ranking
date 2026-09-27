@@ -1,0 +1,82 @@
+{
+  "phase1_manifest_sha256": "0b79ce2061ada9574885b952e63f06c9516aa38682b1e91ba1f4334a5d6eb845",
+  "phase2_manifest_sha256": "197cf3325df537f10ce917ac604984ff500d2202719626b1aad8e432cbae34b3",
+  "plan_sha256": "a22d370acc05927b8501edd11f81bcd951ee8691864160e1159c1ba2bff3c23b",
+  "rule": "maximum development NDCG@10 among reranker P95 <=150 ms; tie by NDCG@20 then smaller depth then A/B; if none eligible, no promotion",
+  "selected": {
+    "batch_size": 32,
+    "candidate_depth": 20,
+    "candidate_recall": {
+      "after": 0.11506683658935495,
+      "all_queries_invariant": true,
+      "before": 0.11506683658935495
+    },
+    "latency": {
+      "candidate_depth": 20,
+      "effective_batch_sizes": [
+        20
+      ],
+      "samples": 72,
+      "stages": {
+        "gpu_forward_ms": {
+          "p50_ms": 3.972099999373313,
+          "p95_ms": 5.1398399999015965
+        },
+        "pipeline_ms": {
+          "p50_ms": 15.369950000604149,
+          "p95_ms": 17.113305006205337
+        },
+        "postprocess_ms": {
+          "p50_ms": 0.022149994038045406,
+          "p95_ms": 0.024789999588392675
+        },
+        "retrieval_ms": {
+          "p50_ms": 9.920900003635325,
+          "p95_ms": 10.995184999774212
+        },
+        "tokenization_ms": {
+          "p50_ms": 0.9245000037481077,
+          "p95_ms": 1.2194050003017767
+        },
+        "total_ms": {
+          "p50_ms": 5.321499993442558,
+          "p95_ms": 6.468659995152848
+        },
+        "transfer_ms": {
+          "p50_ms": 0.28775000100722536,
+          "p95_ms": 0.5833300027006771
+        }
+      }
+    },
+    "quality": {
+      "excluded_queries": {
+        "NDCG@10": 0,
+        "NDCG@20": 0,
+        "Recall@10": 0,
+        "Recall@100": null,
+        "Recall@20": 0,
+        "Recall@50": null,
+        "judged_fraction@100": 0
+      },
+      "metrics": {
+        "NDCG@10": 0.7251272606092396,
+        "NDCG@20": 0.7052166957002339,
+        "Recall@10": 0.061175662555789816,
+        "Recall@100": null,
+        "Recall@20": 0.11506683658935495,
+        "Recall@50": null,
+        "judged_fraction@100": 0.8788194444444445
+      },
+      "query_count": 288,
+      "returned_candidate_depth": 20
+    },
+    "representation": "A",
+    "truncation_top100": {
+      "max_length": 256,
+      "max_untruncated_length": 73,
+      "pairs": 28800,
+      "pairs_over_max_length": 0
+    }
+  },
+  "selected_at_utc": "2026-09-27T15:48:51.108061+00:00"
+}
