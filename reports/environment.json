@@ -1,0 +1,11 @@
+{
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "win32",
+  "packages": {
+    "pandas": "3.0.6",
+    "numpy": "2.5.3",
+    "sklearn": "1.9.1",
+    "pytest": "9.1.1"
+  },
+  "scope": "Phase 0 local smoke check; not a transitive dependency lock"
+}
