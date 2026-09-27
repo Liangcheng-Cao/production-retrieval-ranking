@@ -1,0 +1,13 @@
+{
+  "blocked_attempts": [],
+  "opened_canonical_files": [
+    "data/processed/data_manifest.json",
+    "data/processed/judgments.validation.jsonl",
+    "data/processed/products.jsonl",
+    "data/processed/queries.jsonl"
+  ],
+  "phase1_manifest_sha256": "0b79ce2061ada9574885b952e63f06c9516aa38682b1e91ba1f4334a5d6eb845",
+  "phase2_manifest_sha256": "197cf3325df537f10ce917ac604984ff500d2202719626b1aad8e432cbae34b3",
+  "shared_queries_policy": "hash/byte-ID scan only; no test query text decoding or inference",
+  "test_labels_accessed": false
+}
