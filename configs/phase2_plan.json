@@ -1,0 +1,36 @@
+{
+  "version": "phase2-plan-v1",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "license": "Apache-2.0",
+  "device": "cuda",
+  "batch_size": 128,
+  "max_seq_length": 256,
+  "dimension": 384,
+  "representations": [
+    "A",
+    "B",
+    "C"
+  ],
+  "bm25_base": {
+    "k1": 1.5,
+    "b": 0.75
+  },
+  "bm25_additional_on_best_representation": {
+    "k1": 1.2,
+    "b": 0.5
+  },
+  "rrf_constants": [
+    20,
+    60
+  ],
+  "candidate_depth": 100,
+  "selection": "maximize development Recall@100, then NDCG@20, then configuration ID; no validation retuning",
+  "latency": {
+    "query_partition": "train",
+    "query_count": 24,
+    "warmup": 5,
+    "repeats": 3,
+    "cpu_blas_threads": 1
+  }
+}

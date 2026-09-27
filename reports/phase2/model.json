@@ -1,0 +1,8 @@
+{
+  "dimension": 384,
+  "first_model_load_including_download_ms": 22243.80719999317,
+  "max_seq_length": 256,
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "modules": "SentenceTransformer(\n  (0): Transformer({'transformer_task': 'feature-extraction', 'modality_config': {'text': {'method': 'forward', 'method_output_name': 'last_hidden_state'}}, 'module_output_name': 'token_embeddings', 'architecture': 'BertModel'})\n  (1): Pooling({'embedding_dimension': 384, 'pooling_mode': 'mean', 'include_prompt': True})\n  (2): Normalize({'module_input_name': 'sentence_embedding', 'module_output_name': 'sentence_embedding'})\n)",
+  "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+}

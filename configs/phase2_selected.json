@@ -1,0 +1,119 @@
+{
+  "bm25": {
+    "build_ms": 1310.3646999952616,
+    "config": {
+      "b": 0.5,
+      "data_manifest_sha256": "0b79ce2061ada9574885b952e63f06c9516aa38682b1e91ba1f4334a5d6eb845",
+      "implementation": "bm25s",
+      "k1": 1.2,
+      "kind": "bm25",
+      "lexical_version": "nfkc-casefold-unicode-alnum-v1",
+      "method": "lucene",
+      "representation": "B",
+      "text_version": "product-fields-v1",
+      "version": "0.3.11"
+    },
+    "name": "bm25_B_1.2_0.5",
+    "quality": {
+      "excluded_queries": {
+        "NDCG@10": 0,
+        "NDCG@20": 0,
+        "Recall@10": 0,
+        "Recall@100": 0,
+        "Recall@20": 0,
+        "Recall@50": 0,
+        "judged_fraction@100": 0
+      },
+      "metrics": {
+        "NDCG@10": 0.6370809881351018,
+        "NDCG@20": 0.6338334706243413,
+        "Recall@10": 0.053483801635362024,
+        "Recall@100": 0.3645276739515122,
+        "Recall@20": 0.10451183476242158,
+        "Recall@50": 0.2275231174207062,
+        "judged_fraction@100": 0.7394834163875935
+      },
+      "query_count": 288
+    }
+  },
+  "data_manifest_sha256": "0b79ce2061ada9574885b952e63f06c9516aa38682b1e91ba1f4334a5d6eb845",
+  "dense": {
+    "build_ms": 15235.908400005428,
+    "config": {
+      "data_manifest_sha256": "0b79ce2061ada9574885b952e63f06c9516aa38682b1e91ba1f4334a5d6eb845",
+      "dimension": 384,
+      "dtype": "float32",
+      "kind": "dense",
+      "max_seq_length": 256,
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "model_license": "Apache-2.0",
+      "normalization": "L2",
+      "pooling": "attention-mask mean",
+      "representation": "A",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "sentence_transformers": "6.1.0",
+      "text_version": "product-fields-v1"
+    },
+    "name": "dense_A",
+    "quality": {
+      "excluded_queries": {
+        "NDCG@10": 0,
+        "NDCG@20": 0,
+        "Recall@10": 0,
+        "Recall@100": 0,
+        "Recall@20": 0,
+        "Recall@50": 0,
+        "judged_fraction@100": 0
+      },
+      "metrics": {
+        "NDCG@10": 0.6697173450099181,
+        "NDCG@20": 0.6667215359328106,
+        "Recall@10": 0.05833767817790817,
+        "Recall@100": 0.36154174944971057,
+        "Recall@20": 0.10976152083727453,
+        "Recall@50": 0.23159006458851117,
+        "judged_fraction@100": 0.6962847222222223
+      },
+      "query_count": 288
+    }
+  },
+  "hybrid": {
+    "build_ms": null,
+    "config": {
+      "bm25": "bm25_B_1.2_0.5",
+      "candidate_depth": 100,
+      "constant": 60,
+      "dense": "dense_A",
+      "method": "rrf",
+      "weights": [
+        1,
+        1
+      ]
+    },
+    "name": "hybrid_rrf_60",
+    "quality": {
+      "excluded_queries": {
+        "NDCG@10": 0,
+        "NDCG@20": 0,
+        "Recall@10": 0,
+        "Recall@100": 0,
+        "Recall@20": 0,
+        "Recall@50": 0,
+        "judged_fraction@100": 0
+      },
+      "metrics": {
+        "NDCG@10": 0.7071877227465249,
+        "NDCG@20": 0.6986506238305417,
+        "Recall@10": 0.06127758439484632,
+        "Recall@100": 0.38148986429734305,
+        "Recall@20": 0.11506683658935495,
+        "Recall@50": 0.24551009301174787,
+        "judged_fraction@100": 0.7323263888888889
+      },
+      "query_count": 288
+    }
+  },
+  "plan_sha256": "541c77a013ff9d44d5f49b25d385bf57a5dc55405f91697c4d60210cce660f2c",
+  "selected_at_utc": "2026-09-27T15:10:55.164368+00:00",
+  "selection_rule": "maximize development Recall@100, then NDCG@20, then configuration ID; no validation retuning"
+}
