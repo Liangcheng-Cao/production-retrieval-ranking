@@ -1,0 +1,82 @@
+{
+  "tests": "35 passed in 0.98s",
+  "post_commit_status": "clean",
+  "commits": [
+    {
+      "hash": "39a61cc760042a20c9d56c21d902932630f14a6d",
+      "message": "feat: add reusable lexical dense and hybrid retrieval",
+      "files": [
+        "src/product_search/retrieval/__init__.py",
+        "src/product_search/retrieval/common.py",
+        "src/product_search/retrieval/lexical.py",
+        "src/product_search/retrieval/dense.py",
+        "src/product_search/retrieval/hybrid.py",
+        "src/product_search/retrieval/artifacts.py"
+      ]
+    },
+    {
+      "hash": "08a583be2a539e8ae647ee09fa9fc11a2cd2f6fc",
+      "message": "test: protect development boundaries and retrieval metrics",
+      "files": [
+        "src/product_search/development_data.py",
+        "src/product_search/evaluation.py",
+        "tests/test_retrieval.py",
+        "reports/phase2_checks.json"
+      ]
+    },
+    {
+      "hash": "9c4d117ea185ee6b766fbb7d2d47e296faf9053f",
+      "message": "exp: freeze bounded retrieval development selection",
+      "files": [
+        "scripts/run_phase2.py",
+        "configs/phase2_plan.json",
+        "configs/phase2_selected.json",
+        "reports/phase2/development.json",
+        "reports/phase2/model.json"
+      ]
+    },
+    {
+      "hash": "3f9fdd0bd86b0c7e8b7954846baba6b9ea034745",
+      "message": "data: record lexical index provenance",
+      "files": [
+        "artifacts/phase2/bm25_A_1.5_0.75/manifest.json",
+        "artifacts/phase2/bm25_B_1.2_0.5/manifest.json",
+        "artifacts/phase2/bm25_B_1.5_0.75/manifest.json",
+        "artifacts/phase2/bm25_C_1.5_0.75/manifest.json"
+      ]
+    },
+    {
+      "hash": "4a216b4d71407cbc1bb5d14a65754368378aec1b",
+      "message": "data: record embedding and retrieval artifact provenance",
+      "files": [
+        "artifacts/phase2/dense_A/manifest.json",
+        "artifacts/phase2/dense_B/manifest.json",
+        "artifacts/phase2/dense_C/manifest.json",
+        "artifacts/phase2/manifest.json"
+      ]
+    },
+    {
+      "hash": "bd2bbf43d11c13a8e7f9de43dc7ce91e91f9f19a",
+      "message": "report: record validation quality latency and boundary evidence",
+      "files": [
+        "reports/phase2/validation.json",
+        "reports/phase2/complementarity.json",
+        "reports/phase2/latency.json",
+        "reports/phase2/boundary_development.json",
+        "reports/phase2/boundary_validation.json"
+      ]
+    },
+    {
+      "hash": "b20eba424f0389cbc13a8f80a6cd870f41e58d8a",
+      "message": "docs: document retrieval environment and measured results",
+      "files": [
+        "README.md",
+        "pyproject.toml",
+        "scripts/summarize_phase2.py",
+        "reports/phase2/REPORT.md",
+        "reports/phase2_environment.json",
+        "reports/bootstrap_commits.json"
+      ]
+    }
+  ]
+}
