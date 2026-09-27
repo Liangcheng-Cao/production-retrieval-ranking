@@ -1,0 +1,70 @@
+{
+  "measured_at_utc": "2026-09-27T15:24:54.482026+00:00",
+  "partition": "validation",
+  "pipelines": {
+    "BM25": {
+      "excluded_queries": {
+        "NDCG@10": 0,
+        "NDCG@20": 0,
+        "Recall@10": 0,
+        "Recall@100": 0,
+        "Recall@20": 0,
+        "Recall@50": 0,
+        "judged_fraction@100": 0
+      },
+      "metrics": {
+        "NDCG@10": 0.6671693286442933,
+        "NDCG@20": 0.6671984569895969,
+        "Recall@10": 0.06153951700445926,
+        "Recall@100": 0.3587215069957521,
+        "Recall@20": 0.1201660988971661,
+        "Recall@50": 0.24083493850788903,
+        "judged_fraction@100": 0.7478125000000001
+      },
+      "query_count": 96
+    },
+    "Dense": {
+      "excluded_queries": {
+        "NDCG@10": 0,
+        "NDCG@20": 0,
+        "Recall@10": 0,
+        "Recall@100": 0,
+        "Recall@20": 0,
+        "Recall@50": 0,
+        "judged_fraction@100": 0
+      },
+      "metrics": {
+        "NDCG@10": 0.6638544529794941,
+        "NDCG@20": 0.6453672376001031,
+        "Recall@10": 0.05967482920547317,
+        "Recall@100": 0.3465315690287183,
+        "Recall@20": 0.10451921293218464,
+        "Recall@50": 0.21616572693155015,
+        "judged_fraction@100": 0.6699999999999999
+      },
+      "query_count": 96
+    },
+    "Hybrid": {
+      "excluded_queries": {
+        "NDCG@10": 0,
+        "NDCG@20": 0,
+        "Recall@10": 0,
+        "Recall@100": 0,
+        "Recall@20": 0,
+        "Recall@50": 0,
+        "judged_fraction@100": 0
+      },
+      "metrics": {
+        "NDCG@10": 0.7129837611693931,
+        "NDCG@20": 0.7033327040217682,
+        "Recall@10": 0.06419479958865686,
+        "Recall@100": 0.3804770644355071,
+        "Recall@20": 0.11869325710314153,
+        "Recall@50": 0.2442171896655098,
+        "judged_fraction@100": 0.7132291666666667
+      },
+      "query_count": 96
+    }
+  },
+  "selection_sha256": "833c30e4ad49536c85f44f924278d35103a29fcd3b29d8d4d9d3070a14e8cc6b"
+}

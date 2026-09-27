@@ -1,0 +1,107 @@
+{
+  "depths": {
+    "100": {
+      "bm25_only_relevant": {
+        "mean_per_query": 30.385416666666668,
+        "sum": 2917
+      },
+      "dense_only_relevant": {
+        "mean_per_query": 31.833333333333332,
+        "sum": 3056
+      },
+      "hybrid_lost_vs_bm25": {
+        "mean_per_query": 14.09375,
+        "sum": 1353
+      },
+      "hybrid_recovered_beyond_bm25": {
+        "mean_per_query": 16.927083333333332,
+        "sum": 1625
+      },
+      "hybrid_relevant": {
+        "mean_per_query": 64.11458333333333,
+        "sum": 6155
+      },
+      "jaccard": {
+        "mean_per_query": 0.2529954255470411,
+        "sum": 24.287560852515945
+      },
+      "overlap_count": {
+        "mean_per_query": 35.979166666666664,
+        "sum": 3454
+      },
+      "shared_relevant": {
+        "mean_per_query": 30.895833333333332,
+        "sum": 2966
+      }
+    },
+    "20": {
+      "bm25_only_relevant": {
+        "mean_per_query": 9.59375,
+        "sum": 921
+      },
+      "dense_only_relevant": {
+        "mean_per_query": 9.635416666666666,
+        "sum": 925
+      },
+      "hybrid_lost_vs_bm25": {
+        "mean_per_query": 5.447916666666667,
+        "sum": 523
+      },
+      "hybrid_recovered_beyond_bm25": {
+        "mean_per_query": 6.447916666666667,
+        "sum": 619
+      },
+      "hybrid_relevant": {
+        "mean_per_query": 16.0,
+        "sum": 1536
+      },
+      "jaccard": {
+        "mean_per_query": 0.19349859956011614,
+        "sum": 18.57586555777115
+      },
+      "overlap_count": {
+        "mean_per_query": 5.833333333333333,
+        "sum": 560
+      },
+      "shared_relevant": {
+        "mean_per_query": 5.40625,
+        "sum": 519
+      }
+    },
+    "50": {
+      "bm25_only_relevant": {
+        "mean_per_query": 19.302083333333332,
+        "sum": 1853
+      },
+      "dense_only_relevant": {
+        "mean_per_query": 19.09375,
+        "sum": 1833
+      },
+      "hybrid_lost_vs_bm25": {
+        "mean_per_query": 9.802083333333334,
+        "sum": 941
+      },
+      "hybrid_recovered_beyond_bm25": {
+        "mean_per_query": 11.083333333333334,
+        "sum": 1064
+      },
+      "hybrid_relevant": {
+        "mean_per_query": 36.229166666666664,
+        "sum": 3478
+      },
+      "jaccard": {
+        "mean_per_query": 0.24494781374677074,
+        "sum": 23.51499011968999
+      },
+      "overlap_count": {
+        "mean_per_query": 17.427083333333332,
+        "sum": 1673
+      },
+      "shared_relevant": {
+        "mean_per_query": 15.645833333333334,
+        "sum": 1502
+      }
+    }
+  },
+  "partition": "validation"
+}

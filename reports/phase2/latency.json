@@ -1,0 +1,95 @@
+{
+  "pipelines": {
+    "BM25": {
+      "sample_count": 72,
+      "search_ms": {
+        "p50_ms": 0.24975000269478187,
+        "p95_ms": 0.5434750055428595
+      },
+      "total_ms": {
+        "p50_ms": 0.24975000269478187,
+        "p95_ms": 0.5434750055428595
+      }
+    },
+    "Dense": {
+      "encoding_ms": {
+        "p50_ms": 4.187550002825446,
+        "p95_ms": 4.964465007651597
+      },
+      "sample_count": 72,
+      "search_ms": {
+        "p50_ms": 4.942549996485468,
+        "p95_ms": 5.2225150051526725
+      },
+      "total_ms": {
+        "p50_ms": 9.180449997074902,
+        "p95_ms": 9.942784994927933
+      }
+    },
+    "Hybrid": {
+      "encoding_ms": {
+        "p50_ms": 4.2678000027081,
+        "p95_ms": 5.101964996720199
+      },
+      "fusion_ms": {
+        "p50_ms": 0.10215000656899065,
+        "p95_ms": 0.11322500504320489
+      },
+      "lexical_ms": {
+        "p50_ms": 0.33849999454105273,
+        "p95_ms": 0.6189200023072772
+      },
+      "sample_count": 72,
+      "search_ms": {
+        "p50_ms": 4.966550004610326,
+        "p95_ms": 5.286125003476627
+      },
+      "total_ms": {
+        "p50_ms": 9.778599996934645,
+        "p95_ms": 10.819379997701617
+      }
+    }
+  },
+  "protocol": {
+    "cpu_blas_threads": 1,
+    "query_count": 24,
+    "query_ids": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      11,
+      12,
+      13,
+      16,
+      17,
+      18,
+      22,
+      23,
+      24,
+      27,
+      28,
+      29,
+      31,
+      32,
+      35
+    ],
+    "query_partition": "train",
+    "repeats": 3,
+    "scope": "single-process sequential warm retrieval; no QPS or production claim",
+    "top_k": 100,
+    "warmup": 5
+  },
+  "startup_ms": {
+    "bm25_artifact_load_and_hash": 19.004799993126653,
+    "dense_artifact_load_hash_norm_check": 87.63179999368731,
+    "dense_total": 3932.9403000010643,
+    "hybrid_total": 3951.945099994191,
+    "model_from_local_cache_to_gpu": 3845.308500007377
+  }
+}
