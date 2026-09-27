@@ -1,0 +1,37 @@
+{
+  "phase": "Phase 1 structural validation before closing freeze boundary",
+  "same_output_rerun": "passed",
+  "independent_directory_byte_identity": {
+    "data_audit.json": true,
+    "judgment_conflicts.jsonl": true,
+    "judgments.test.jsonl": true,
+    "judgments.train.jsonl": true,
+    "judgments.validation.jsonl": true,
+    "products.jsonl": true,
+    "queries.jsonl": true,
+    "query_splits.json": true,
+    "data_manifest.json": true
+  },
+  "loaded_partitions": {
+    "train": {
+      "queries": 288,
+      "judgments": 135426,
+      "products": 42994,
+      "conflicts": 8
+    },
+    "validation": {
+      "queries": 96,
+      "judgments": 47941,
+      "products": 42994,
+      "conflicts": 2
+    },
+    "test": {
+      "queries": 96,
+      "judgments": 48492,
+      "products": 42994,
+      "conflicts": 4
+    }
+  },
+  "manifest_sha256": "0b79ce2061ada9574885b952e63f06c9516aa38682b1e91ba1f4334a5d6eb845",
+  "integrity": "primary IDs, foreign keys, judgment uniqueness, valid labels/gains, excluded conflicts, numeric types, query coverage, group isolation, proportions and checksums passed"
+}
