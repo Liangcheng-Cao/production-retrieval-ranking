@@ -1,0 +1,11 @@
+{
+  "python": "3.14.3",
+  "torch": "2.14.0+cu130",
+  "cuda_runtime": "13.0",
+  "cuda_available": true,
+  "gpu": "NVIDIA GeForce RTX 4070",
+  "tensor_operation_result": 13.0,
+  "transformers": "5.17.0",
+  "sentence_transformers": "6.1.0",
+  "bm25s": "0.3.11"
+}

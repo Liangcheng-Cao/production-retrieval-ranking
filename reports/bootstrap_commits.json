@@ -1,0 +1,81 @@
+{
+  "tests": "20 passed in 0.13s",
+  "post_commit_status": "clean before Phase 2",
+  "commits": [
+    {
+      "hash": "58b5eeab3e19c78c295b9b5724349b5b099adf63",
+      "message": "chore: establish Python package and repository hygiene",
+      "files": [
+        ".gitattributes",
+        ".gitignore",
+        "pyproject.toml",
+        "src/product_search/__init__.py",
+        "src/product_search/config.py",
+        "configs/default.toml"
+      ]
+    },
+    {
+      "hash": "0f59ec8fac79e6be003c010367ca585e4970a444",
+      "message": "data: pin WANDS acquisition and source provenance",
+      "files": [
+        "data/README.md",
+        "data/WANDS-LICENSE.txt",
+        "data/raw/.gitkeep",
+        "reports/dataset_audit.json",
+        "scripts/download_wands.py"
+      ]
+    },
+    {
+      "hash": "6a48acb4762e6cae0f691178d952f4418e2125fb",
+      "message": "feat: implement canonical WANDS data and deterministic splits",
+      "files": [
+        "src/product_search/data/__init__.py",
+        "src/product_search/data/schema.py",
+        "src/product_search/data/preprocess.py",
+        "src/product_search/data/splits.py",
+        "src/product_search/data/io.py",
+        "src/product_search/data/pipeline.py"
+      ]
+    },
+    {
+      "hash": "86e8db793ab44332c4a32baa44ee8e3c58f919ff",
+      "message": "data: record authoritative split freeze and build entry point",
+      "files": [
+        "scripts/build_data.py",
+        "data/processed/.gitkeep",
+        "data/processed/data_manifest.json",
+        "data/processed/query_splits.json",
+        "data/processed/data_audit.json"
+      ]
+    },
+    {
+      "hash": "8a5d0f63fbf38fe355def15ac6633296ab5ae944",
+      "message": "test: validate bootstrap data integrity and reproducibility",
+      "files": [
+        "tests/test_bootstrap.py",
+        "tests/test_data.py",
+        "scripts/audit_wands.py",
+        "reports/phase1_validation.json"
+      ]
+    },
+    {
+      "hash": "919109ecdf2d05115d42a1837fec17b8d0cdc8e7",
+      "message": "docs: record environment and ML compatibility evidence",
+      "files": [
+        "reports/environment.json",
+        "reports/python_compatibility.json",
+        "reports/python_compatibility.md"
+      ]
+    },
+    {
+      "hash": "da1d06d79f53cab8a515e3aedf77465c53a8595e",
+      "message": "docs: describe project scope and frozen data methodology",
+      "files": [
+        "README.md",
+        "reports/split_protocol.md",
+        "artifacts/README.md",
+        "benchmarks/.gitkeep"
+      ]
+    }
+  ]
+}

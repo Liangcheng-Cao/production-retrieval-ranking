@@ -12,21 +12,24 @@ Planned serving variants: BM25, hybrid, hybrid with CrossEncoder reranking.
 
 ## Current status
 
-Phase 1 complete: typed canonical data, audited conflict exclusion, deterministic
-query-group splits and a frozen split manifest. No retrieval models, embeddings or
-API exist. **No final ranking or performance benchmark results exist yet.** No online
+Phase 2 complete: frozen canonical data plus BM25, dense and RRF hybrid candidate
+retrieval. Validation-only quality and diagnostic single-query latency are measured.
+No CrossEncoder or API exists. **No final-test or production benchmark results exist.** No online
 traffic or A/B experiment exists; future simulated comparisons must be described
 as offline replay or synthetic traffic simulation.
 
 ## Windows setup
 
 Run in this repository using PowerShell. The verified local environment is Python
-3.14 on Windows. Metadata/wheel checks support retaining Python 3.14; see
-reports/python_compatibility.md. No GPU or transformer stack is installed here.
+3.14.3 on Windows. Phase 2 verified torch 2.14.0+cu130, CUDA 13.0 and a real tensor
+operation on RTX 4070 (driver 581.08); transformers 5.17.0 and sentence-transformers
+6.1.0 import successfully. No Python migration was required.
 
 ```powershell
 py -3.14 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e ".[dev]"
+.\.venv\Scripts\python.exe -m pip install torch==2.14.0 --index-url https://download.pytorch.org/whl/cu130
+.\.venv\Scripts\python.exe -m pip install -e ".[dev,retrieval]"
 .\.venv\Scripts\python.exe scripts/download_wands.py
 .\.venv\Scripts\python.exe -m pytest
 .\.venv\Scripts\python.exe -m pip check
@@ -73,5 +76,58 @@ and temporary benchmark outputs stay outside Git. Small reviewed reports and
 reproducibility manifests belong in Git. Preserve the upstream WANDS license when
 redistributing its material and cite Chen et al., ECIR 2022.
 
-Phase 2 (not started) is lexical/dense/hybrid retrieval. No frontend,
-LLM features, distributed services or additional infrastructure are planned.
+## Retrieval architecture and evidence
+
+Query → BM25 and/or Dense → optional RRF → structured product_id/score/rank/source.
+All retrievers expose search(query, top_k=100). Models/indexes initialize once;
+product embeddings are built once, and query embeddings are computed per search.
+Ties use ascending product_id. Blank queries return []; invalid top_k fails.
+BM25 omits zero-score results; hybrid top_k must not exceed its fixed depth of 100.
+
+- BM25Retriever: bm25s 0.3.11, Lucene method, k1=1.2, b=0.5; name + class/category.
+  NFKC/casefold/alphanumeric tokenization; no stemming or stopword removal.
+- DenseRetriever: sentence-transformers/all-MiniLM-L6-v2, revision
+  1110a243fdf4706b3f48f1d95db1a4f5529b4d41, Apache-2.0, 384 dimensions, masked mean
+  pooling, L2 normalization, float32, batch 128, max 256 wordpieces; product name only.
+  GPU encoding and exact NumPy CPU cosine search; no FAISS/ANN.
+- HybridRetriever: equal-weight RRF, 1/(60+rank), each component top-100, union then
+  truncate to 100. Component scores are not directly mixed.
+
+Development used 288 queries and exactly nine configurations: BM25 A/B/C plus
+one parameter alternative on B, dense A/B/C with one model, and RRF constants 20/60.
+A=name; B=add class/category; C=add description/features. Longer dense text reduced
+development Recall@100 (A .3615, B .3406, C .3349). Selection was fixed before validation.
+
+Validation (96 queries, zero excluded for these metrics):
+
+| Pipeline | Recall@20 | Recall@50 | Recall@100 | NDCG@10 | NDCG@20 |
+|---|---:|---:|---:|---:|---:|
+| BM25 | .1202 | .2408 | .3587 | .6672 | .6672 |
+| Dense | .1045 | .2162 | .3465 | .6639 | .6454 |
+| Hybrid | .1187 | .2442 | .3805 | .7130 | .7033 |
+
+Hybrid improves coverage at 100 and NDCG here, but not Recall@20. At depth 100,
+BM25/dense share 35.98 candidates per query; BM25-only and dense-only relevant hits
+average 30.39 and 31.83. Hybrid recovers 16.93 relevant items beyond BM25 while losing
+14.09, showing both complementarity and truncation cost. Unjudged items get zero
+measured gain, not known-negative labels; incomplete qrels limit interpretation.
+
+Warm single-query P50/P95 (ms): BM25 .250/.543, Dense 9.180/9.943, Hybrid 9.779/10.819.
+This used 24 train queries x three repeats, five warmups, top-100, one BLAS thread;
+it is not a production SLA or QPS benchmark. Startup is reported separately.
+See [full measured report](reports/phase2/REPORT.md) and [retrieval manifest](artifacts/phase2/manifest.json).
+
+The experiment entry point is scripts/run_phase2.py with development and validation
+stages. It refuses to overwrite completed selections/results. Existing evidence must
+be preserved; future authorized reproduction should use a separate workspace.
+For normal use, load selected BM25/dense artifacts with the configs in
+configs/phase2_selected.json. Persisted artifacts validate config and file checksums.
+
+**Final test remains untouched by Phase 2 retrieval and evaluation. Final-test
+relevance labels were not opened.** The scoped loader byte-scans the shared queries
+file for IDs but only decodes/encodes train or validation query text. A process guard
+blocks raw labels, final-test judgment files and the mixed conflict audit. Phase 1
+code and the frozen split were not modified; test-access unit tests use synthetic data.
+
+Phase 3 (not started) is CrossEncoder reranking and offline ranking comparison.
+No frontend, LLM features, distributed services or additional infrastructure are planned.
