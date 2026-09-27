@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+  "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+  "device": "cuda:0",
+  "batched_ranking_equal": true,
+  "scores_close_atol_rtol": 0.0001,
+  "batch1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "batch32": [
+    6
+  ],
+  "real_tokenizer_truncation_deterministic": true,
+  "truncated_length": 256,
+  "synthetic_only": true,
+  "opened_canonical_files": [],
+  "test_labels_accessed": false
+}
