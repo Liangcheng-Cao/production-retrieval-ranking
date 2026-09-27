@@ -1,0 +1,51 @@
+{
+  "tests": "35 passed in 0.42s",
+  "pip_check": "No broken requirements found",
+  "phase01_commits": 7,
+  "phase2_commits": 0,
+  "tracked_large_or_sensitive_files": [],
+  "frozen_source_split_manifest_git_diff": "unchanged",
+  "new_reviewable_files": [
+    "artifacts/phase2/bm25_A_1.5_0.75/manifest.json",
+    "artifacts/phase2/bm25_B_1.2_0.5/manifest.json",
+    "artifacts/phase2/bm25_B_1.5_0.75/manifest.json",
+    "artifacts/phase2/bm25_C_1.5_0.75/manifest.json",
+    "artifacts/phase2/dense_A/manifest.json",
+    "artifacts/phase2/dense_B/manifest.json",
+    "artifacts/phase2/dense_C/manifest.json",
+    "artifacts/phase2/manifest.json",
+    "configs/phase2_plan.json",
+    "configs/phase2_selected.json",
+    "reports/bootstrap_commits.json",
+    "reports/phase2/REPORT.md",
+    "reports/phase2/boundary_development.json",
+    "reports/phase2/boundary_validation.json",
+    "reports/phase2/complementarity.json",
+    "reports/phase2/development.json",
+    "reports/phase2/latency.json",
+    "reports/phase2/model.json",
+    "reports/phase2/validation.json",
+    "reports/phase2_environment.json",
+    "scripts/run_phase2.py",
+    "scripts/summarize_phase2.py",
+    "src/product_search/development_data.py",
+    "src/product_search/evaluation.py",
+    "src/product_search/retrieval/__init__.py",
+    "src/product_search/retrieval/artifacts.py",
+    "src/product_search/retrieval/common.py",
+    "src/product_search/retrieval/dense.py",
+    "src/product_search/retrieval/hybrid.py",
+    "src/product_search/retrieval/lexical.py",
+    "tests/test_retrieval.py"
+  ],
+  "modified_files": [
+    "README.md",
+    "pyproject.toml"
+  ],
+  "boundary_logs": [
+    "reports/phase2/boundary_development.json",
+    "reports/phase2/boundary_validation.json"
+  ],
+  "actual_test_labels_accessed": false,
+  "phase1_synthetic_tests_only": true
+}
