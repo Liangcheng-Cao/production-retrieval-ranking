@@ -1,0 +1,25 @@
+{
+  "version": "monitoring-v1",
+  "split": "train",
+  "selection": "all frozen train queries sorted by query_id",
+  "query_count": 288,
+  "rebuilds": 2,
+  "seed": 42,
+  "long_suffix": " modern durable compact versatile easy assembly for everyday home use",
+  "category_mix": "cycle queries from most frequent train query_class; ties lexicographic; retain population size",
+  "short_generic": "first whitespace-delimited token; retain original class as source annotation, not inferred new intent",
+  "encoder_batch_size": 1,
+  "replay_top_k": 20,
+  "comparison_top_k": 10,
+  "feature_definitions": {
+    "characters": "Python Unicode codepoint count, no normalization",
+    "tokens": "Python str.split whitespace token count; not model subword tokens",
+    "classes": "frozen source query_class; synthetic text transformations do not relabel intent",
+    "scalar_drift": "1-Wasserstein in original units, no fitted bins",
+    "categorical_drift": "total variation, range 0..1",
+    "embedding": "existing normalized encoder, mean L2 norm and centroid cosine distance",
+    "reranker": "top1 logits, top1 minus top2 margin, all returned CE20 score distribution; not calibrated probabilities",
+    "rank_displacement": "mean absolute rank change among shared Top10 IDs, per query then macro mean; missing IDs reported by overlap"
+  },
+  "scope": "synthetic offline replay only; quality evaluated only for unmodified train queries; no model selection"
+}
