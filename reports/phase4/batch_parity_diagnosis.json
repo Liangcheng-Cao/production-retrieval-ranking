@@ -1,0 +1,155 @@
+{
+  "boundary": {
+    "blocked": [],
+    "opened": [
+      "data/processed/data_manifest.json",
+      "data/processed/products.jsonl",
+      "data/processed/queries.jsonl"
+    ]
+  },
+  "note": "historical evaluation batches 128 across all train queries; existing direct search encodes one query",
+  "rows": [
+    {
+      "batch6_matches_historical": true,
+      "direct_matches_historical": true,
+      "full_batch_matches_historical": true,
+      "max_vector_abs_delta_batch6": 9.685754776000977e-08,
+      "production_matches_existing_direct": true,
+      "qid": 0,
+      "rank_differences_batch6": [],
+      "rank_differences_direct": []
+    },
+    {
+      "batch6_matches_historical": false,
+      "direct_matches_historical": false,
+      "full_batch_matches_historical": true,
+      "max_vector_abs_delta_batch6": 9.685754776000977e-08,
+      "production_matches_existing_direct": true,
+      "qid": 1,
+      "rank_differences_batch6": [
+        {
+          "batch6": 608,
+          "historical": 5173,
+          "rank": 2
+        },
+        {
+          "batch6": 5173,
+          "historical": 19750,
+          "rank": 4
+        },
+        {
+          "batch6": 19750,
+          "historical": 20513,
+          "rank": 5
+        },
+        {
+          "batch6": 20513,
+          "historical": 24849,
+          "rank": 6
+        },
+        {
+          "batch6": 24849,
+          "historical": 33290,
+          "rank": 7
+        },
+        {
+          "batch6": 876,
+          "historical": 608,
+          "rank": 8
+        },
+        {
+          "batch6": 22679,
+          "historical": 876,
+          "rank": 9
+        },
+        {
+          "batch6": 33290,
+          "historical": 22679,
+          "rank": 11
+        }
+      ],
+      "rank_differences_direct": [
+        {
+          "direct": 608,
+          "historical": 5173,
+          "rank": 2
+        },
+        {
+          "direct": 5173,
+          "historical": 19750,
+          "rank": 4
+        },
+        {
+          "direct": 19750,
+          "historical": 20513,
+          "rank": 5
+        },
+        {
+          "direct": 20513,
+          "historical": 24849,
+          "rank": 6
+        },
+        {
+          "direct": 24849,
+          "historical": 33290,
+          "rank": 7
+        },
+        {
+          "direct": 876,
+          "historical": 608,
+          "rank": 8
+        },
+        {
+          "direct": 22679,
+          "historical": 876,
+          "rank": 9
+        },
+        {
+          "direct": 33290,
+          "historical": 22679,
+          "rank": 11
+        }
+      ]
+    },
+    {
+      "batch6_matches_historical": true,
+      "direct_matches_historical": true,
+      "full_batch_matches_historical": true,
+      "max_vector_abs_delta_batch6": 1.1920928955078125e-07,
+      "production_matches_existing_direct": true,
+      "qid": 2,
+      "rank_differences_batch6": [],
+      "rank_differences_direct": []
+    },
+    {
+      "batch6_matches_historical": true,
+      "direct_matches_historical": true,
+      "full_batch_matches_historical": true,
+      "max_vector_abs_delta_batch6": 7.450580596923828e-08,
+      "production_matches_existing_direct": true,
+      "qid": 3,
+      "rank_differences_batch6": [],
+      "rank_differences_direct": []
+    },
+    {
+      "batch6_matches_historical": true,
+      "direct_matches_historical": true,
+      "full_batch_matches_historical": true,
+      "max_vector_abs_delta_batch6": 7.078051567077637e-08,
+      "production_matches_existing_direct": true,
+      "qid": 5,
+      "rank_differences_batch6": [],
+      "rank_differences_direct": []
+    },
+    {
+      "batch6_matches_historical": true,
+      "direct_matches_historical": true,
+      "full_batch_matches_historical": true,
+      "max_vector_abs_delta_batch6": 7.450580596923828e-08,
+      "production_matches_existing_direct": true,
+      "qid": 6,
+      "rank_differences_batch6": [],
+      "rank_differences_direct": []
+    }
+  ]
+}
