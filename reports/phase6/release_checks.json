@@ -1,0 +1,22 @@
+{
+  "tests": "125 passed, 1 warning in 1.24s",
+  "aggregation_validation": "all raw HTTP/core summaries recomputed; independent P95 and QPS checked; generated comparison/report unchanged",
+  "http_observations": 23040,
+  "core_observations": 5760,
+  "frozen_phase1_to_phase5_unchanged": true,
+  "final_test_labels_accessed": false,
+  "raw_observation_hashes_verified": true,
+  "large_artifacts_tracked": false,
+  "ignored_counts": {
+    "data/raw/": 3,
+    "data/processed/": 6,
+    "artifacts/model_cache/": 30,
+    "artifacts/phase2/": 30,
+    "artifacts/phase3/": 5,
+    ".venv/": 39877,
+    "reports/tmp/phase6": 72
+  },
+  "phase5_head": "7a135139c8492cf96b798fd588f51f556b529659",
+  "git_diff_check": "passed",
+  "push": false
+}

@@ -1,0 +1,58 @@
+{
+  "commits": [
+    {
+      "hash": "eecfa1f3368e215a9de44d94882a66a79c6d0e43",
+      "message": "feat: expose frozen search core through typed HTTP service",
+      "files": [
+        "pyproject.toml",
+        "src/product_search/api.py",
+        "src/product_search/api_logging.py",
+        "src/product_search/api_schemas.py"
+      ]
+    },
+    {
+      "hash": "0f5434ce35782d22e3bcc7d22c7bf097ce91fcf4",
+      "message": "test: validate API lifecycle parity and controlled failures",
+      "files": [
+        "scripts/serve.py",
+        "scripts/validate_api.py",
+        "tests/test_api.py"
+      ]
+    },
+    {
+      "hash": "47186492e0aee4cee97b69acfacfd2ae6720ddc0",
+      "message": "report: preserve HTTP integration and parity evidence",
+      "files": [
+        "reports/phase5/api_core_parity.json",
+        "reports/phase5/http_integration.json",
+        "reports/phase5/http_integration_final.json",
+        "reports/phase5/http_release.json"
+      ]
+    },
+    {
+      "hash": "ec1ff4bce173ce1412aa0e0ee182ea2645bc4394",
+      "message": "report: verify final HTTP release and frozen boundaries",
+      "files": [
+        "reports/phase5/checks.json",
+        "reports/phase5/http_release_final.json",
+        "reports/phase5/phase4_commits.json"
+      ]
+    },
+    {
+      "hash": "7a135139c8492cf96b798fd588f51f556b529659",
+      "message": "docs: document local HTTP lifecycle and failure semantics",
+      "files": [
+        "README.md",
+        "docs/http_service.md",
+        "reports/phase5/REPORT.md"
+      ]
+    }
+  ],
+  "pre_phase6_clean": true,
+  "pre_commit_tests": "122 passed, 1 warning in 1.24s",
+  "release_validation": "reports/phase5/http_release_final.json",
+  "api_core_parity_passed": true,
+  "startup_failure_check_passed": true,
+  "frozen_phase1_to_phase4_unchanged": true,
+  "pushed": false
+}

@@ -1,0 +1,2469 @@
+{
+  "environment": {
+    "cpu": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "gpu": "NVIDIA GeForce RTX 4070, 581.08, 12282 MiB",
+    "logical_cpus": 28,
+    "packages": {
+      "fastapi": "0.141.1",
+      "httpx": "0.28.1",
+      "numpy": "2.5.3",
+      "torch": "2.14.0+cu130",
+      "uvicorn": "0.54.0"
+    },
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.3"
+  },
+  "passed": true,
+  "plan": {
+    "allow_tf32": false,
+    "blas_threads": 1,
+    "case_order": "deterministically shuffled independently per run",
+    "concurrency": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "deterministic_algorithms": true,
+    "device": "cuda",
+    "engine_executor_workers": 1,
+    "independent_runs": 2,
+    "load_model": "closed-loop fixed outstanding client workers; no think time",
+    "logging": "INFO JSON service events to ignored local file, access log disabled",
+    "native_dependency_imports": "main thread before BLAS limits and worker; excluded from measured engine initialization",
+    "partition": "train",
+    "pipelines": [
+      "bm25",
+      "hybrid",
+      "hybrid_rerank"
+    ],
+    "query_count": 24,
+    "query_selection": "first 24 sorted frozen train query IDs",
+    "request_timeout_seconds": 30,
+    "requests_per_case": 96,
+    "scope": "loopback client/server separate processes on one Windows host; fixed ranking configuration; no labels",
+    "seed": 42,
+    "service_workers": 1,
+    "success_criteria": "all planned observations retained, zero unexpected errors/fallback/ranking mismatches, reproducible case metadata; no invented latency threshold",
+    "top_k": 10,
+    "torch_threads": 1,
+    "version": "phase6-benchmark-v1",
+    "warmup_requests": 8
+  },
+  "plan_sha256": "a70db057283abc2d1824d0de0fcda9f50ca5ba31373245eb726c7fb2e088f87f",
+  "runs": [
+    {
+      "cases": [
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 70.07349998457357,
+            "mean_ms": 63.00712083248072,
+            "p50_ms": 63.521000003675,
+            "p95_ms": 66.75750000431435,
+            "p99_ms": 70.04025000787806
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 70.07349998457357,
+            "mean_ms": 63.00712083248072,
+            "p50_ms": 63.521000003675,
+            "p95_ms": 66.75750000431435,
+            "p99_ms": 70.04025000787806
+          },
+          "completed_requests_per_second": 62.349047112062216,
+          "concurrency": 4,
+          "elapsed_seconds": 1.5397187999915332,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 17.390199995134026,
+            "mean_ms": 15.350697919226755,
+            "p50_ms": 15.335300005972385,
+            "p95_ms": 16.525700011698063,
+            "p99_ms": 16.933345000143163
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 67.8768,
+            "mean_ms": 60.51671354166666,
+            "p50_ms": 61.310900000000004,
+            "p95_ms": 63.7817,
+            "p99_ms": 66.77745999999999
+          },
+          "pipeline": "hybrid_rerank",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-1/hybrid_rerank-c4.json",
+          "raw_sha256": "5f98c7b699fe21236cc396e7d13b18c3e2f8d2b95b298db0d40e1964f707ea77",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.2117,
+            "mean_ms": 0.08028125,
+            "p50_ms": 0.0785,
+            "p95_ms": 0.0865,
+            "p99_ms": 0.10225999999999967
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 51.629899987384306,
+            "mean_ms": 45.16601562243991,
+            "p50_ms": 45.90599998391681,
+            "p95_ms": 48.043475012413595,
+            "p99_ms": 51.49927500381069
+          },
+          "successful_requests_per_second": 62.349047112062216,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 5.551299982471392,
+            "mean_ms": 3.816665624678232,
+            "p50_ms": 3.7478000012924895,
+            "p95_ms": 4.249899990099948,
+            "p99_ms": 5.432264988485258
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 5.551299982471392,
+            "mean_ms": 3.816665624678232,
+            "p50_ms": 3.7478000012924895,
+            "p95_ms": 4.249899990099948,
+            "p99_ms": 5.432264988485258
+          },
+          "completed_requests_per_second": 509.9081527744819,
+          "concurrency": 2,
+          "elapsed_seconds": 0.18826920000719838,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 0.6365999870467931,
+            "mean_ms": 0.3012645838680328,
+            "p50_ms": 0.28059999749530107,
+            "p95_ms": 0.5843749895575456,
+            "p99_ms": 0.63517497619614
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 1.4342,
+            "mean_ms": 0.9764541666666666,
+            "p50_ms": 0.9492499999999999,
+            "p95_ms": 1.2671,
+            "p99_ms": 1.3857499999999998
+          },
+          "pipeline": "bm25",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-1/bm25-c2.json",
+          "raw_sha256": "0538e3d0531acc785bb0c79d395ab256a76c38c0d5d87cd70a5bf0aaaea44cb8",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.2164,
+            "mean_ms": 0.056959375,
+            "p50_ms": 0.05375,
+            "p95_ms": 0.06334999999999999,
+            "p99_ms": 0.11170999999999968
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 1.0542999985225499,
+            "mean_ms": 0.6751895827986338,
+            "p50_ms": 0.6504000029060989,
+            "p95_ms": 0.867449991000723,
+            "p99_ms": 1.0352050054356827
+          },
+          "successful_requests_per_second": 509.9081527744819,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 40.58159998385236,
+            "mean_ms": 32.39898124805526,
+            "p50_ms": 31.707550006103702,
+            "p95_ms": 38.749924999137875,
+            "p99_ms": 40.15001501538791
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 40.58159998385236,
+            "mean_ms": 32.39898124805526,
+            "p50_ms": 31.707550006103702,
+            "p95_ms": 38.749924999137875,
+            "p99_ms": 40.15001501538791
+          },
+          "completed_requests_per_second": 61.211693117003364,
+          "concurrency": 2,
+          "elapsed_seconds": 1.568327799992403,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 20.155100006377324,
+            "mean_ms": 15.730817709481926,
+            "p50_ms": 15.311299997847527,
+            "p95_ms": 19.001674991159234,
+            "p99_ms": 19.73567499226192
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 37.7218,
+            "mean_ms": 30.054591666666667,
+            "p50_ms": 29.43005,
+            "p95_ms": 36.309425000000005,
+            "p99_ms": 37.39595
+          },
+          "pipeline": "hybrid_rerank",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-1/hybrid_rerank-c2.json",
+          "raw_sha256": "630993cbb9bf5fbbc37bb409a026a5522b3d1f850af896e6eb1bfaf6ae3f4812",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.1243,
+            "mean_ms": 0.08201666666666667,
+            "p50_ms": 0.07905000000000001,
+            "p95_ms": 0.108375,
+            "p99_ms": 0.11869499999999998
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 18.5367999974329,
+            "mean_ms": 14.323773957184741,
+            "p50_ms": 14.12530001404565,
+            "p95_ms": 17.46004998262925,
+            "p99_ms": 18.451205008510406
+          },
+          "successful_requests_per_second": 61.211693117003364,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 62.402800016570836,
+            "mean_ms": 18.952712500322377,
+            "p50_ms": 15.401849988847971,
+            "p95_ms": 43.7240000028396,
+            "p99_ms": 57.53642501076682
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 62.402800016570836,
+            "mean_ms": 18.952712500322377,
+            "p50_ms": 15.401849988847971,
+            "p95_ms": 43.7240000028396,
+            "p99_ms": 57.53642501076682
+          },
+          "completed_requests_per_second": 409.06139160597377,
+          "concurrency": 8,
+          "elapsed_seconds": 0.2346835999924224,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 1.0786000057123601,
+            "mean_ms": 0.36816770807490684,
+            "p50_ms": 0.33364999399054796,
+            "p95_ms": 0.7030500055407174,
+            "p99_ms": 0.886225006252061
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 5.6279,
+            "mean_ms": 2.6371249999999997,
+            "p50_ms": 2.54535,
+            "p95_ms": 4.417975,
+            "p99_ms": 5.4484449999999995
+          },
+          "pipeline": "bm25",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-1/bm25-c8.json",
+          "raw_sha256": "f63ab9b64ad6f5c5e63545f8dfb3be2923f639acc56140969f05869a118f423d",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.2207,
+            "mean_ms": 0.05934687499999999,
+            "p50_ms": 0.0557,
+            "p95_ms": 0.071825,
+            "p99_ms": 0.10004999999999964
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 5.30800000884533,
+            "mean_ms": 2.268957291925093,
+            "p50_ms": 2.2584499994732443,
+            "p95_ms": 3.971350025078654,
+            "p99_ms": 5.165214983933772
+          },
+          "successful_requests_per_second": 409.06139160597377,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 134.8230000003241,
+            "mean_ms": 123.28770833088736,
+            "p50_ms": 126.85259999125265,
+            "p95_ms": 132.9031499917619,
+            "p99_ms": 134.70586499315687
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 134.8230000003241,
+            "mean_ms": 123.28770833088736,
+            "p50_ms": 126.85259999125265,
+            "p95_ms": 132.9031499917619,
+            "p99_ms": 134.70586499315687
+          },
+          "completed_requests_per_second": 62.42065749290754,
+          "concurrency": 8,
+          "elapsed_seconds": 1.5379523999872617,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 17.074900009902194,
+            "mean_ms": 15.365644790411656,
+            "p50_ms": 15.304499989724718,
+            "p95_ms": 16.418225000961684,
+            "p99_ms": 16.8536449840758
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 132.2335,
+            "mean_ms": 120.02416249999999,
+            "p50_ms": 124.35985,
+            "p95_ms": 129.98805,
+            "p99_ms": 131.74311
+          },
+          "pipeline": "hybrid_rerank",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-1/hybrid_rerank-c8.json",
+          "raw_sha256": "154d8e8d6bc238793f80a11b11677bfacb722c8f8df4154f31086353904d9763",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.1024,
+            "mean_ms": 0.08140208333333333,
+            "p50_ms": 0.08035,
+            "p95_ms": 0.092825,
+            "p99_ms": 0.09917
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 116.01610000185221,
+            "mean_ms": 104.65851770958834,
+            "p50_ms": 109.08814998958856,
+            "p95_ms": 113.88387501364322,
+            "p99_ms": 115.74934001510408
+          },
+          "successful_requests_per_second": 62.42065749290754,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 47.21819999394938,
+            "mean_ms": 42.299770833475726,
+            "p50_ms": 42.613750003511086,
+            "p95_ms": 44.70344999572262,
+            "p99_ms": 47.09878499706974
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 47.21819999394938,
+            "mean_ms": 42.299770833475726,
+            "p50_ms": 42.613750003511086,
+            "p95_ms": 44.70344999572262,
+            "p99_ms": 47.09878499706974
+          },
+          "completed_requests_per_second": 92.74631997722254,
+          "concurrency": 4,
+          "elapsed_seconds": 1.0350814999837894,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 11.27650000853464,
+            "mean_ms": 10.12954791682811,
+            "p50_ms": 10.088099996210076,
+            "p95_ms": 10.696274992369581,
+            "p99_ms": 11.046029995486606
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 44.8884,
+            "mean_ms": 39.8269375,
+            "p50_ms": 40.3982,
+            "p95_ms": 41.6559,
+            "p99_ms": 44.4514
+          },
+          "pipeline": "hybrid",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-1/hybrid-c4.json",
+          "raw_sha256": "35a4bd483343d58acc44dbe6f1b30f1494e34b8df8573c35b94e2f4e594b52b2",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.2205,
+            "mean_ms": 0.08069270833333335,
+            "p50_ms": 0.07769999999999999,
+            "p95_ms": 0.09745000000000001,
+            "p99_ms": 0.11162999999999967
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 34.678899996161086,
+            "mean_ms": 29.697389583171887,
+            "p50_ms": 30.18195000186171,
+            "p95_ms": 31.41577501452006,
+            "p99_ms": 34.382119998452254
+          },
+          "successful_requests_per_second": 92.74631997722254,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 21.193900000071153,
+            "mean_ms": 18.45344375002848,
+            "p50_ms": 18.397550011286512,
+            "p95_ms": 19.62177499808604,
+            "p99_ms": 20.477979995484926
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 21.193900000071153,
+            "mean_ms": 18.45344375002848,
+            "p50_ms": 18.397550011286512,
+            "p95_ms": 19.62177499808604,
+            "p99_ms": 20.477979995484926
+          },
+          "completed_requests_per_second": 53.85829612968682,
+          "concurrency": 1,
+          "elapsed_seconds": 1.7824552000092808,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 17.37190000130795,
+            "mean_ms": 15.466042709704197,
+            "p50_ms": 15.458799985935912,
+            "p95_ms": 16.51570000103675,
+            "p99_ms": 17.194344976451248
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 18.8812,
+            "mean_ms": 16.048151041666667,
+            "p50_ms": 16.018050000000002,
+            "p95_ms": 17.229675,
+            "p99_ms": 17.978225
+          },
+          "pipeline": "hybrid_rerank",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-1/hybrid_rerank-c1.json",
+          "raw_sha256": "5278868db8d7baa1bc42103240731925d14796f27293540ee50283af2554fcc0",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.1743,
+            "mean_ms": 0.08252395833333333,
+            "p50_ms": 0.081,
+            "p95_ms": 0.08729999999999999,
+            "p99_ms": 0.10285999999999978
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 3.6295999910764394,
+            "mean_ms": 0.5821083319624691,
+            "p50_ms": 0.5389999920209867,
+            "p95_ms": 0.6071749920098108,
+            "p99_ms": 1.0799899912056081
+          },
+          "successful_requests_per_second": 53.85829612968682,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 25.977899989811704,
+            "mean_ms": 21.54462604236566,
+            "p50_ms": 21.494399989023805,
+            "p95_ms": 22.814074996858835,
+            "p99_ms": 23.661134988651604
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 25.977899989811704,
+            "mean_ms": 21.54462604236566,
+            "p50_ms": 21.494399989023805,
+            "p95_ms": 22.814074996858835,
+            "p99_ms": 23.661134988651604
+          },
+          "completed_requests_per_second": 91.9118087040512,
+          "concurrency": 2,
+          "elapsed_seconds": 1.0444795000075828,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 12.467199994716793,
+            "mean_ms": 10.308840627052026,
+            "p50_ms": 10.22154999373015,
+            "p95_ms": 11.218925006687641,
+            "p99_ms": 11.851315005333161
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 22.7529,
+            "mean_ms": 19.211379166666667,
+            "p50_ms": 19.15735,
+            "p95_ms": 20.497,
+            "p99_ms": 21.237079999999995
+          },
+          "pipeline": "hybrid",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-1/hybrid-c2.json",
+          "raw_sha256": "d5c82e6b4cf746f16bfdffa4930b73f6aad65f3b3036d24d731ddc0b6ffed416",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.1679,
+            "mean_ms": 0.07988020833333333,
+            "p50_ms": 0.07615,
+            "p95_ms": 0.09670000000000001,
+            "p99_ms": 0.16105999999999998
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 13.082199995210022,
+            "mean_ms": 8.90253853961464,
+            "p50_ms": 8.886099995844438,
+            "p95_ms": 9.760925009347591,
+            "p99_ms": 10.58370000538082
+          },
+          "successful_requests_per_second": 91.9118087040512,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 105.18490002141334,
+            "mean_ms": 84.51349791782074,
+            "p50_ms": 86.83899999596179,
+            "p95_ms": 89.40535000147065,
+            "p99_ms": 90.59024001035137
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 105.18490002141334,
+            "mean_ms": 84.51349791782074,
+            "p50_ms": 86.83899999596179,
+            "p95_ms": 89.40535000147065,
+            "p99_ms": 90.59024001035137
+          },
+          "completed_requests_per_second": 91.05073688352982,
+          "concurrency": 8,
+          "elapsed_seconds": 1.054357200016966,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 12.183499988168478,
+            "mean_ms": 10.347385417541469,
+            "p50_ms": 10.288399993441999,
+            "p95_ms": 11.242675012908876,
+            "p99_ms": 11.659195004904175
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 87.7118,
+            "mean_ms": 81.19867395833333,
+            "p50_ms": 84.56475,
+            "p95_ms": 86.88647499999999,
+            "p99_ms": 87.41444999999999
+          },
+          "pipeline": "hybrid",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-1/hybrid-c8.json",
+          "raw_sha256": "f5842fb50d93b4d6556d3e2885156158f04e4d18211547b55294cb6cda180345",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.1442,
+            "mean_ms": 0.07925416666666667,
+            "p50_ms": 0.0766,
+            "p95_ms": 0.091575,
+            "p99_ms": 0.10809999999999989
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 77.2698999868054,
+            "mean_ms": 70.85128854079186,
+            "p50_ms": 74.20069998488762,
+            "p95_ms": 76.71542500403876,
+            "p99_ms": 77.12018001931453
+          },
+          "successful_requests_per_second": 91.05073688352982,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 14.847600017674267,
+            "mean_ms": 8.624609373327985,
+            "p50_ms": 8.192400011466816,
+            "p95_ms": 11.068325002270285,
+            "p99_ms": 14.386089987237936
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 14.847600017674267,
+            "mean_ms": 8.624609373327985,
+            "p50_ms": 8.192400011466816,
+            "p95_ms": 11.068325002270285,
+            "p99_ms": 14.386089987237936
+          },
+          "completed_requests_per_second": 453.30551801408944,
+          "concurrency": 4,
+          "elapsed_seconds": 0.21177769999485463,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 0.6948999944142997,
+            "mean_ms": 0.32911770874003804,
+            "p50_ms": 0.3112499980488792,
+            "p95_ms": 0.6345499932649545,
+            "p99_ms": 0.6580399902304633
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 2.9576,
+            "mean_ms": 1.4826604166666666,
+            "p50_ms": 1.42205,
+            "p95_ms": 2.439375,
+            "p99_ms": 2.8789399999999996
+          },
+          "pipeline": "bm25",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-1/bm25-c4.json",
+          "raw_sha256": "abe3a05cafe030276401f62f14c40b49b47960648ab2abdc03e02d161beb9923",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.0777,
+            "mean_ms": 0.05510520833333333,
+            "p50_ms": 0.054,
+            "p95_ms": 0.06215,
+            "p99_ms": 0.075705
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 2.6464000168837605,
+            "mean_ms": 1.1535427079266285,
+            "p50_ms": 1.0834000001832842,
+            "p95_ms": 2.1469749945537187,
+            "p99_ms": 2.5536799927699003
+          },
+          "successful_requests_per_second": 453.30551801408944,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 14.977699989685789,
+            "mean_ms": 13.080938542467871,
+            "p50_ms": 12.999450002098456,
+            "p95_ms": 13.966174992674496,
+            "p99_ms": 14.515335008036343
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 14.977699989685789,
+            "mean_ms": 13.080938542467871,
+            "p50_ms": 12.999450002098456,
+            "p95_ms": 13.966174992674496,
+            "p99_ms": 14.515335008036343
+          },
+          "completed_requests_per_second": 75.82516738313164,
+          "concurrency": 1,
+          "elapsed_seconds": 1.266070400015451,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 11.555800010683015,
+            "mean_ms": 10.134463543484648,
+            "p50_ms": 10.075300000607967,
+            "p95_ms": 10.786675004055724,
+            "p99_ms": 11.46592998993583
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 12.3786,
+            "mean_ms": 10.687734375,
+            "p50_ms": 10.61745,
+            "p95_ms": 11.296225,
+            "p99_ms": 12.172925
+          },
+          "pipeline": "hybrid",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-1/hybrid-c1.json",
+          "raw_sha256": "0a6f6287b5bbfbacd4fa665183a5447ad54dce120ecba005a271b44ef9f57954",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.1932,
+            "mean_ms": 0.08746458333333333,
+            "p50_ms": 0.08345,
+            "p95_ms": 0.1094,
+            "p99_ms": 0.1649849999999999
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 0.9174000111561273,
+            "mean_ms": 0.5532708315153528,
+            "p50_ms": 0.5392999988075351,
+            "p95_ms": 0.6605500046222472,
+            "p99_ms": 0.7760400028971022
+          },
+          "successful_requests_per_second": 75.82516738313164,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 3.3457000099588186,
+            "mean_ms": 2.669723958206305,
+            "p50_ms": 2.6179499982390553,
+            "p95_ms": 3.0416750014410354,
+            "p99_ms": 3.3147299953270704
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 3.3457000099588186,
+            "mean_ms": 2.669723958206305,
+            "p50_ms": 2.6179499982390553,
+            "p95_ms": 3.0416750014410354,
+            "p99_ms": 3.3147299953270704
+          },
+          "completed_requests_per_second": 363.26333073258337,
+          "concurrency": 1,
+          "elapsed_seconds": 0.2642710999934934,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 0.8318000182043761,
+            "mean_ms": 0.3115395820714184,
+            "p50_ms": 0.29564999567810446,
+            "p95_ms": 0.5677000008290634,
+            "p99_ms": 0.8063399902312084
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 1.211,
+            "mean_ms": 0.6663802083333334,
+            "p50_ms": 0.6504,
+            "p95_ms": 0.9707,
+            "p99_ms": 1.1753749999999998
+          },
+          "pipeline": "bm25",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-1/bm25-c1.json",
+          "raw_sha256": "4c953de862918109c166f77fbaef1399d668ee74edb4f1384f2847e0eb25a373",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.1625,
+            "mean_ms": 0.05855625,
+            "p50_ms": 0.05565,
+            "p95_ms": 0.066825,
+            "p99_ms": 0.12126999999999988
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 0.5093000032559037,
+            "mean_ms": 0.35484062626191487,
+            "p50_ms": 0.3465500105040148,
+            "p95_ms": 0.43540000960668546,
+            "p99_ms": 0.5047400022706389
+          },
+          "successful_requests_per_second": 363.26333073258337,
+          "successful_responses": 96
+        }
+      ],
+      "core": {
+        "bm25": {
+          "bm25_ms": {
+            "count": 96,
+            "max_ms": 0.7996000058483332,
+            "mean_ms": 0.23498229165852536,
+            "p50_ms": 0.2148999774362892,
+            "p95_ms": 0.5372250088839792,
+            "p99_ms": 0.5985799958580168
+          },
+          "dense_encoding_ms": {
+            "count": 96,
+            "max_ms": 0.0,
+            "mean_ms": 0.0,
+            "p50_ms": 0.0,
+            "p95_ms": 0.0,
+            "p99_ms": 0.0
+          },
+          "dense_search_ms": {
+            "count": 96,
+            "max_ms": 0.0,
+            "mean_ms": 0.0,
+            "p50_ms": 0.0,
+            "p95_ms": 0.0,
+            "p99_ms": 0.0
+          },
+          "fusion_ms": {
+            "count": 96,
+            "max_ms": 0.0,
+            "mean_ms": 0.0,
+            "p50_ms": 0.0,
+            "p95_ms": 0.0,
+            "p99_ms": 0.0
+          },
+          "hydration_ms": {
+            "count": 96,
+            "max_ms": 0.015099998563528061,
+            "mean_ms": 0.008798959849324698,
+            "p50_ms": 0.008400005754083395,
+            "p95_ms": 0.01117499778047204,
+            "p99_ms": 0.014624994946643708
+          },
+          "preprocessing_ms": {
+            "count": 96,
+            "max_ms": 0.006199989002197981,
+            "mean_ms": 0.0009145830214644471,
+            "p50_ms": 0.000800006091594696,
+            "p95_ms": 0.0014250035746954381,
+            "p99_ms": 0.001924984098877745
+          },
+          "reranking_ms": {
+            "count": 96,
+            "max_ms": 0.0,
+            "mean_ms": 0.0,
+            "p50_ms": 0.0,
+            "p95_ms": 0.0,
+            "p99_ms": 0.0
+          },
+          "total_ms": {
+            "count": 96,
+            "max_ms": 0.8386000117752701,
+            "mean_ms": 0.2477885412493682,
+            "p50_ms": 0.22600000374950469,
+            "p95_ms": 0.5520750055438839,
+            "p99_ms": 0.6161100041936145
+          },
+          "wall_ms": {
+            "count": 96,
+            "max_ms": 0.8499000105075538,
+            "mean_ms": 0.2532229163989541,
+            "p50_ms": 0.23025000700727105,
+            "p95_ms": 0.5584749960689805,
+            "p99_ms": 0.6230399972992011
+          }
+        },
+        "hybrid": {
+          "bm25_ms": {
+            "count": 96,
+            "max_ms": 0.8399999933317304,
+            "mean_ms": 0.3634864578998531,
+            "p50_ms": 0.334399999701418,
+            "p95_ms": 0.668849992507603,
+            "p99_ms": 0.7723600036115383
+          },
+          "dense_encoding_ms": {
+            "count": 96,
+            "max_ms": 7.222699990961701,
+            "mean_ms": 5.0886302081683725,
+            "p50_ms": 4.980099998647347,
+            "p95_ms": 6.725250001181848,
+            "p99_ms": 7.045524996647145
+          },
+          "dense_search_ms": {
+            "count": 96,
+            "max_ms": 5.933500011451542,
+            "mean_ms": 5.146142709236301,
+            "p50_ms": 5.1111499924445525,
+            "p95_ms": 5.536475007829722,
+            "p99_ms": 5.685550003545358
+          },
+          "fusion_ms": {
+            "count": 96,
+            "max_ms": 0.35999997635371983,
+            "mean_ms": 0.10746874977485277,
+            "p50_ms": 0.09780000254977494,
+            "p95_ms": 0.15912499657133594,
+            "p99_ms": 0.2576849990873594
+          },
+          "hydration_ms": {
+            "count": 96,
+            "max_ms": 0.05630002124235034,
+            "mean_ms": 0.015409373797107643,
+            "p50_ms": 0.013900018529966474,
+            "p95_ms": 0.02047498128376901,
+            "p99_ms": 0.05477998201968148
+          },
+          "preprocessing_ms": {
+            "count": 96,
+            "max_ms": 0.014899997040629387,
+            "mean_ms": 0.002160415836745718,
+            "p50_ms": 0.001900014467537403,
+            "p95_ms": 0.002425011189188808,
+            "p99_ms": 0.008535003871656935
+          },
+          "reranking_ms": {
+            "count": 96,
+            "max_ms": 0.0,
+            "mean_ms": 0.0,
+            "p50_ms": 0.0,
+            "p95_ms": 0.0,
+            "p99_ms": 0.0
+          },
+          "total_ms": {
+            "count": 96,
+            "max_ms": 13.305600004969165,
+            "mean_ms": 10.739739582883582,
+            "p50_ms": 10.669999988749623,
+            "p95_ms": 12.386274996970315,
+            "p99_ms": 12.941654998576267
+          },
+          "wall_ms": {
+            "count": 96,
+            "max_ms": 13.322200014954433,
+            "mean_ms": 10.75570312605123,
+            "p50_ms": 10.693300006096251,
+            "p95_ms": 12.40142498863861,
+            "p99_ms": 12.956164992647244
+          }
+        },
+        "hybrid_rerank": {
+          "bm25_ms": {
+            "count": 96,
+            "max_ms": 0.7847000088077039,
+            "mean_ms": 0.35878645758202765,
+            "p50_ms": 0.34509999386500567,
+            "p95_ms": 0.6487749997177161,
+            "p99_ms": 0.7262749786605125
+          },
+          "dense_encoding_ms": {
+            "count": 96,
+            "max_ms": 6.007400021189824,
+            "mean_ms": 4.252259374576776,
+            "p50_ms": 4.187299986369908,
+            "p95_ms": 4.993424990971107,
+            "p99_ms": 5.117345017788463
+          },
+          "dense_search_ms": {
+            "count": 96,
+            "max_ms": 5.520099977729842,
+            "mean_ms": 5.029154167762802,
+            "p50_ms": 5.0069999997504056,
+            "p95_ms": 5.339199989975896,
+            "p99_ms": 5.448850015818607
+          },
+          "fusion_ms": {
+            "count": 96,
+            "max_ms": 0.252999976510182,
+            "mean_ms": 0.1012666665095215,
+            "p50_ms": 0.09610000415705144,
+            "p95_ms": 0.12067498755641282,
+            "p99_ms": 0.23286001669475803
+          },
+          "hydration_ms": {
+            "count": 96,
+            "max_ms": 0.017300015315413475,
+            "mean_ms": 0.011682292400413038,
+            "p50_ms": 0.011500000255182385,
+            "p95_ms": 0.013400007446762174,
+            "p99_ms": 0.014925024879630648
+          },
+          "preprocessing_ms": {
+            "count": 96,
+            "max_ms": 0.020000006770715117,
+            "mean_ms": 0.0020562504990569628,
+            "p50_ms": 0.0018999853637069464,
+            "p95_ms": 0.002125008904840797,
+            "p99_ms": 0.0031849893275647852
+          },
+          "reranking_ms": {
+            "count": 96,
+            "max_ms": 6.446299987146631,
+            "mean_ms": 5.297435417560337,
+            "p50_ms": 5.237849996774457,
+            "p95_ms": 6.2294250092236325,
+            "p99_ms": 6.442594986583572
+          },
+          "total_ms": {
+            "count": 96,
+            "max_ms": 18.60280000255443,
+            "mean_ms": 15.071665626540684,
+            "p50_ms": 14.953700010664761,
+            "p95_ms": 16.088750002381857,
+            "p99_ms": 17.0442299960996
+          },
+          "wall_ms": {
+            "count": 96,
+            "max_ms": 18.618400004925206,
+            "mean_ms": 15.088919791196531,
+            "p50_ms": 14.971299999160692,
+            "p95_ms": 16.1127499959548,
+            "p99_ms": 17.07835500128567
+          }
+        }
+      },
+      "query_ids": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        22,
+        23,
+        24,
+        27,
+        28,
+        29,
+        31,
+        32,
+        35
+      ],
+      "resources_after_core": {
+        "gpu": {
+          "allocated_bytes": 215278592,
+          "reserved_bytes": 257949696
+        },
+        "loaded_components": [
+          "products",
+          "bm25",
+          "dense_index",
+          "dense_encoder",
+          "hybrid",
+          "cross_encoder"
+        ],
+        "process_rss_bytes": 1606217728,
+        "rss_source": "Windows working set",
+        "scope": "one sequential process; diagnostic, not capacity or peak memory"
+      },
+      "resources_after_startup": {
+        "gpu": {
+          "allocated_bytes": 181724160,
+          "reserved_bytes": 197132288
+        },
+        "loaded_components": [
+          "products",
+          "bm25",
+          "dense_index",
+          "dense_encoder",
+          "hybrid",
+          "cross_encoder"
+        ],
+        "process_rss_bytes": 1185869824,
+        "rss_source": "Windows working set",
+        "scope": "one sequential process; diagnostic, not capacity or peak memory"
+      },
+      "run": 1,
+      "runtime_version": {
+        "anchors": {
+          "dataset": {
+            "path": "data/processed/data_manifest.json",
+            "sha256": "0b79ce2061ada9574885b952e63f06c9516aa38682b1e91ba1f4334a5d6eb845"
+          },
+          "plan3": {
+            "path": "configs/phase3_plan.json",
+            "sha256": "a22d370acc05927b8501edd11f81bcd951ee8691864160e1159c1ba2bff3c23b"
+          },
+          "reranking": {
+            "path": "artifacts/phase3/manifest.json",
+            "sha256": "fef7ff4e731b5bddd6beb83c611216191849745db663fabdce3de1ecad2cc4fb"
+          },
+          "retrieval": {
+            "path": "artifacts/phase2/manifest.json",
+            "sha256": "197cf3325df537f10ce917ac604984ff500d2202719626b1aad8e432cbae34b3"
+          },
+          "selection2": {
+            "path": "configs/phase2_selected.json",
+            "sha256": "833c30e4ad49536c85f44f924278d35103a29fcd3b29d8d4d9d3070a14e8cc6b"
+          },
+          "selection3": {
+            "path": "configs/phase3_selected.json",
+            "sha256": "a05f64b3f84a3cb13c6ef828438dab7f5992c2283cddb3bbce9e0b37c316d6d1"
+          }
+        },
+        "bm25": {
+          "b": 0.5,
+          "data_manifest_sha256": "0b79ce2061ada9574885b952e63f06c9516aa38682b1e91ba1f4334a5d6eb845",
+          "implementation": "bm25s",
+          "k1": 1.2,
+          "kind": "bm25",
+          "lexical_version": "nfkc-casefold-unicode-alnum-v1",
+          "method": "lucene",
+          "representation": "B",
+          "text_version": "product-fields-v1",
+          "version": "0.3.11"
+        },
+        "core_contract_version": "production-search-core-v1",
+        "dense": {
+          "data_manifest_sha256": "0b79ce2061ada9574885b952e63f06c9516aa38682b1e91ba1f4334a5d6eb845",
+          "dimension": 384,
+          "dtype": "float32",
+          "kind": "dense",
+          "max_seq_length": 256,
+          "model": "sentence-transformers/all-MiniLM-L6-v2",
+          "model_license": "Apache-2.0",
+          "normalization": "L2",
+          "pooling": "attention-mask mean",
+          "representation": "A",
+          "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+          "sentence_transformers": "6.1.0",
+          "text_version": "product-fields-v1"
+        },
+        "device": "cuda",
+        "dtype": "float32",
+        "enabled_pipelines": [
+          "bm25",
+          "hybrid",
+          "hybrid_rerank"
+        ],
+        "hybrid": {
+          "bm25": "bm25_B_1.2_0.5",
+          "candidate_depth": 100,
+          "constant": 60,
+          "dense": "dense_A",
+          "method": "rrf",
+          "weights": [
+            1,
+            1
+          ]
+        },
+        "load_policy": "eager-enabled-components",
+        "numerical_runtime": {
+          "cuda_matmul_allow_tf32": false,
+          "cuda_runtime": "13.0",
+          "cudnn_allow_tf32": false,
+          "torch_deterministic_algorithms": true,
+          "torch_num_threads": 1
+        },
+        "project_package_version": "0.1.0",
+        "python": "3.14.3",
+        "reranker": {
+          "batch_size": 32,
+          "depth": 20,
+          "max_length": 256,
+          "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+          "representation": "A",
+          "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a"
+        },
+        "reranker_fallback": true,
+        "runtime_manifest_sha256": "7adf8fcaace380db531b60765678da1dbe4461498e71e313c318cf82d52009b0",
+        "runtime_source_sha256": {
+          "runtime_artifacts.py": "a574033045e1fda6c2a2a04f33862cfbf7c3e8c1d6ec830887f893881966ef86",
+          "runtime_config.py": "655411704e920db3de66a9c586d056f6380a1da9d8d6112c77e28cbad921246a",
+          "runtime_contracts.py": "cc2bc46830a8b62bb6cabc7692963a10b389a19b3e83268116b376fa15c2bbc0",
+          "search_engine.py": "bc35437d8cd410c400542db9720e0a772df09c65446b900859eed3e69024a98b"
+        },
+        "software": {
+          "bm25s": "0.3.11",
+          "numpy": "2.5.3",
+          "safetensors": "0.8.0",
+          "sentence-transformers": "6.1.0",
+          "tokenizers": "0.23.2",
+          "torch": "2.14.0+cu130",
+          "transformers": "5.17.0"
+        },
+        "validated_artifact_sha256": {
+          "artifacts/model_cache/hub/models--cross-encoder--ms-marco-MiniLM-L6-v2/snapshots/233902d25c440f23af6f7d6e94d2946bac0bee0a/config.json": "380e02c93f431831be65d99a4e7e5f67c133985bf2e77d9d4eba46847190bacc",
+          "artifacts/model_cache/hub/models--cross-encoder--ms-marco-MiniLM-L6-v2/snapshots/233902d25c440f23af6f7d6e94d2946bac0bee0a/model.safetensors": "821d1aa69520101d6e0737f78a042ae25b19e5cb9160701909d10434f4aeb0ae",
+          "artifacts/model_cache/hub/models--cross-encoder--ms-marco-MiniLM-L6-v2/snapshots/233902d25c440f23af6f7d6e94d2946bac0bee0a/special_tokens_map.json": "3c3507f36dff57bce437223db3b3081d1e2b52ec3e56ee55438193ecb2c94dd6",
+          "artifacts/model_cache/hub/models--cross-encoder--ms-marco-MiniLM-L6-v2/snapshots/233902d25c440f23af6f7d6e94d2946bac0bee0a/tokenizer.json": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+          "artifacts/model_cache/hub/models--cross-encoder--ms-marco-MiniLM-L6-v2/snapshots/233902d25c440f23af6f7d6e94d2946bac0bee0a/tokenizer_config.json": "a5c2e5a7b1a29a0702cd28c08a399b5ecc110c263009d17f7e3b415f25905fd8",
+          "artifacts/model_cache/hub/models--cross-encoder--ms-marco-MiniLM-L6-v2/snapshots/233902d25c440f23af6f7d6e94d2946bac0bee0a/vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling/config.json": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/model.safetensors": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+          "artifacts/phase2/bm25_B_1.2_0.5/data.csc.index.npy": "81be3be398769b611c4e018580f2237456ee58d1026259ddce9523055b38bc53",
+          "artifacts/phase2/bm25_B_1.2_0.5/indices.csc.index.npy": "e8baae7af0d8b660d3ee9ad3f337869645ed2b30eeb96fee08d274f0ae89f011",
+          "artifacts/phase2/bm25_B_1.2_0.5/indptr.csc.index.npy": "d4682ab13be008469107591dd98facf43f513afc4c2a561bec86fac1d08b72d4",
+          "artifacts/phase2/bm25_B_1.2_0.5/manifest.json": "60d2dcf7e8acc9f45bf8116e9b8cb74d39b076f7bd150231ff163efd8b1b3161",
+          "artifacts/phase2/bm25_B_1.2_0.5/params.index.json": "5c3a123fa4dc5a88ef4b4552c3be9308a8e85acecab76dcd3f5dfdd11e7cdef9",
+          "artifacts/phase2/bm25_B_1.2_0.5/product_ids.npy": "501839e4b918b6818e037ba559d8fa8e4916b5374983c82df8870c54f9a2d150",
+          "artifacts/phase2/bm25_B_1.2_0.5/vocab.index.json": "8c2846a5e861ac2679a92f01831eafaa7918d869be7b893bfe67c2a9c6665273",
+          "artifacts/phase2/dense_A/embeddings.npy": "0f8bdecb4a9ca9cb8e4fc6530324fb96c1ffab7b3f54f306519a22188c628d1a",
+          "artifacts/phase2/dense_A/manifest.json": "505038d9020d9cb594fd2daf39a7d588cfc3f794d125dfb047ccb493c3112176",
+          "artifacts/phase2/dense_A/product_ids.npy": "501839e4b918b6818e037ba559d8fa8e4916b5374983c82df8870c54f9a2d150",
+          "data/processed/products.jsonl": "50ff588fee5b6af0d1d7429f2683914b39db7ba9fa465b3eb59be6e5e89aed3e"
+        }
+      },
+      "shutdown": {
+        "blocked_attempts": [],
+        "final_test_labels_accessed": false,
+        "opened_canonical_files": [
+          "data/processed/data_manifest.json",
+          "data/processed/products.jsonl",
+          "data/processed/queries.jsonl"
+        ],
+        "state": "CLOSED"
+      },
+      "startup_stages": {
+        "bm25_load_ms": 23.21369998389855,
+        "dense_encoder_load_ms": 239.1660999855958,
+        "dense_index_load_ms": 92.77640000800602,
+        "metadata_ms": 360.75930000515655,
+        "reranker_load_ms": 115.10569998063147,
+        "total_ms": 1124.7278000228107,
+        "validation_ms": 285.5139000166673
+      },
+      "startup_wall_ms": 1124.9729999981355
+    },
+    {
+      "cases": [
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 24.891400011256337,
+            "mean_ms": 20.94593228988136,
+            "p50_ms": 20.892900007311255,
+            "p95_ms": 21.86002500820905,
+            "p99_ms": 23.194034998596177
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 24.891400011256337,
+            "mean_ms": 20.94593228988136,
+            "p50_ms": 20.892900007311255,
+            "p95_ms": 21.86002500820905,
+            "p99_ms": 23.194034998596177
+          },
+          "completed_requests_per_second": 94.5177350714666,
+          "concurrency": 2,
+          "elapsed_seconds": 1.0156824000005145,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 10.853899992071092,
+            "mean_ms": 9.98516979022194,
+            "p50_ms": 9.959250019164756,
+            "p95_ms": 10.455400013597682,
+            "p99_ms": 10.574599994288292
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 20.7807,
+            "mean_ms": 18.587334375,
+            "p50_ms": 18.65315,
+            "p95_ms": 19.479475,
+            "p99_ms": 20.66328
+          },
+          "pipeline": "hybrid",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-2/hybrid-c2.json",
+          "raw_sha256": "8dd7308ffbdaa03723a6d53bd55163db6f56ff305be466b9246bf20993ce0b03",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.1711,
+            "mean_ms": 0.07881875,
+            "p50_ms": 0.07644999999999999,
+            "p95_ms": 0.09035,
+            "p99_ms": 0.12008499999999986
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 10.96359998639375,
+            "mean_ms": 8.602164584778059,
+            "p50_ms": 8.66614998883456,
+            "p95_ms": 9.349725015265122,
+            "p99_ms": 10.77350501363186
+          },
+          "successful_requests_per_second": 94.5177350714666,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 16.95819999440573,
+            "mean_ms": 13.010764583365622,
+            "p50_ms": 12.501150005846284,
+            "p95_ms": 16.238399999565445,
+            "p99_ms": 16.897210000024643
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 16.95819999440573,
+            "mean_ms": 13.010764583365622,
+            "p50_ms": 12.501150005846284,
+            "p95_ms": 16.238399999565445,
+            "p99_ms": 16.897210000024643
+          },
+          "completed_requests_per_second": 76.227488870737,
+          "concurrency": 1,
+          "elapsed_seconds": 1.259388200007379,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 13.32410000031814,
+            "mean_ms": 10.129310417444989,
+            "p50_ms": 9.690999984741211,
+            "p95_ms": 12.85337501030881,
+            "p99_ms": 13.222450000466779
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 14.0376,
+            "mean_ms": 10.692181249999999,
+            "p50_ms": 10.23295,
+            "p95_ms": 13.62015,
+            "p99_ms": 13.857384999999999
+          },
+          "pipeline": "hybrid",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-2/hybrid-c1.json",
+          "raw_sha256": "459756352027c0ec6157dd30b39511a4f80ba35e137637f4be96baddfc970cfc",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.1385,
+            "mean_ms": 0.08782187500000001,
+            "p50_ms": 0.08305,
+            "p95_ms": 0.11905,
+            "p99_ms": 0.13793
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 1.1735999789439138,
+            "mean_ms": 0.5628708325550115,
+            "p50_ms": 0.536300004336983,
+            "p95_ms": 0.724349995172489,
+            "p99_ms": 0.8354949848693042
+          },
+          "successful_requests_per_second": 76.227488870737,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 129.04580001486465,
+            "mean_ms": 118.8407156262959,
+            "p50_ms": 122.2826999874087,
+            "p95_ms": 125.27664998924593,
+            "p99_ms": 126.02574999473289
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 129.04580001486465,
+            "mean_ms": 118.8407156262959,
+            "p50_ms": 122.2826999874087,
+            "p95_ms": 125.27664998924593,
+            "p99_ms": 126.02574999473289
+          },
+          "completed_requests_per_second": 64.7649867534862,
+          "concurrency": 8,
+          "elapsed_seconds": 1.4822823999857064,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 16.228899999987334,
+            "mean_ms": 14.811232292534745,
+            "p50_ms": 14.824450001469813,
+            "p95_ms": 15.542249995633028,
+            "p99_ms": 15.898775002278851
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 123.48,
+            "mean_ms": 115.568915625,
+            "p50_ms": 119.9761,
+            "p95_ms": 122.832525,
+            "p99_ms": 123.47145
+          },
+          "pipeline": "hybrid_rerank",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-2/hybrid_rerank-c8.json",
+          "raw_sha256": "be343db7ac6756f238c80d7cd5b17000a2d61d8b11b96f49c7c33749e9ec74cc",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.116,
+            "mean_ms": 0.08073333333333334,
+            "p50_ms": 0.0794,
+            "p95_ms": 0.0902,
+            "p99_ms": 0.11001499999999999
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 108.41170001096837,
+            "mean_ms": 100.75768333246525,
+            "p50_ms": 105.20824999893344,
+            "p95_ms": 108.0047499866034,
+            "p99_ms": 108.14741001558255
+          },
+          "successful_requests_per_second": 64.7649867534862,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 3.4419000148773193,
+            "mean_ms": 2.656777081938344,
+            "p50_ms": 2.6339500036556274,
+            "p95_ms": 3.0054750022827648,
+            "p99_ms": 3.170770024007651
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 3.4419000148773193,
+            "mean_ms": 2.656777081938344,
+            "p50_ms": 2.6339500036556274,
+            "p95_ms": 3.0054750022827648,
+            "p99_ms": 3.170770024007651
+          },
+          "completed_requests_per_second": 365.1631328638637,
+          "concurrency": 1,
+          "elapsed_seconds": 0.2628961999726016,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 0.7218999962788075,
+            "mean_ms": 0.307751040054427,
+            "p50_ms": 0.29090000316500664,
+            "p95_ms": 0.5586499901255593,
+            "p99_ms": 0.6761100070434621
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 1.1506,
+            "mean_ms": 0.66561875,
+            "p50_ms": 0.63615,
+            "p95_ms": 0.933825,
+            "p99_ms": 1.0289999999999997
+          },
+          "pipeline": "bm25",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-2/bm25-c1.json",
+          "raw_sha256": "72226461249d7e101ad1dc81938eab6e6250f879fc93a95b537669af98b13165",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.1198,
+            "mean_ms": 0.05930520833333334,
+            "p50_ms": 0.05685,
+            "p95_ms": 0.0765,
+            "p99_ms": 0.08882999999999991
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 0.5986000136032701,
+            "mean_ms": 0.357867709945573,
+            "p50_ms": 0.3489500015025958,
+            "p95_ms": 0.43035000688936564,
+            "p99_ms": 0.5237399773523209
+          },
+          "successful_requests_per_second": 365.1631328638637,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 101.37960000429302,
+            "mean_ms": 80.7081812481556,
+            "p50_ms": 83.06430000811815,
+            "p95_ms": 84.23292500083335,
+            "p99_ms": 86.379195000336
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 101.37960000429302,
+            "mean_ms": 80.7081812481556,
+            "p50_ms": 83.06430000811815,
+            "p95_ms": 84.23292500083335,
+            "p99_ms": 86.379195000336
+          },
+          "completed_requests_per_second": 95.22059089585363,
+          "concurrency": 8,
+          "elapsed_seconds": 1.0081853000156116,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 10.934799996903166,
+            "mean_ms": 9.877012498085,
+            "p50_ms": 9.83789999736473,
+            "p95_ms": 10.342524990846869,
+            "p99_ms": 10.658919997513294
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 83.3359,
+            "mean_ms": 77.40706041666667,
+            "p50_ms": 80.7467,
+            "p95_ms": 81.9799,
+            "p99_ms": 82.92227
+          },
+          "pipeline": "hybrid",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-2/hybrid-c8.json",
+          "raw_sha256": "45098ac63209a3cecb7a3051a57faa4394c855426c30605167b6947748fa7735",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.1309,
+            "mean_ms": 0.07873020833333333,
+            "p50_ms": 0.07730000000000001,
+            "p95_ms": 0.08937500000000001,
+            "p99_ms": 0.0968899999999999
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 72.76879997987449,
+            "mean_ms": 67.53004791858167,
+            "p50_ms": 70.8059500038948,
+            "p95_ms": 71.97102500003697,
+            "p99_ms": 72.71379499044308
+          },
+          "successful_requests_per_second": 95.22059089585363,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 32.80690000974573,
+            "mean_ms": 30.68236666846739,
+            "p50_ms": 30.918900010874495,
+            "p95_ms": 32.062799982668366,
+            "p99_ms": 32.69375500531169
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 32.80690000974573,
+            "mean_ms": 30.68236666846739,
+            "p50_ms": 30.918900010874495,
+            "p95_ms": 32.062799982668366,
+            "p99_ms": 32.69375500531169
+          },
+          "completed_requests_per_second": 64.61258328681421,
+          "concurrency": 2,
+          "elapsed_seconds": 1.4857787000073586,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 16.277299990179017,
+            "mean_ms": 14.898223957667748,
+            "p50_ms": 14.889649988617748,
+            "p95_ms": 15.760500005853828,
+            "p99_ms": 16.051389984204434
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 30.1548,
+            "mean_ms": 28.209672916666666,
+            "p50_ms": 28.316499999999998,
+            "p95_ms": 29.53045,
+            "p99_ms": 30.087065
+          },
+          "pipeline": "hybrid_rerank",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-2/hybrid_rerank-c2.json",
+          "raw_sha256": "e4142d5516aae9cc82b3e2640e95afa1a210fa86ab7057ab78dd6085f847715d",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.1253,
+            "mean_ms": 0.08080312499999999,
+            "p50_ms": 0.07919999999999999,
+            "p95_ms": 0.090425,
+            "p99_ms": 0.12235499999999999
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 15.237299982634188,
+            "mean_ms": 13.311448958998918,
+            "p50_ms": 13.36820000668168,
+            "p95_ms": 14.42484999548141,
+            "p99_ms": 14.569260009946618
+          },
+          "successful_requests_per_second": 64.61258328681421,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 238.93550000502728,
+            "mean_ms": 25.086638541021482,
+            "p50_ms": 15.977900009602308,
+            "p95_ms": 48.355150007409975,
+            "p99_ms": 233.8193699775729
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 238.93550000502728,
+            "mean_ms": 25.086638541021482,
+            "p50_ms": 15.977900009602308,
+            "p95_ms": 48.355150007409975,
+            "p99_ms": 233.8193699775729
+          },
+          "completed_requests_per_second": 310.2766536743493,
+          "concurrency": 8,
+          "elapsed_seconds": 0.30940129997907206,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 0.7038000039756298,
+            "mean_ms": 0.32228750084565644,
+            "p50_ms": 0.31215000490192324,
+            "p95_ms": 0.6407750042853877,
+            "p99_ms": 0.6949650196474977
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 4.2838,
+            "mean_ms": 1.9539364583333334,
+            "p50_ms": 1.8292,
+            "p95_ms": 3.1454,
+            "p99_ms": 3.7133249999999984
+          },
+          "pipeline": "bm25",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-2/bm25-c8.json",
+          "raw_sha256": "c1aeafd593be927dd2c3cfcedc09841621957a6a6092ece5016a39a8681a619c",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.1158,
+            "mean_ms": 0.05958750000000001,
+            "p50_ms": 0.05745,
+            "p95_ms": 0.06837499999999999,
+            "p99_ms": 0.10354499999999997
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 3.9053999999549243,
+            "mean_ms": 1.631648957487677,
+            "p50_ms": 1.48624999878183,
+            "p95_ms": 2.8603249975336715,
+            "p99_ms": 3.3966749904922753
+          },
+          "successful_requests_per_second": 310.2766536743493,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 14.484799990896136,
+            "mean_ms": 8.358014585004033,
+            "p50_ms": 8.069250005064532,
+            "p95_ms": 10.785949998535216,
+            "p99_ms": 14.121519989566876
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 14.484799990896136,
+            "mean_ms": 8.358014585004033,
+            "p50_ms": 8.069250005064532,
+            "p95_ms": 10.785949998535216,
+            "p99_ms": 14.121519989566876
+          },
+          "completed_requests_per_second": 467.3131489761584,
+          "concurrency": 4,
+          "elapsed_seconds": 0.2054296999995131,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 0.7131000165827572,
+            "mean_ms": 0.3336718743109183,
+            "p50_ms": 0.3154500009259209,
+            "p95_ms": 0.6361749838106334,
+            "p99_ms": 0.6656949874013661
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 2.9042,
+            "mean_ms": 1.5189031250000002,
+            "p50_ms": 1.4584000000000001,
+            "p95_ms": 2.417625,
+            "p99_ms": 2.869335
+          },
+          "pipeline": "bm25",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-2/bm25-c4.json",
+          "raw_sha256": "eb567e623d719716136682f9a7db7d4b19835893069b2697c3f5e32b2d40605e",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.1218,
+            "mean_ms": 0.05729895833333334,
+            "p50_ms": 0.0555,
+            "p95_ms": 0.067,
+            "p99_ms": 0.09548499999999993
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 2.497400004947558,
+            "mean_ms": 1.1852312506890819,
+            "p50_ms": 1.098150007314235,
+            "p95_ms": 2.0376250124365094,
+            "p99_ms": 2.4692799982103146
+          },
+          "successful_requests_per_second": 467.3131489761584,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 5.341700016288087,
+            "mean_ms": 3.8513906265507103,
+            "p50_ms": 3.8185999874258414,
+            "p95_ms": 4.3083000055048615,
+            "p99_ms": 4.587684998114125
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 5.341700016288087,
+            "mean_ms": 3.8513906265507103,
+            "p50_ms": 3.8185999874258414,
+            "p95_ms": 4.3083000055048615,
+            "p99_ms": 4.587684998114125
+          },
+          "completed_requests_per_second": 506.30000707039676,
+          "concurrency": 2,
+          "elapsed_seconds": 0.1896108999790158,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 0.7685000018682331,
+            "mean_ms": 0.3014531269703487,
+            "p50_ms": 0.2750500134425238,
+            "p95_ms": 0.6213000087882392,
+            "p99_ms": 0.6810999999288467
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 1.4342,
+            "mean_ms": 0.9666760416666668,
+            "p50_ms": 0.9273,
+            "p95_ms": 1.346775,
+            "p99_ms": 1.4164349999999999
+          },
+          "pipeline": "bm25",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-2/bm25-c2.json",
+          "raw_sha256": "2d6879ae0074bc8be9e616c3a60b9a8ac5f0e35652d40cb95a94c73a3264ea25",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.0935,
+            "mean_ms": 0.05560625,
+            "p50_ms": 0.054849999999999996,
+            "p95_ms": 0.060975,
+            "p99_ms": 0.07544999999999995
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 1.186599989401549,
+            "mean_ms": 0.6652229146963179,
+            "p50_ms": 0.6440000177007168,
+            "p95_ms": 0.7865500028988346,
+            "p99_ms": 1.111549996303003
+          },
+          "successful_requests_per_second": 506.30000707039676,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 66.28020000061952,
+            "mean_ms": 60.45696979344939,
+            "p50_ms": 61.037100007524714,
+            "p95_ms": 63.15037499734899,
+            "p99_ms": 64.1968500072835
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 66.28020000061952,
+            "mean_ms": 60.45696979344939,
+            "p50_ms": 61.037100007524714,
+            "p95_ms": 63.15037499734899,
+            "p99_ms": 64.1968500072835
+          },
+          "completed_requests_per_second": 64.99145768511751,
+          "concurrency": 4,
+          "elapsed_seconds": 1.477117200003704,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 16.3507999968715,
+            "mean_ms": 14.794084375049957,
+            "p50_ms": 14.788950007641688,
+            "p95_ms": 15.56067501223879,
+            "p99_ms": 15.947049991518723
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 61.8179,
+            "mean_ms": 57.889909375,
+            "p50_ms": 58.63975,
+            "p95_ms": 60.699875,
+            "p99_ms": 61.652695
+          },
+          "pipeline": "hybrid_rerank",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-2/hybrid_rerank-c4.json",
+          "raw_sha256": "ec506a23e93110fad230080bf773a62b35d42f2812bd690f7ee531d02a610f36",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.1345,
+            "mean_ms": 0.08035520833333333,
+            "p50_ms": 0.07825,
+            "p95_ms": 0.089825,
+            "p99_ms": 0.13146
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 46.616399979596956,
+            "mean_ms": 43.09582499995005,
+            "p50_ms": 43.88164999432787,
+            "p95_ms": 45.24825000722101,
+            "p99_ms": 46.09504000499371
+          },
+          "successful_requests_per_second": 64.99145768511751,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 23.415600007865578,
+            "mean_ms": 17.93805729327384,
+            "p50_ms": 17.790949990740046,
+            "p95_ms": 19.606150010076817,
+            "p99_ms": 22.753830000874583
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 23.415600007865578,
+            "mean_ms": 17.93805729327384,
+            "p50_ms": 17.790949990740046,
+            "p95_ms": 19.606150010076817,
+            "p99_ms": 22.753830000874583
+          },
+          "completed_requests_per_second": 55.38045333096557,
+          "concurrency": 1,
+          "elapsed_seconds": 1.7334635999868624,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 20.0431999983266,
+            "mean_ms": 14.913004165767537,
+            "p50_ms": 14.807750005275011,
+            "p95_ms": 16.333074992871843,
+            "p99_ms": 18.529660002968736
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 20.724,
+            "mean_ms": 15.511891666666665,
+            "p50_ms": 15.3314,
+            "p95_ms": 17.08135,
+            "p99_ms": 19.929325
+          },
+          "pipeline": "hybrid_rerank",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-2/hybrid_rerank-c1.json",
+          "raw_sha256": "66a6a27c5f96d354a7c8c02884011d9754d0919b6896d3a7c255cf4903afecbf",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.1494,
+            "mean_ms": 0.084084375,
+            "p50_ms": 0.0828,
+            "p95_ms": 0.09330000000000001,
+            "p99_ms": 0.10370499999999987
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 4.25049999593757,
+            "mean_ms": 0.59888750089913,
+            "p50_ms": 0.5406000068094583,
+            "p95_ms": 0.6966249942603531,
+            "p99_ms": 1.0372199931466846
+          },
+          "successful_requests_per_second": 55.38045333096557,
+          "successful_responses": 96
+        },
+        {
+          "attempts": 96,
+          "client_all_attempts": {
+            "count": 96,
+            "max_ms": 49.78449997724965,
+            "mean_ms": 44.26528854006998,
+            "p50_ms": 44.548699996084906,
+            "p95_ms": 46.310499994433485,
+            "p99_ms": 46.70089499850291
+          },
+          "client_success": {
+            "count": 96,
+            "max_ms": 49.78449997724965,
+            "mean_ms": 44.26528854006998,
+            "p50_ms": 44.548699996084906,
+            "p95_ms": 46.310499994433485,
+            "p99_ms": 46.70089499850291
+          },
+          "completed_requests_per_second": 88.69367247214205,
+          "concurrency": 4,
+          "elapsed_seconds": 1.0823771000141278,
+          "engine_ms": {
+            "count": 96,
+            "max_ms": 11.795300000812858,
+            "mean_ms": 10.582233334389457,
+            "p50_ms": 10.5364499904681,
+            "p95_ms": 11.11757499165833,
+            "p99_ms": 11.628004998783581
+          },
+          "error_rate": 0.0,
+          "errors": 0,
+          "fallbacks": 0,
+          "http_app_ms": {
+            "count": 96,
+            "max_ms": 44.2074,
+            "mean_ms": 41.622749999999996,
+            "p50_ms": 42.064800000000005,
+            "p95_ms": 43.64945,
+            "p99_ms": 44.001535
+          },
+          "pipeline": "hybrid",
+          "ranking_mismatches": 0,
+          "raw_path": "reports/tmp/phase6-verified/run-2/hybrid-c4.json",
+          "raw_sha256": "d4bacbdde09e035619c26567f820cfeead64e00f1c12e7c43ae68354d8d0c6f4",
+          "serialization_ms": {
+            "count": 96,
+            "max_ms": 0.21,
+            "mean_ms": 0.09103854166666665,
+            "p50_ms": 0.08845,
+            "p95_ms": 0.09795000000000001,
+            "p99_ms": 0.1380849999999998
+          },
+          "server_non_engine_ms": {
+            "count": 96,
+            "max_ms": 33.52359999348186,
+            "mean_ms": 31.04051666561054,
+            "p50_ms": 31.55359998030234,
+            "p95_ms": 32.77822500985833,
+            "p99_ms": 33.29807000010939
+          },
+          "successful_requests_per_second": 88.69367247214205,
+          "successful_responses": 96
+        }
+      ],
+      "core": {
+        "bm25": {
+          "bm25_ms": {
+            "count": 96,
+            "max_ms": 0.5642000178340822,
+            "mean_ms": 0.21479375057727643,
+            "p50_ms": 0.21035000099800527,
+            "p95_ms": 0.46079999447101727,
+            "p99_ms": 0.5609700208879076
+          },
+          "dense_encoding_ms": {
+            "count": 96,
+            "max_ms": 0.0,
+            "mean_ms": 0.0,
+            "p50_ms": 0.0,
+            "p95_ms": 0.0,
+            "p99_ms": 0.0
+          },
+          "dense_search_ms": {
+            "count": 96,
+            "max_ms": 0.0,
+            "mean_ms": 0.0,
+            "p50_ms": 0.0,
+            "p95_ms": 0.0,
+            "p99_ms": 0.0
+          },
+          "fusion_ms": {
+            "count": 96,
+            "max_ms": 0.0,
+            "mean_ms": 0.0,
+            "p50_ms": 0.0,
+            "p95_ms": 0.0,
+            "p99_ms": 0.0
+          },
+          "hydration_ms": {
+            "count": 96,
+            "max_ms": 0.014200020814314485,
+            "mean_ms": 0.008257291786624895,
+            "p50_ms": 0.00790000194683671,
+            "p95_ms": 0.01052499283105135,
+            "p99_ms": 0.013439987378660588
+          },
+          "preprocessing_ms": {
+            "count": 96,
+            "max_ms": 0.001100008375942707,
+            "mean_ms": 0.0007197926000420315,
+            "p50_ms": 0.000700005330145359,
+            "p95_ms": 0.00100000761449337,
+            "p99_ms": 0.0010999807273037732
+          },
+          "reranking_ms": {
+            "count": 96,
+            "max_ms": 0.0,
+            "mean_ms": 0.0,
+            "p50_ms": 0.0,
+            "p95_ms": 0.0,
+            "p99_ms": 0.0
+          },
+          "total_ms": {
+            "count": 96,
+            "max_ms": 0.5788000125903636,
+            "mean_ms": 0.2267843750208461,
+            "p50_ms": 0.22124999668449163,
+            "p95_ms": 0.4748249994008802,
+            "p99_ms": 0.5724349917727523
+          },
+          "wall_ms": {
+            "count": 96,
+            "max_ms": 0.5845999985467643,
+            "mean_ms": 0.23179375148174586,
+            "p50_ms": 0.2255999861517921,
+            "p95_ms": 0.4805500138900243,
+            "p99_ms": 0.5777600017609075
+          }
+        },
+        "hybrid": {
+          "bm25_ms": {
+            "count": 96,
+            "max_ms": 0.7236999808810651,
+            "mean_ms": 0.34346978979253134,
+            "p50_ms": 0.3296999930171296,
+            "p95_ms": 0.60782500077039,
+            "p99_ms": 0.7205649846582673
+          },
+          "dense_encoding_ms": {
+            "count": 96,
+            "max_ms": 4.645099979825318,
+            "mean_ms": 4.184218748984374,
+            "p50_ms": 4.155750008067116,
+            "p95_ms": 4.466549988137558,
+            "p99_ms": 4.5830650051357225
+          },
+          "dense_search_ms": {
+            "count": 96,
+            "max_ms": 5.398700013756752,
+            "mean_ms": 4.921494794568086,
+            "p50_ms": 4.906450005364604,
+            "p95_ms": 5.034025001805276,
+            "p99_ms": 5.3605099994456396
+          },
+          "fusion_ms": {
+            "count": 96,
+            "max_ms": 0.14099999680183828,
+            "mean_ms": 0.09454895795594591,
+            "p50_ms": 0.09289997979067266,
+            "p95_ms": 0.10537498746998608,
+            "p99_ms": 0.1403349917382002
+          },
+          "hydration_ms": {
+            "count": 96,
+            "max_ms": 0.030499999411404133,
+            "mean_ms": 0.013734376504241178,
+            "p50_ms": 0.013500000932253897,
+            "p95_ms": 0.014899997040629387,
+            "p99_ms": 0.018910021753981675
+          },
+          "preprocessing_ms": {
+            "count": 96,
+            "max_ms": 0.017600017599761486,
+            "mean_ms": 0.0019562506471023275,
+            "p50_ms": 0.001700012944638729,
+            "p95_ms": 0.002124994352925569,
+            "p99_ms": 0.0030650175176560445
+          },
+          "reranking_ms": {
+            "count": 96,
+            "max_ms": 0.0,
+            "mean_ms": 0.0,
+            "p50_ms": 0.0,
+            "p95_ms": 0.0,
+            "p99_ms": 0.0
+          },
+          "total_ms": {
+            "count": 96,
+            "max_ms": 10.254499997245148,
+            "mean_ms": 9.574897916839594,
+            "p50_ms": 9.544550004648045,
+            "p95_ms": 9.996749999118038,
+            "p99_ms": 10.226000001421198
+          },
+          "wall_ms": {
+            "count": 96,
+            "max_ms": 10.268399986671284,
+            "mean_ms": 9.58905833370712,
+            "p50_ms": 9.558200006722473,
+            "p95_ms": 10.012400001869537,
+            "p99_ms": 10.240564995910972
+          }
+        },
+        "hybrid_rerank": {
+          "bm25_ms": {
+            "count": 96,
+            "max_ms": 0.7731000077910721,
+            "mean_ms": 0.35408958441015176,
+            "p50_ms": 0.33549999352544546,
+            "p95_ms": 0.6197500042617321,
+            "p99_ms": 0.7357649999903514
+          },
+          "dense_encoding_ms": {
+            "count": 96,
+            "max_ms": 4.493099986575544,
+            "mean_ms": 4.05093541333675,
+            "p50_ms": 4.042249987833202,
+            "p95_ms": 4.304849993786775,
+            "p99_ms": 4.475999994610902
+          },
+          "dense_search_ms": {
+            "count": 96,
+            "max_ms": 5.207499983953312,
+            "mean_ms": 4.977204167820067,
+            "p50_ms": 4.965600004652515,
+            "p95_ms": 5.123825001646765,
+            "p99_ms": 5.207025007985067
+          },
+          "fusion_ms": {
+            "count": 96,
+            "max_ms": 0.1441999920643866,
+            "mean_ms": 0.09646771134915373,
+            "p50_ms": 0.09520001185592264,
+            "p95_ms": 0.10867500532185659,
+            "p99_ms": 0.11940499680349596
+          },
+          "hydration_ms": {
+            "count": 96,
+            "max_ms": 0.017499987734481692,
+            "mean_ms": 0.011716666449501645,
+            "p50_ms": 0.01170000177808106,
+            "p95_ms": 0.0128250103443861,
+            "p99_ms": 0.01398498861817642
+          },
+          "preprocessing_ms": {
+            "count": 96,
+            "max_ms": 0.007199996616691351,
+            "mean_ms": 0.0017854181351140141,
+            "p50_ms": 0.001700012944638729,
+            "p95_ms": 0.00200001522898674,
+            "p99_ms": 0.0023549873731098926
+          },
+          "reranking_ms": {
+            "count": 96,
+            "max_ms": 6.304100010311231,
+            "mean_ms": 5.08701354101504,
+            "p50_ms": 5.0238999974681064,
+            "p95_ms": 5.755475001933519,
+            "p99_ms": 6.240354994952213
+          },
+          "total_ms": {
+            "count": 96,
+            "max_ms": 15.77899997937493,
+            "mean_ms": 14.598308334219231,
+            "p50_ms": 14.573249995009974,
+            "p95_ms": 15.484750008909032,
+            "p99_ms": 15.726369993353728
+          },
+          "wall_ms": {
+            "count": 96,
+            "max_ms": 15.794699982507154,
+            "mean_ms": 14.614798960186212,
+            "p50_ms": 14.590000006137416,
+            "p95_ms": 15.50692500313744,
+            "p99_ms": 15.74491999053862
+          }
+        }
+      },
+      "query_ids": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        22,
+        23,
+        24,
+        27,
+        28,
+        29,
+        31,
+        32,
+        35
+      ],
+      "resources_after_core": {
+        "gpu": {
+          "allocated_bytes": 215278592,
+          "reserved_bytes": 257949696
+        },
+        "loaded_components": [
+          "products",
+          "bm25",
+          "dense_index",
+          "dense_encoder",
+          "hybrid",
+          "cross_encoder"
+        ],
+        "process_rss_bytes": 1606164480,
+        "rss_source": "Windows working set",
+        "scope": "one sequential process; diagnostic, not capacity or peak memory"
+      },
+      "resources_after_startup": {
+        "gpu": {
+          "allocated_bytes": 181724160,
+          "reserved_bytes": 197132288
+        },
+        "loaded_components": [
+          "products",
+          "bm25",
+          "dense_index",
+          "dense_encoder",
+          "hybrid",
+          "cross_encoder"
+        ],
+        "process_rss_bytes": 1183404032,
+        "rss_source": "Windows working set",
+        "scope": "one sequential process; diagnostic, not capacity or peak memory"
+      },
+      "run": 2,
+      "runtime_version": {
+        "anchors": {
+          "dataset": {
+            "path": "data/processed/data_manifest.json",
+            "sha256": "0b79ce2061ada9574885b952e63f06c9516aa38682b1e91ba1f4334a5d6eb845"
+          },
+          "plan3": {
+            "path": "configs/phase3_plan.json",
+            "sha256": "a22d370acc05927b8501edd11f81bcd951ee8691864160e1159c1ba2bff3c23b"
+          },
+          "reranking": {
+            "path": "artifacts/phase3/manifest.json",
+            "sha256": "fef7ff4e731b5bddd6beb83c611216191849745db663fabdce3de1ecad2cc4fb"
+          },
+          "retrieval": {
+            "path": "artifacts/phase2/manifest.json",
+            "sha256": "197cf3325df537f10ce917ac604984ff500d2202719626b1aad8e432cbae34b3"
+          },
+          "selection2": {
+            "path": "configs/phase2_selected.json",
+            "sha256": "833c30e4ad49536c85f44f924278d35103a29fcd3b29d8d4d9d3070a14e8cc6b"
+          },
+          "selection3": {
+            "path": "configs/phase3_selected.json",
+            "sha256": "a05f64b3f84a3cb13c6ef828438dab7f5992c2283cddb3bbce9e0b37c316d6d1"
+          }
+        },
+        "bm25": {
+          "b": 0.5,
+          "data_manifest_sha256": "0b79ce2061ada9574885b952e63f06c9516aa38682b1e91ba1f4334a5d6eb845",
+          "implementation": "bm25s",
+          "k1": 1.2,
+          "kind": "bm25",
+          "lexical_version": "nfkc-casefold-unicode-alnum-v1",
+          "method": "lucene",
+          "representation": "B",
+          "text_version": "product-fields-v1",
+          "version": "0.3.11"
+        },
+        "core_contract_version": "production-search-core-v1",
+        "dense": {
+          "data_manifest_sha256": "0b79ce2061ada9574885b952e63f06c9516aa38682b1e91ba1f4334a5d6eb845",
+          "dimension": 384,
+          "dtype": "float32",
+          "kind": "dense",
+          "max_seq_length": 256,
+          "model": "sentence-transformers/all-MiniLM-L6-v2",
+          "model_license": "Apache-2.0",
+          "normalization": "L2",
+          "pooling": "attention-mask mean",
+          "representation": "A",
+          "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+          "sentence_transformers": "6.1.0",
+          "text_version": "product-fields-v1"
+        },
+        "device": "cuda",
+        "dtype": "float32",
+        "enabled_pipelines": [
+          "bm25",
+          "hybrid",
+          "hybrid_rerank"
+        ],
+        "hybrid": {
+          "bm25": "bm25_B_1.2_0.5",
+          "candidate_depth": 100,
+          "constant": 60,
+          "dense": "dense_A",
+          "method": "rrf",
+          "weights": [
+            1,
+            1
+          ]
+        },
+        "load_policy": "eager-enabled-components",
+        "numerical_runtime": {
+          "cuda_matmul_allow_tf32": false,
+          "cuda_runtime": "13.0",
+          "cudnn_allow_tf32": false,
+          "torch_deterministic_algorithms": true,
+          "torch_num_threads": 1
+        },
+        "project_package_version": "0.1.0",
+        "python": "3.14.3",
+        "reranker": {
+          "batch_size": 32,
+          "depth": 20,
+          "max_length": 256,
+          "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+          "representation": "A",
+          "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a"
+        },
+        "reranker_fallback": true,
+        "runtime_manifest_sha256": "7adf8fcaace380db531b60765678da1dbe4461498e71e313c318cf82d52009b0",
+        "runtime_source_sha256": {
+          "runtime_artifacts.py": "a574033045e1fda6c2a2a04f33862cfbf7c3e8c1d6ec830887f893881966ef86",
+          "runtime_config.py": "655411704e920db3de66a9c586d056f6380a1da9d8d6112c77e28cbad921246a",
+          "runtime_contracts.py": "cc2bc46830a8b62bb6cabc7692963a10b389a19b3e83268116b376fa15c2bbc0",
+          "search_engine.py": "bc35437d8cd410c400542db9720e0a772df09c65446b900859eed3e69024a98b"
+        },
+        "software": {
+          "bm25s": "0.3.11",
+          "numpy": "2.5.3",
+          "safetensors": "0.8.0",
+          "sentence-transformers": "6.1.0",
+          "tokenizers": "0.23.2",
+          "torch": "2.14.0+cu130",
+          "transformers": "5.17.0"
+        },
+        "validated_artifact_sha256": {
+          "artifacts/model_cache/hub/models--cross-encoder--ms-marco-MiniLM-L6-v2/snapshots/233902d25c440f23af6f7d6e94d2946bac0bee0a/config.json": "380e02c93f431831be65d99a4e7e5f67c133985bf2e77d9d4eba46847190bacc",
+          "artifacts/model_cache/hub/models--cross-encoder--ms-marco-MiniLM-L6-v2/snapshots/233902d25c440f23af6f7d6e94d2946bac0bee0a/model.safetensors": "821d1aa69520101d6e0737f78a042ae25b19e5cb9160701909d10434f4aeb0ae",
+          "artifacts/model_cache/hub/models--cross-encoder--ms-marco-MiniLM-L6-v2/snapshots/233902d25c440f23af6f7d6e94d2946bac0bee0a/special_tokens_map.json": "3c3507f36dff57bce437223db3b3081d1e2b52ec3e56ee55438193ecb2c94dd6",
+          "artifacts/model_cache/hub/models--cross-encoder--ms-marco-MiniLM-L6-v2/snapshots/233902d25c440f23af6f7d6e94d2946bac0bee0a/tokenizer.json": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+          "artifacts/model_cache/hub/models--cross-encoder--ms-marco-MiniLM-L6-v2/snapshots/233902d25c440f23af6f7d6e94d2946bac0bee0a/tokenizer_config.json": "a5c2e5a7b1a29a0702cd28c08a399b5ecc110c263009d17f7e3b415f25905fd8",
+          "artifacts/model_cache/hub/models--cross-encoder--ms-marco-MiniLM-L6-v2/snapshots/233902d25c440f23af6f7d6e94d2946bac0bee0a/vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling/config.json": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/model.safetensors": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+          "artifacts/model_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+          "artifacts/phase2/bm25_B_1.2_0.5/data.csc.index.npy": "81be3be398769b611c4e018580f2237456ee58d1026259ddce9523055b38bc53",
+          "artifacts/phase2/bm25_B_1.2_0.5/indices.csc.index.npy": "e8baae7af0d8b660d3ee9ad3f337869645ed2b30eeb96fee08d274f0ae89f011",
+          "artifacts/phase2/bm25_B_1.2_0.5/indptr.csc.index.npy": "d4682ab13be008469107591dd98facf43f513afc4c2a561bec86fac1d08b72d4",
+          "artifacts/phase2/bm25_B_1.2_0.5/manifest.json": "60d2dcf7e8acc9f45bf8116e9b8cb74d39b076f7bd150231ff163efd8b1b3161",
+          "artifacts/phase2/bm25_B_1.2_0.5/params.index.json": "5c3a123fa4dc5a88ef4b4552c3be9308a8e85acecab76dcd3f5dfdd11e7cdef9",
+          "artifacts/phase2/bm25_B_1.2_0.5/product_ids.npy": "501839e4b918b6818e037ba559d8fa8e4916b5374983c82df8870c54f9a2d150",
+          "artifacts/phase2/bm25_B_1.2_0.5/vocab.index.json": "8c2846a5e861ac2679a92f01831eafaa7918d869be7b893bfe67c2a9c6665273",
+          "artifacts/phase2/dense_A/embeddings.npy": "0f8bdecb4a9ca9cb8e4fc6530324fb96c1ffab7b3f54f306519a22188c628d1a",
+          "artifacts/phase2/dense_A/manifest.json": "505038d9020d9cb594fd2daf39a7d588cfc3f794d125dfb047ccb493c3112176",
+          "artifacts/phase2/dense_A/product_ids.npy": "501839e4b918b6818e037ba559d8fa8e4916b5374983c82df8870c54f9a2d150",
+          "data/processed/products.jsonl": "50ff588fee5b6af0d1d7429f2683914b39db7ba9fa465b3eb59be6e5e89aed3e"
+        }
+      },
+      "shutdown": {
+        "blocked_attempts": [],
+        "final_test_labels_accessed": false,
+        "opened_canonical_files": [
+          "data/processed/data_manifest.json",
+          "data/processed/products.jsonl",
+          "data/processed/queries.jsonl"
+        ],
+        "state": "CLOSED"
+      },
+      "startup_stages": {
+        "bm25_load_ms": 22.271900001214817,
+        "dense_encoder_load_ms": 228.2417000096757,
+        "dense_index_load_ms": 90.42459999909624,
+        "metadata_ms": 345.76329999254085,
+        "reranker_load_ms": 109.20970002189279,
+        "total_ms": 1086.5364000201225,
+        "validation_ms": 282.681800017599
+      },
+      "startup_wall_ms": 1086.792099988088
+    }
+  ],
+  "source_sha256": {
+    "scripts/benchmark_service.py": "0f674da6604e9be444d85fcb87f73521f12cb3f67c8fa84230c38b513b490e90",
+    "scripts/run_benchmark.py": "0508593290d8cd9295906d5140d8590a72e09fa581b92239f8ce382f688761fe",
+    "src/product_search/benchmarking.py": "205d7e12c8dfc4df96df4a28b4698557d7bd6d799ceb4ee2266652ac59110551"
+  }
+}

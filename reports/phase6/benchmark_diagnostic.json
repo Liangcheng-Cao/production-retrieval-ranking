@@ -1,0 +1,59 @@
+{
+  "environment": {
+    "cpu": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "gpu": "NVIDIA GeForce RTX 4070, 581.08, 12282 MiB",
+    "logical_cpus": 28,
+    "packages": {
+      "fastapi": "0.141.1",
+      "httpx": "0.28.1",
+      "numpy": "2.5.3",
+      "torch": "2.14.0+cu130",
+      "uvicorn": "0.54.0"
+    },
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.3"
+  },
+  "error": "RuntimeError: Service child exited before readiness; see ignored service log",
+  "passed": false,
+  "plan": {
+    "allow_tf32": false,
+    "blas_threads": 1,
+    "case_order": "deterministically shuffled independently per run",
+    "concurrency": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "deterministic_algorithms": true,
+    "device": "cuda",
+    "engine_executor_workers": 1,
+    "independent_runs": 2,
+    "load_model": "closed-loop fixed outstanding client workers; no think time",
+    "partition": "train",
+    "pipelines": [
+      "bm25",
+      "hybrid",
+      "hybrid_rerank"
+    ],
+    "query_count": 24,
+    "query_selection": "first 24 sorted frozen train query IDs",
+    "request_timeout_seconds": 30,
+    "requests_per_case": 96,
+    "scope": "loopback client/server separate processes on one Windows host; fixed ranking configuration; no labels",
+    "seed": 42,
+    "service_workers": 1,
+    "success_criteria": "all planned observations retained, zero unexpected errors/fallback/ranking mismatches, reproducible case metadata; no invented latency threshold",
+    "top_k": 10,
+    "torch_threads": 1,
+    "version": "phase6-benchmark-v1",
+    "warmup_requests": 8
+  },
+  "plan_sha256": "2adf8eaef3c9ed34fa82d09f1590f11a9a7ddd8228d947a428c64e110fac4dde",
+  "runs": [],
+  "source_sha256": {
+    "scripts/benchmark_service.py": "7d5c4ba52f7fede42a37c52c8aae3093b1e204b712cef76a47dbd01d290a257e",
+    "scripts/run_benchmark.py": "0508593290d8cd9295906d5140d8590a72e09fa581b92239f8ce382f688761fe",
+    "src/product_search/benchmarking.py": "205d7e12c8dfc4df96df4a28b4698557d7bd6d799ceb4ee2266652ac59110551"
+  }
+}
