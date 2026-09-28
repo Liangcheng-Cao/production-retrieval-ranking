@@ -12,9 +12,10 @@ Planned serving variants: BM25, hybrid, hybrid with CrossEncoder reranking.
 
 ## Current status
 
-Phase 5 complete: a local FastAPI service exposes the frozen SearchEngine with
-validated startup, immutable provenance, explicit readiness and CE fallback.
-Offline quality and sequential diagnostic evidence are retained.
+Phase 6 complete: the local FastAPI service and frozen SearchEngine have reproducible
+direct-core latency and bounded closed-loop HTTP load measurements, with per-request
+correctness checks. Validated startup, provenance, readiness and explicit CE fallback
+remain unchanged. Offline ranking-quality evidence is retained.
 **No final-test or production benchmark results exist.** No online
 traffic or A/B experiment exists; future simulated comparisons must be described
 as offline replay or synthetic traffic simulation.
@@ -229,8 +230,8 @@ See [runtime contracts and lifecycle](docs/runtime.md),
 [sealed runtime artifacts](artifacts/phase4/manifest.json).
 Real validation uses `scripts/validate_runtime.py`; normal unit tests use fakes and
 tiny local artifacts. **Phase 4 opened no relevance labels, including final test.**
-The service is local only. Phase 6 latency benchmarking and concurrency/load testing
-has not started.
+The service is local only. Phase 6 measurements are bounded local experiments, not
+production capacity or SLA claims.
 
 ## Run locally
 
@@ -292,4 +293,29 @@ See [HTTP lifecycle and contracts](docs/http_service.md) and
 [Phase 5 evidence](reports/phase5/REPORT.md). Real loopback HTTP/core parity and
 startup/fallback tests are separate from ordinary fake-engine unit tests.
 Final-test relevance labels remain untouched. No cloud deployment or Dockerization.
+
+## Reproducible benchmark
+
+The frozen Phase 6 protocol uses 24 train queries, three modes, K=10, concurrency
+1/2/4/8 and two independent service processes. Each formal case measures 960 requests
+after warmup; direct-core timings and startup are measured separately. The client
+runs in a separate process on the same host and checks every response against the
+direct-core fixture. No relevance labels are needed.
+
+```powershell
+.\.venv\Scripts\python.exe scripts/run_benchmark.py `
+  --report reports/tmp/phase6-repeat-summary.json --raw-root reports/tmp/phase6-repeat
+```
+
+Use fresh output paths; the harness refuses overwrite. Raw observations and service
+logs remain Git-ignored, with checksums in compact summaries. Reports retain both
+repetitions and the preliminary failed starts/pilot rather than choosing faster runs.
+
+The service still has one engine worker. More outstanding requests can reduce idle
+gaps, but ultimately increase waiting and tail latency. Closed-loop completion rate
+does not establish an open-loop capacity limit; shared host/client/logging work also
+affects measured throughput. No admission control or hard compute cancellation was
+added. See [protocol and limitations](docs/benchmarking.md),
+[formal results](reports/phase6/REPORT.md) and
+[machine-readable evidence](reports/phase6/benchmark_full.json).
 No frontend, LLM features, distributed services or additional infrastructure are planned.
