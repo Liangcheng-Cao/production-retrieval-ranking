@@ -1,0 +1,66 @@
+{
+  "commits": [
+    {
+      "hash": "4664a0f52d504afef142953545abe2f602543cc0",
+      "message": "test: verify Phase 2 metric cutoffs independently",
+      "files": [
+        "reports/phase2_commits.json",
+        "reports/phase3/metric_sanity.json",
+        "scripts/check_phase2_metrics.py"
+      ]
+    },
+    {
+      "hash": "972c87880629e3a16fe9eb34261a06aabdbfb2a1",
+      "message": "feat: add reusable cross-encoder reranking and paired analysis",
+      "files": [
+        "reports/phase3/integration_smoke.json",
+        "scripts/smoke_reranker.py",
+        "src/product_search/paired.py",
+        "src/product_search/reranking.py",
+        "tests/test_reranking.py"
+      ]
+    },
+    {
+      "hash": "2800251222efe9812005e0c3bf2335a1845b9aac",
+      "message": "exp: freeze bounded cross-encoder development selection",
+      "files": [
+        "configs/phase3_plan.json",
+        "configs/phase3_selected.json",
+        "reports/phase3/development.json",
+        "scripts/run_phase3.py"
+      ]
+    },
+    {
+      "hash": "0c860411f1a100664f4dbd45c65ebbf29d0042c9",
+      "message": "report: record validation reranking gains and regressions",
+      "files": [
+        "reports/phase3/error_analysis.md",
+        "reports/phase3/error_examples.json",
+        "reports/phase3/paired.json",
+        "reports/phase3/validation.json"
+      ]
+    },
+    {
+      "hash": "b70e0853771edec83b8473f545ea24f9a3248919",
+      "message": "data: seal reranking provenance and access boundaries",
+      "files": [
+        "artifacts/phase3/manifest.json",
+        "reports/phase3/boundary_development.json",
+        "reports/phase3/boundary_validation.json",
+        "scripts/summarize_phase3.py"
+      ]
+    },
+    {
+      "hash": "274a1f70b6323f884341d5b18869f81a07eefe40",
+      "message": "docs: document Phase 3 quality latency and verification",
+      "files": [
+        "README.md",
+        "reports/phase3/REPORT.md",
+        "reports/phase3_checks.json"
+      ]
+    }
+  ],
+  "pre_phase4_clean": true,
+  "pre_commit_tests": "48 passed in 0.40s",
+  "push": false
+}
