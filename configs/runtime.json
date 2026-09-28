@@ -1,0 +1,14 @@
+{
+  "default_pipeline": "hybrid",
+  "default_top_k": 10,
+  "device": "cuda",
+  "enabled_pipelines": [
+    "bm25",
+    "hybrid",
+    "hybrid_rerank"
+  ],
+  "manifest": "artifacts/phase4/manifest.json",
+  "manifest_sha256": "7adf8fcaace380db531b60765678da1dbe4461498e71e313c318cf82d52009b0",
+  "reranker_fallback": true,
+  "root": ".."
+}
