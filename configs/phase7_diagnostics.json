@@ -1,0 +1,21 @@
+{
+  "version": "local-diagnostics-v1",
+  "scope": "Local diagnostic thresholds only; no production SLA/SLO or deployed alert manager",
+  "window": "Inspect 5-minute deltas; latency warnings only with >=20 observations per pipeline; no-traffic is unknown, not healthy",
+  "thresholds": {
+    "fallback_rate_gt": 0,
+    "error_rate_gt": 0,
+    "readiness_expected": "READY",
+    "queue_wait_p95_seconds_gt": 0.005,
+    "request_latency_p95_seconds_gt": {"bm25": 0.01, "hybrid": 0.05, "hybrid_rerank": 0.06}
+  },
+  "basis": {
+    "fallback_and_error": "Phase6 formal 23040 requests had zero of each; intentional integration faults are explained exceptions",
+    "readiness": "DEGRADED is searchable (HTTP200) but should still trigger investigation",
+    "queue": "Phase7 natural C1 direct queue P95 is 0.030/0.034/0.042 ms in 12 requests per mode; 5ms is a coarse substantial increase and material relative to 10-20ms core inference. Small sample is diagnostic only",
+    "request": "Round ~3x Phase6 max C1 client RTT P95 (3.21/14.66/19.31ms) upward to 10/50/60ms. Server ASGI lifetime differs from client RTT; this is a conservative local proxy, not a calibrated capacity limit",
+    "phase6_residual": "server_non_engine_ms is NOT an exact queue measure and was not used as a queue baseline",
+    "histograms": "Prometheus histogram P95 is bucket-interpolated; use exact local observations when diagnosing borderline warnings"
+  },
+  "evidence": ["reports/phase6/comparison.json", "reports/phase7/observability_verified.json"]
+}
