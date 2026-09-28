@@ -17,12 +17,14 @@ from .api_schemas import (SearchRequest, SearchResponse, ErrorResponse, HealthRe
                           ReadyResponse, PublicVersion, public_version)
 from .runtime_config import RuntimeConfig
 from .search_engine import SearchEngine
+from .observability import ServiceMetrics, WaitingTicket
 
 
 def create_app(config_path=None, *, engine_factory=None):
     # Factory injection is for tests, never an HTTP-accessible control.
     @asynccontextmanager
     async def lifespan(app):
+        app.state.metrics = ServiceMetrics()
         event('service_starting')
         app.state.engine = None
         app.state.phase = 'LOADING'
@@ -57,6 +59,7 @@ def create_app(config_path=None, *, engine_factory=None):
     app = FastAPI(title='Product Search', version='1.0.0', lifespan=lifespan)
     app.state.engine = None
     app.state.phase = 'NOT_INITIALIZED'
+    app.state.metrics = ServiceMetrics()
     app.add_middleware(RequestContextMiddleware)
 
     def error(request, status, code, message):
@@ -86,6 +89,10 @@ def create_app(config_path=None, *, engine_factory=None):
 
     errors = {n: {'model': ErrorResponse} for n in (422, 500, 503)}
 
+    @app.get('/metrics', include_in_schema=False)
+    async def metrics():
+        return Response(app.state.metrics.render(), media_type='text/plain; version=0.0.4; charset=utf-8')
+
     @app.get('/health', response_model=HealthResponse)
     async def health():
         return HealthResponse(alive=True)
@@ -105,7 +112,13 @@ def create_app(config_path=None, *, engine_factory=None):
     async def search(body: SearchRequest, request: Request):
         common = {'request_id': request.state.request_id, 'pipeline': body.pipeline,
                   'top_k': body.top_k, 'query_length': len(body.query)}
-        if not status().searchable:
+        request.state.pipeline = body.pipeline
+        request.state.top_k = body.top_k
+        request.state.query_length = len(body.query)
+        app.state.metrics.query(body.pipeline, body.query)
+        current = status()
+        request.state.degraded = current.state == 'DEGRADED'
+        if not current.searchable:
             event('search_failed', **common, reason='not_ready')
             return error(request, 503, 'not_ready', 'Search engine is unavailable.')
         if body.pipeline not in app.state.engine.config.enabled_pipelines:
@@ -114,9 +127,22 @@ def create_app(config_path=None, *, engine_factory=None):
         try:
             # A single worker preserves the sequential core's ownership contract.
             # Cancellation/disconnect cannot preempt native/GPU work; no fake timeout.
-            async with app.state.search_lock:
-                result = await asyncio.get_running_loop().run_in_executor(app.state.executor,
-                    lambda: app.state.engine.search(body.query, body.top_k, body.pipeline))
+            ticket = WaitingTicket(app.state.metrics, body.pipeline)
+            def execute():
+                request.state.queue_wait_ms = ticket.enter()
+                app.state.metrics.active.inc()
+                try:
+                    value = app.state.engine.search(body.query, body.top_k, body.pipeline)
+                    app.state.metrics.core_result(value)
+                    return value
+                finally:
+                    request.state.degraded |= app.state.engine.readiness().state == 'DEGRADED'
+                    app.state.metrics.active.dec()
+            try:
+                async with app.state.search_lock:
+                    result = await asyncio.get_running_loop().run_in_executor(app.state.executor, execute)
+            finally:
+                ticket.cancel()
             request.state.engine_ms = result.timing['total_ms']
             t = perf_counter()
             value = SearchResponse(request_id=request.state.request_id, query=result.query,
@@ -127,14 +153,13 @@ def create_app(config_path=None, *, engine_factory=None):
                 version=app.state.public_version)
             encoded = value.model_dump_json()
             request.state.serialization_ms = (perf_counter()-t)*1000
-            event('search_fallback' if result.fallback_used else 'search_completed', **common,
-                  effective_pipeline=result.effective_pipeline, fallback_used=result.fallback_used,
-                  total_ms=result.timing['total_ms'], result_count=len(result.results))
+            request.state.effective_pipeline = result.effective_pipeline
+            request.state.fallback_used = result.fallback_used
+            request.state.result_count = len(result.results)
             return Response(encoded, media_type='application/json')
         except Exception:
-            # Server-side traceback is intentionally separate from the client body.
+            # Exception messages/tracebacks may contain queries; never log them by default.
             event('search_failed', **common, reason='core_error')
-            LOGGER.exception('search_internal_error request_id=%s', request.state.request_id)
             return error(request, 500, 'search_failed', 'Search could not be completed.')
 
     return app

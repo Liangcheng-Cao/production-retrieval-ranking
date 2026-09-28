@@ -27,11 +27,17 @@ class RequestContextMiddleware:
             request_id = str(uuid4())
         state = scope.setdefault('state', {})
         state['request_id'] = request_id
+        search = scope.get('path') == '/search' and scope.get('method') == 'POST'
+        metrics = scope['app'].state.metrics if search else None
+        if metrics:
+            metrics.inflight.inc()
+        status = 499
         started = False
         async def send_timed(message):
-            nonlocal started
+            nonlocal started, status
             if message['type'] == 'http.response.start':
                 started = True
+                status = message['status']
                 http_ms = (perf_counter()-start)*1000
                 message['headers'] = list(message.get('headers', [])) + [
                     (b'x-request-id', request_id.encode('ascii')),
@@ -40,6 +46,8 @@ class RequestContextMiddleware:
                     message['headers'].append((b'x-engine-ms', f"{state['engine_ms']:.6f}".encode()))
                 if 'serialization_ms' in state:
                     message['headers'].append((b'x-response-serialization-ms', f"{state['serialization_ms']:.6f}".encode()))
+                if 'queue_wait_ms' in state:
+                    message['headers'].append((b'x-queue-wait-ms', f"{state['queue_wait_ms']:.6f}".encode()))
                 if scope.get('path') == '/search':
                     event('http_response', request_id=request_id, status=message['status'], http_app_ms=http_ms,
                           engine_total_ms=state.get('engine_ms'), serialization_ms=state.get('serialization_ms'))
@@ -48,10 +56,18 @@ class RequestContextMiddleware:
             await self.app(scope, receive, send_timed)
         except Exception:
             event('request_failed', request_id=request_id, reason='internal_error')
-            LOGGER.exception('request_internal_error request_id=%s', request_id)
             if started:
                 raise
             from starlette.responses import JSONResponse
             response = JSONResponse({'error': 'internal_error', 'message': 'Request could not be completed.',
                                      'request_id': request_id}, status_code=500)
             await response(scope, receive, send_timed)
+        finally:
+            if metrics:
+                seconds = perf_counter()-start
+                metrics.inflight.dec()
+                metrics.finish(state, status, seconds)
+                name = ('search_fallback' if state.get('fallback_used') else 'search_completed') if status == 200 else 'search_failed'
+                event(name, request_id=request_id, status=status, http_total_ms=seconds*1000,
+                      **{k: state.get(k) for k in ('pipeline', 'effective_pipeline', 'top_k', 'query_length',
+                         'queue_wait_ms', 'fallback_used', 'result_count')}, engine_total_ms=state.get('engine_ms'))
