@@ -1,0 +1,66 @@
+{
+  "tests": "122 passed, 1 warning in 1.23s",
+  "warning": "Starlette TestClient httpx deprecation; compatibility still works; no warnings suppressed",
+  "pip_check": "No broken requirements found",
+  "phase4_head": "cdb4a74eefe0312e09a85da88690af0db82897a4",
+  "frozen_phase1_to_phase4_unchanged": true,
+  "final_test_labels_accessed": false,
+  "no_relevance_labels_opened": true,
+  "runtime_manifest_sha256": "7adf8fcaace380db531b60765678da1dbe4461498e71e313c318cf82d52009b0",
+  "api_source_sha256": {
+    "scripts/serve.py": "7f33ee1c9b2647f4355fed9461eb8fc40bf76c45b024ceb4f335f58483d10a7d",
+    "scripts/validate_api.py": "6fe99a522bcb030b7f54d74e93665599c51f45bccd33c7b1c38d86bc48df1380",
+    "src/product_search/api.py": "0f1b268caf308af773b89218213fe42a1cf0592d62028e1e23a05c80a87097be",
+    "src/product_search/api_logging.py": "024135f5951d56e08cfb1fa6e10c4c6f581b0e2bc914355665917f44db1ab4ba",
+    "src/product_search/api_schemas.py": "931eb4dfb2ea54af802a51bb4b6d829fccd49bf77d64c2a89828fe02f35bc4f1",
+    "tests/test_api.py": "60b251fc0fb497cae239a61ea7c844dce14bb9b22ce24b404d8da04d79d4a292"
+  },
+  "software": {
+    "fastapi": "0.141.1",
+    "starlette": "1.7.0",
+    "pydantic": "2.13.5",
+    "uvicorn": "0.54.0",
+    "httpx": "0.28.1"
+  },
+  "ignored_counts": {
+    "data/raw/": 3,
+    "data/processed/": 6,
+    "artifacts/model_cache/": 30,
+    "artifacts/phase2/": 30,
+    "artifacts/phase3/": 5,
+    ".venv/": 39877,
+    "reports/tmp/": 12
+  },
+  "tracked_or_git_eligible_large_artifacts": [],
+  "phase5_committed": false,
+  "pushed": false,
+  "git_status": [
+    " M README.md",
+    " M pyproject.toml",
+    "?? docs/http_service.md",
+    "?? reports/phase5/",
+    "?? scripts/serve.py",
+    "?? scripts/validate_api.py",
+    "?? src/product_search/api.py",
+    "?? src/product_search/api_logging.py",
+    "?? src/product_search/api_schemas.py",
+    "?? tests/test_api.py"
+  ],
+  "git_new_files": [
+    "docs/http_service.md",
+    "reports/phase5/REPORT.md",
+    "reports/phase5/api_core_parity.json",
+    "reports/phase5/checks.json",
+    "reports/phase5/http_integration.json",
+    "reports/phase5/http_integration_final.json",
+    "reports/phase5/http_release.json",
+    "reports/phase5/phase4_commits.json",
+    "scripts/serve.py",
+    "scripts/validate_api.py",
+    "src/product_search/api.py",
+    "src/product_search/api_logging.py",
+    "src/product_search/api_schemas.py",
+    "tests/test_api.py"
+  ],
+  "git_diff_check": "passed"
+}

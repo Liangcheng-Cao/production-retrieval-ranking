@@ -1,0 +1,65 @@
+{
+  "commits": [
+    {
+      "hash": "d06c37232071ab8422ddb9101b83660f8f936e2e",
+      "message": "feat: define runtime contracts and sealed artifact configuration",
+      "files": [
+        "artifacts/phase4/manifest.json",
+        "configs/runtime.json",
+        "src/product_search/runtime_config.py",
+        "src/product_search/runtime_contracts.py"
+      ]
+    },
+    {
+      "hash": "5b4012762dcdec1ae994d6f1eccdd2b397dea07a",
+      "message": "feat: load frozen artifacts into reusable search engine",
+      "files": [
+        "src/product_search/runtime_artifacts.py",
+        "src/product_search/search_engine.py",
+        "tests/test_runtime_artifacts.py",
+        "tests/test_search_engine.py"
+      ]
+    },
+    {
+      "hash": "6b80eb4b3ef4327f67778d8610582e9c73a520de",
+      "message": "feat: add explicit runtime packaging and startup validation",
+      "files": [
+        "reports/phase4/phase3_commits.json",
+        "scripts/seal_runtime.py",
+        "scripts/validate_runtime.py"
+      ]
+    },
+    {
+      "hash": "58fcec2cd50b1b79fa892bc04231ea2a2bc1e05d",
+      "message": "report: preserve batch parity investigation evidence",
+      "files": [
+        "reports/phase4/batch_parity_diagnosis.json",
+        "reports/phase4/runtime_restart.json",
+        "reports/phase4/runtime_validation.json",
+        "reports/phase4/runtime_validation_verified.json"
+      ]
+    },
+    {
+      "hash": "b2701dde77a3fb7fa11087c93b03eaa44ddb2435",
+      "message": "report: verify runtime parity restart and artifact boundaries",
+      "files": [
+        "reports/phase4/checks.json",
+        "reports/phase4/parity.json",
+        "reports/phase4/runtime_final.json",
+        "reports/phase4/runtime_final_restart.json"
+      ]
+    },
+    {
+      "hash": "cdb4a74eefe0312e09a85da88690af0db82897a4",
+      "message": "docs: describe search lifecycle and numerical parity limits",
+      "files": [
+        "README.md",
+        "docs/runtime.md",
+        "reports/phase4/REPORT.md"
+      ]
+    }
+  ],
+  "pre_phase5_clean": true,
+  "tests": "88 passed in 1.57s",
+  "pushed": false
+}
