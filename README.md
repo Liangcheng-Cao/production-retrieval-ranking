@@ -12,9 +12,9 @@ Planned serving variants: BM25, hybrid, hybrid with CrossEncoder reranking.
 
 ## Current status
 
-Phase 4 complete: frozen ML artifacts feed a reusable SearchEngine with validated
-startup, immutable provenance, explicit readiness and CE fallback. Offline quality
-and sequential diagnostic evidence are retained. No API exists.
+Phase 5 complete: a local FastAPI service exposes the frozen SearchEngine with
+validated startup, immutable provenance, explicit readiness and CE fallback.
+Offline quality and sequential diagnostic evidence are retained.
 **No final-test or production benchmark results exist.** No online
 traffic or A/B experiment exists; future simulated comparisons must be described
 as offline replay or synthetic traffic simulation.
@@ -229,5 +229,67 @@ See [runtime contracts and lifecycle](docs/runtime.md),
 [sealed runtime artifacts](artifacts/phase4/manifest.json).
 Real validation uses `scripts/validate_runtime.py`; normal unit tests use fakes and
 tiny local artifacts. **Phase 4 opened no relevance labels, including final test.**
-The engine is not deployed. Phase 5 FastAPI service and HTTP lifecycle has not started.
+The service is local only. Phase 6 latency benchmarking and concurrency/load testing
+has not started.
+
+## Run locally
+
+With the existing frozen artifacts provisioned:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -e ".[dev,retrieval,api]"
+.\.venv\Scripts\python.exe scripts/serve.py --port 8000
+```
+
+The runner binds `127.0.0.1`, uses one worker and local model snapshots. Supply
+`--config PATH` or `SEARCH_RUNTIME_CONFIG` to select runtime configuration.
+
+## Endpoints
+
+- `POST /search`: strict request validation and existing SearchEngine results.
+- `GET /health`: cheap process liveness, without inference or artifact hashing.
+- `GET /ready`: 200 for READY/DEGRADED, otherwise 503; degradation remains explicit.
+- `GET /version`: compact frozen provenance without filesystem paths or inventories.
+
+FastAPI exposes the generated schema at `/openapi.json` and standard docs at `/docs`.
+Query length is 1–512 Unicode characters with non-whitespace content. Pipeline is
+required; top_k defaults to 10 and must be a strict integer (BM25/Hybrid ≤100, CE ≤20).
+
+## Search example
+
+```powershell
+Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/search `
+  -ContentType 'application/json' `
+  -Body '{"query":"wooden office desk","top_k":10,"pipeline":"hybrid_rerank"}'
+```
+
+Response fields include query, requested/effective pipeline, fallback_used,
+request_id, results with ID/title/final_rank/final_score and retrieval provenance,
+timing_ms and a compact version object. A fallback response includes, for example:
+
+```json
+{"requested_pipeline":"hybrid_rerank","effective_pipeline":"hybrid","fallback_used":true,"fallback_reason":"reranker_unavailable"}
+```
+
+This fragment illustrates metadata only; actual responses also contain results,
+timings and provenance. Request IDs are returned in `X-Request-ID`.
+
+## Lifecycle
+
+Startup → artifact validation → one initialized engine → READY → requests → shutdown
+and engine close. A dedicated worker owns engine calls; no model is created per request.
+HTTP timing headers separate application elapsed time, core time and serialization.
+These are diagnostics, not a production SLA or load study.
+
+## Failure semantics
+
+Invalid requests return 422; unavailable engines return 503; controlled core failures
+return 500 without tracebacks or internal paths. CE fallback returns 200 with explicit
+metadata. Missing/corrupt required artifacts abort startup and are never silently rebuilt.
+No hard inference timeout is claimed; safe cancellation/admission policies are deferred.
+
+See [HTTP lifecycle and contracts](docs/http_service.md) and
+[Phase 5 evidence](reports/phase5/REPORT.md). Real loopback HTTP/core parity and
+startup/fallback tests are separate from ordinary fake-engine unit tests.
+Final-test relevance labels remain untouched. No cloud deployment or Dockerization.
 No frontend, LLM features, distributed services or additional infrastructure are planned.
