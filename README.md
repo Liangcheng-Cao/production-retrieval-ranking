@@ -319,3 +319,16 @@ added. See [protocol and limitations](docs/benchmarking.md),
 [formal results](reports/phase6/REPORT.md) and
 [machine-readable evidence](reports/phase6/benchmark_full.json).
 No frontend, LLM features, distributed services or additional infrastructure are planned.
+
+## Observability and offline ML monitoring
+
+Phase 7 adds `GET /metrics` (Prometheus text), bounded pipeline/outcome metrics,
+direct queue/in-flight measurements, and structured privacy-conscious logs without
+changing the one-worker execution model or ranking configuration. A train-only
+288-query baseline and three synthetic drift scenarios are rebuilt twice with
+the existing encoder/CE20; champion/challenger comparisons remain offline.
+
+See [observability contracts](docs/observability.md), [ML monitoring and limitations](docs/ml_monitoring.md),
+and [Phase 7 report](reports/phase7/REPORT.md). Real integration and fake-only unit
+tests are separate. No real production traffic is available.
+No online A/B test has been performed. Phase 7 does not add Docker or deployment.
