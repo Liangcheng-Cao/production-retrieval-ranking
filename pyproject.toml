@@ -11,6 +11,7 @@ dependencies = ["pandas==3.0.6", "numpy==2.5.3", "scikit-learn==1.9.1"]
 
 [project.optional-dependencies]
 dev = ["pytest==9.1.1"]
+api = ["fastapi==0.141.1", "starlette==1.7.0", "pydantic==2.13.5", "uvicorn==0.54.0", "httpx==0.28.1"]
 retrieval = ["bm25s==0.3.11", "torch==2.14.0", "transformers==5.17.0", "sentence-transformers==6.1.0", "threadpoolctl==3.7.0", "huggingface-hub==1.33.0", "tokenizers==0.23.2", "safetensors==0.8.0"]
 
 [tool.setuptools.packages.find]
