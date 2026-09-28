@@ -12,9 +12,9 @@ Planned serving variants: BM25, hybrid, hybrid with CrossEncoder reranking.
 
 ## Current status
 
-Phase 3 complete: frozen canonical data, BM25/dense/RRF retrieval and optional
-pretrained CrossEncoder reranking. Validation quality, paired comparisons and
-sequential single-query latency are measured. No API exists.
+Phase 4 complete: frozen ML artifacts feed a reusable SearchEngine with validated
+startup, immutable provenance, explicit readiness and CE fallback. Offline quality
+and sequential diagnostic evidence are retained. No API exists.
 **No final-test or production benchmark results exist.** No online
 traffic or A/B experiment exists; future simulated comparisons must be described
 as offline replay or synthetic traffic simulation.
@@ -186,5 +186,48 @@ blocks raw data, actual test judgments and the global conflict audit. Shared que
 bytes are hashed/scanned for IDs; only train/validation text is decoded for inference.
 Phase 1 frozen files and Phase 2 reports/configuration remain unchanged.
 
-Phase 4 production search core and artifact lifecycle is not started.
+## Production search core
+
+Frozen ML artifacts → RuntimeConfig → ArtifactLoader → SearchEngine → future API.
+The core reuses the unchanged offline ranking implementations and loads resources
+once at startup. Supported modes are `bm25` and `hybrid` (K=1–100), and
+`hybrid_rerank` (Hybrid top-100 → CE rerank first 20 → K=1–20). Larger CE requests
+are rejected; no unscored tail is appended.
+
+```python
+from product_search.search_engine import SearchEngine
+
+engine = SearchEngine.from_config("configs/runtime.json")
+result = engine.search("wooden office desk", top_k=10, pipeline="hybrid_rerank")
+print(result.effective_pipeline, result.results, engine.readiness())
+engine.close()
+```
+
+Enabled components load eagerly. A BM25-only configuration needs no dense or CE
+payload; a Hybrid-only configuration needs no CE payload. Missing, corrupt or
+incompatible required artifacts fail startup rather than rebuild. Frozen manifests
+and selected settings supply ranking configuration; the runtime manifest seals
+local model snapshots. Startup retains version metadata and checksums, so requests
+do not hash artifacts or reload models.
+
+Empty/invalid requests fail before inference. Dense failure raises explicitly.
+CE inference failure may return Hybrid ordering with `fallback_used=true`, a reason,
+and distinct requested/effective pipelines. Readiness reports degradation; failed
+metadata hydration is explicit. Results contain small title/ID/rank/score records
+and diagnostic stage timings, with startup measured separately.
+
+Real parity checks compare six train queries across all three modes and supported
+cutoffs (48 comparisons), then repeat in a fresh process. The core matches the
+existing offline single-query interfaces. A diagnosed batch-shape limitation remains:
+query 1 has near-tied dense scores whose ordering differs from historical batch-128
+evaluation. The original batch context reproduces that historical result. Both the
+initial failed check and diagnosis are retained; Phase 2/3 metrics were not rewritten.
+No cross-batch or cross-GPU bitwise equivalence is claimed.
+
+See [runtime contracts and lifecycle](docs/runtime.md),
+[Phase 4 report](reports/phase4/REPORT.md), and
+[sealed runtime artifacts](artifacts/phase4/manifest.json).
+Real validation uses `scripts/validate_runtime.py`; normal unit tests use fakes and
+tiny local artifacts. **Phase 4 opened no relevance labels, including final test.**
+The engine is not deployed. Phase 5 FastAPI service and HTTP lifecycle has not started.
 No frontend, LLM features, distributed services or additional infrastructure are planned.
