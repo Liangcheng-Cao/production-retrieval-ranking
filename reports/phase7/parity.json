@@ -1,0 +1,44 @@
+{
+  "api_all_passed": true,
+  "api_boundary": {
+    "blocked_attempts": [],
+    "final_test_labels_accessed": false,
+    "opened_canonical_files": [
+      "data/processed/data_manifest.json",
+      "data/processed/products.jsonl",
+      "data/processed/queries.jsonl"
+    ],
+    "relevance_labels_opened": false
+  },
+  "api_comparisons": 18,
+  "api_max_score_abs_error": 0.0,
+  "core_all_passed": true,
+  "core_boundary": {
+    "blocked_attempts": [],
+    "final_test_labels_accessed": false,
+    "opened_canonical_files": [
+      "data/processed/data_manifest.json",
+      "data/processed/products.jsonl",
+      "data/processed/queries.jsonl"
+    ],
+    "policy": "product metadata and train query strings only; no relevance label files"
+  },
+  "core_comparisons": 48,
+  "core_max_score_abs_error": 0.0,
+  "core_method": "independent existing offline single-query interfaces; historical batch-128 reproduction checked separately",
+  "historical_batch_context_checked": true,
+  "passed": true,
+  "raw_evidence_sha256": {
+    "reports/tmp/phase7-http-parity.json": "d5a15fd9c181fc85019c4fdb17bf53db192ce97c561534be3b666f711ef8439e",
+    "reports/tmp/phase7-runtime-parity.json": "b69c3189815e306c086da0f2baaac4d08cb98341f5fe6e100f8cb817a7c1cd98"
+  },
+  "retention": "Detailed small comparison fixtures are ignored; only aggregates and file checksums retained here",
+  "startup_failure": {
+    "engine_closed": true,
+    "missing_required_artifact": true,
+    "server_started": false,
+    "silent_rebuild": false,
+    "startup_thread_exited": true
+  },
+  "verdict": "NO ranking change"
+}

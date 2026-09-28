@@ -1,0 +1,186 @@
+{
+  "boundary": {
+    "blocked": [],
+    "final_test_labels_accessed": false,
+    "opened": [
+      "data/processed/data_manifest.json",
+      "data/processed/products.jsonl",
+      "data/processed/queries.jsonl"
+    ]
+  },
+  "controlled_visibility": [
+    {
+      "concurrency": 1,
+      "gauges_after_completion": 0,
+      "http_to_headers_ms": {
+        "count": 1,
+        "mean": 40.7987,
+        "p05": 40.7987,
+        "p50": 40.7987,
+        "p95": 40.7987
+      },
+      "injection": "test-only Python wrapper holds actual callable until gauges sampled; not latency benchmark",
+      "queue_ms": {
+        "count": 1,
+        "mean": 0.0684,
+        "p05": 0.0684,
+        "p50": 0.0684,
+        "p95": 0.0684
+      },
+      "while_first_call_held": {
+        "engine_active_calls": 1.0,
+        "in_flight_requests": 1.0,
+        "requests_waiting_for_engine": 0.0
+      }
+    },
+    {
+      "concurrency": 4,
+      "gauges_after_completion": 0,
+      "http_to_headers_ms": {
+        "count": 4,
+        "mean": 72.290425,
+        "p05": 45.76207,
+        "p50": 71.66095,
+        "p95": 99.70004499999999
+      },
+      "injection": "test-only Python wrapper holds actual callable until gauges sampled; not latency benchmark",
+      "queue_ms": {
+        "count": 4,
+        "mean": 46.54685,
+        "p05": 6.939335000000001,
+        "p50": 52.086749999999995,
+        "p95": 78.398505
+      },
+      "while_first_call_held": {
+        "engine_active_calls": 1.0,
+        "in_flight_requests": 4.0,
+        "requests_waiting_for_engine": 3.0
+      }
+    }
+  ],
+  "fallback": {
+    "degraded_request_total": 1,
+    "effective_pipeline": "hybrid",
+    "error_count": 0,
+    "reranker_fallback_total": 1,
+    "status": 200
+  },
+  "final_counts": {
+    "degraded_request_total": 2.0,
+    "engine_latency_seconds_count": 46.0,
+    "fallback_count_total": 1.0,
+    "queue_wait_seconds_count": 47.0,
+    "request_count_total": 47.0,
+    "request_error_count_total": 1.0
+  },
+  "injected_core_error": {
+    "error_counter_increment": 1,
+    "exception_query_not_echoed": true,
+    "status": 500
+  },
+  "logging": {
+    "events": [
+      "engine_loading",
+      "http_response",
+      "search_completed",
+      "search_failed",
+      "search_fallback",
+      "service_ready",
+      "service_shutdown",
+      "service_starting"
+    ],
+    "query_text_absent": true,
+    "request_ids_present": true,
+    "structured_json": true
+  },
+  "metrics_privacy_passed": true,
+  "natural_c1_12_per_pipeline": {
+    "bm25": {
+      "engine_ms": {
+        "count": 12,
+        "mean": 0.2629416666666667,
+        "p05": 0.10254,
+        "p50": 0.2833,
+        "p95": 0.36079999999999995
+      },
+      "http_to_headers_ms": {
+        "count": 12,
+        "mean": 0.5627416666666666,
+        "p05": 0.370625,
+        "p50": 0.5742499999999999,
+        "p95": 0.73935
+      },
+      "queue_ms": {
+        "count": 12,
+        "mean": 0.026175000000000004,
+        "p05": 0.0245,
+        "p50": 0.0254,
+        "p95": 0.029824999999999997
+      }
+    },
+    "hybrid": {
+      "engine_ms": {
+        "count": 12,
+        "mean": 9.730483333333332,
+        "p05": 9.314045,
+        "p50": 9.736149999999999,
+        "p95": 10.000735
+      },
+      "http_to_headers_ms": {
+        "count": 12,
+        "mean": 10.196575000000001,
+        "p05": 9.759920000000001,
+        "p50": 10.2055,
+        "p95": 10.53186
+      },
+      "queue_ms": {
+        "count": 12,
+        "mean": 0.028999999999999998,
+        "p05": 0.02326,
+        "p50": 0.02895,
+        "p95": 0.03374
+      }
+    },
+    "hybrid_rerank": {
+      "engine_ms": {
+        "count": 12,
+        "mean": 15.274049999999997,
+        "p05": 14.458855,
+        "p50": 15.26005,
+        "p95": 16.36056
+      },
+      "http_to_headers_ms": {
+        "count": 12,
+        "mean": 15.760808333333335,
+        "p05": 14.88716,
+        "p50": 15.758399999999998,
+        "p95": 16.91494
+      },
+      "queue_ms": {
+        "count": 12,
+        "mean": 0.03306666666666667,
+        "p05": 0.02892,
+        "p50": 0.03125,
+        "p95": 0.04195999999999999
+      }
+    }
+  },
+  "passed": true,
+  "pipelines": {
+    "bm25": {
+      "request_count_after_one": 1,
+      "status": 200
+    },
+    "hybrid": {
+      "request_count_after_one": 1,
+      "status": 200
+    },
+    "hybrid_rerank": {
+      "request_count_after_one": 1,
+      "status": 200
+    }
+  },
+  "probes_excluded": true,
+  "restart_registry_reset": true,
+  "scope": "real loopback service, real frozen models; small controlled integration, no throughput claims"
+}

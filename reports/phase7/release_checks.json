@@ -1,0 +1,235 @@
+{
+  "api_parity_comparisons": 18,
+  "baseline_payload_sha256": "1923f498d2a222eca6b2154ff5713808c0eefb14a2f39de15d1008906e321994",
+  "core_parity_comparisons": 48,
+  "created_utc": "2026-09-28T12:45:20.793854+00:00",
+  "diff_check": "passed",
+  "final_test_labels_accessed": false,
+  "frozen_phase1_through6_unchanged": true,
+  "monitoring_equal_to_reviewed_payload": true,
+  "monitoring_payload_sha256": "7deee251d3bc91930effc1f4ebcf6443246352ea71430c97d5dcba27a0f015aa",
+  "monitoring_two_rebuilds_equal": true,
+  "observability": {
+    "boundary": {
+      "blocked": [],
+      "final_test_labels_accessed": false,
+      "opened": [
+        "data/processed/data_manifest.json",
+        "data/processed/products.jsonl",
+        "data/processed/queries.jsonl"
+      ]
+    },
+    "controlled_visibility": [
+      {
+        "concurrency": 1,
+        "gauges_after_completion": 0,
+        "http_to_headers_ms": {
+          "count": 1,
+          "mean": 41.6779,
+          "p05": 41.6779,
+          "p50": 41.6779,
+          "p95": 41.6779
+        },
+        "injection": "test-only Python wrapper holds actual callable until gauges sampled; not latency benchmark",
+        "queue_ms": {
+          "count": 1,
+          "mean": 0.0301,
+          "p05": 0.0301,
+          "p50": 0.0301,
+          "p95": 0.0301
+        },
+        "while_first_call_held": {
+          "engine_active_calls": 1.0,
+          "in_flight_requests": 1.0,
+          "requests_waiting_for_engine": 0.0
+        }
+      },
+      {
+        "concurrency": 4,
+        "gauges_after_completion": 0,
+        "http_to_headers_ms": {
+          "count": 4,
+          "mean": 73.73479999999999,
+          "p05": 48.628475,
+          "p50": 73.84735,
+          "p95": 98.683555
+        },
+        "injection": "test-only Python wrapper holds actual callable until gauges sampled; not latency benchmark",
+        "queue_ms": {
+          "count": 4,
+          "mean": 48.48115,
+          "p05": 7.397510000000001,
+          "p50": 54.8624,
+          "p95": 80.63104
+        },
+        "while_first_call_held": {
+          "engine_active_calls": 1.0,
+          "in_flight_requests": 4.0,
+          "requests_waiting_for_engine": 3.0
+        }
+      }
+    ],
+    "fallback": {
+      "degraded_request_total": 1,
+      "effective_pipeline": "hybrid",
+      "error_count": 0,
+      "reranker_fallback_total": 1,
+      "status": 200
+    },
+    "final_counts": {
+      "degraded_request_total": 2.0,
+      "engine_latency_seconds_count": 46.0,
+      "fallback_count_total": 1.0,
+      "queue_wait_seconds_count": 47.0,
+      "request_count_total": 47.0,
+      "request_error_count_total": 1.0
+    },
+    "injected_core_error": {
+      "error_counter_increment": 1,
+      "exception_query_not_echoed": true,
+      "status": 500
+    },
+    "logging": {
+      "events": [
+        "engine_loading",
+        "http_response",
+        "search_completed",
+        "search_failed",
+        "search_fallback",
+        "service_ready",
+        "service_shutdown",
+        "service_starting"
+      ],
+      "query_text_absent": true,
+      "request_ids_present": true,
+      "structured_json": true
+    },
+    "metrics_privacy_passed": true,
+    "natural_c1_12_per_pipeline": {
+      "bm25": {
+        "engine_ms": {
+          "count": 12,
+          "mean": 0.2558166666666667,
+          "p05": 0.10283500000000001,
+          "p50": 0.2503,
+          "p95": 0.361
+        },
+        "http_to_headers_ms": {
+          "count": 12,
+          "mean": 0.5748666666666665,
+          "p05": 0.390675,
+          "p50": 0.5588500000000001,
+          "p95": 0.7684049999999999
+        },
+        "queue_ms": {
+          "count": 12,
+          "mean": 0.027083333333333334,
+          "p05": 0.02463,
+          "p50": 0.025599999999999998,
+          "p95": 0.033725
+        }
+      },
+      "hybrid": {
+        "engine_ms": {
+          "count": 12,
+          "mean": 9.793716666666668,
+          "p05": 9.346065,
+          "p50": 9.8372,
+          "p95": 10.206479999999999
+        },
+        "http_to_headers_ms": {
+          "count": 12,
+          "mean": 10.260091666666666,
+          "p05": 9.786760000000001,
+          "p50": 10.27245,
+          "p95": 10.73527
+        },
+        "queue_ms": {
+          "count": 12,
+          "mean": 0.029491666666666666,
+          "p05": 0.025679999999999998,
+          "p50": 0.0298,
+          "p95": 0.031925
+        }
+      },
+      "hybrid_rerank": {
+        "engine_ms": {
+          "count": 12,
+          "mean": 14.83576666666667,
+          "p05": 13.876745,
+          "p50": 14.68545,
+          "p95": 15.875475
+        },
+        "http_to_headers_ms": {
+          "count": 12,
+          "mean": 15.298708333333332,
+          "p05": 14.35363,
+          "p50": 15.12265,
+          "p95": 16.37751
+        },
+        "queue_ms": {
+          "count": 12,
+          "mean": 0.03410833333333333,
+          "p05": 0.029675,
+          "p50": 0.031799999999999995,
+          "p95": 0.04613499999999998
+        }
+      }
+    },
+    "passed": true,
+    "pipelines": {
+      "bm25": {
+        "request_count_after_one": 1,
+        "status": 200
+      },
+      "hybrid": {
+        "request_count_after_one": 1,
+        "status": 200
+      },
+      "hybrid_rerank": {
+        "request_count_after_one": 1,
+        "status": 200
+      }
+    },
+    "probes_excluded": true,
+    "restart_registry_reset": true,
+    "scope": "real loopback service, real frozen models; small controlled integration, no throughput claims"
+  },
+  "passed": true,
+  "pytest": {
+    "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
+    "output": "........................................................................ [ 50%]\n.......................................................................  [100%]\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\fastapi\\testclient.py:1\n  C:\\Users\\liang\\Python_Project\\production-retrieval-ranking\\.venv\\Lib\\site-packages\\fastapi\\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n143 passed, 1 warning in 1.94s"
+  },
+  "ranking_parity": "NO ranking change",
+  "raw_data_large_artifacts_caches_venv_untracked": true,
+  "scope": "Fresh precommit rerun after user approval; original Phase7 evidence preserved",
+  "source_evidence_sha256": {
+    "api": {
+      "path": "reports/tmp/phase7-release-api.json",
+      "sha256": "cedcb352b5988302c693e9178ed348516f53d0cf830aa01516baa47295c5153e"
+    },
+    "baseline": {
+      "path": "reports/tmp/phase7-release-monitoring/baseline.json",
+      "sha256": "e1959b3a4794b5357ce18a7a14d075ecf26eab99b2e4f1452b7a50acee206e6c"
+    },
+    "core": {
+      "path": "reports/tmp/phase7-release-core.json",
+      "sha256": "cecd415857b9596c43bae624be1d8fbe6fcfd420d2213a2bc8de7bcaf889040b"
+    },
+    "monitoring": {
+      "path": "reports/tmp/phase7-release-monitoring/monitoring.json",
+      "sha256": "2072fa92e363e15ec68f9d0634894196877f4874780e5ad8dd0faf9e1e3dc693"
+    },
+    "observability": {
+      "path": "reports/tmp/phase7-release-observability.json",
+      "sha256": "a6a6f89a77d402b1fa1a0589b68e15b15c9098f54445eb77e7cef5fde27ebe73"
+    }
+  },
+  "startup_failure": {
+    "engine_closed": true,
+    "missing_required_artifact": true,
+    "server_started": false,
+    "silent_rebuild": false,
+    "startup_thread_exited": true
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "boundary": {
+    "blocked": [],
+    "final_test_labels_accessed": false,
+    "opened": [
+      "data/processed/data_manifest.json",
+      "data/processed/products.jsonl",
+      "data/processed/queries.jsonl"
+    ]
+  },
+  "controlled_visibility": [
+    {
+      "concurrency": 1,
+      "gauges_after_completion": 0,
+      "http_to_headers_ms": {
+        "count": 1,
+        "mean": 43.431,
+        "p05": 43.431,
+        "p50": 43.431,
+        "p95": 43.431
+      },
+      "injection": "test-only Python wrapper holds actual callable until gauges sampled; not latency benchmark",
+      "queue_ms": {
+        "count": 1,
+        "mean": 0.1271,
+        "p05": 0.1271,
+        "p50": 0.1271,
+        "p95": 0.1271
+      },
+      "while_first_call_held": {
+        "engine_active_calls": 1.0,
+        "in_flight_requests": 1.0,
+        "requests_waiting_for_engine": 0.0
+      }
+    },
+    {
+      "concurrency": 4,
+      "gauges_after_completion": 0,
+      "http_to_headers_ms": {
+        "count": 4,
+        "mean": 78.670925,
+        "p05": 57.740505,
+        "p50": 77.80745,
+        "p95": 100.81020999999998
+      },
+      "injection": "test-only Python wrapper holds actual callable until gauges sampled; not latency benchmark",
+      "queue_ms": {
+        "count": 4,
+        "mean": 52.731425,
+        "p05": 8.786925000000002,
+        "p50": 62.1791,
+        "p95": 83.44917999999998
+      },
+      "while_first_call_held": {
+        "engine_active_calls": 1.0,
+        "in_flight_requests": 4.0,
+        "requests_waiting_for_engine": 3.0
+      }
+    }
+  ],
+  "error_type": "AssertionError",
+  "fallback": {
+    "degraded_request_total": 1,
+    "effective_pipeline": "hybrid",
+    "error_count": 0,
+    "reranker_fallback_total": 1,
+    "status": 200
+  },
+  "final_counts": {
+    "degraded_request_total": 2.0,
+    "engine_latency_seconds_count": 46.0,
+    "fallback_count_total": 1.0,
+    "queue_wait_seconds_count": 47.0,
+    "request_count_total": 47.0,
+    "request_error_count_total": 1.0
+  },
+  "injected_core_error": {
+    "error_counter_increment": 1,
+    "exception_query_not_echoed": true,
+    "status": 500
+  },
+  "metrics_privacy_passed": true,
+  "natural_c1_12_per_pipeline": {
+    "bm25": {
+      "engine_ms": {
+        "count": 12,
+        "mean": 0.2727666666666667,
+        "p05": 0.10813500000000001,
+        "p50": 0.27749999999999997,
+        "p95": 0.3971699999999999
+      },
+      "http_to_headers_ms": {
+        "count": 12,
+        "mean": 0.5984833333333333,
+        "p05": 0.406755,
+        "p50": 0.60085,
+        "p95": 0.759745
+      },
+      "queue_ms": {
+        "count": 12,
+        "mean": 0.026208333333333333,
+        "p05": 0.02237,
+        "p50": 0.02395,
+        "p95": 0.03666499999999999
+      }
+    },
+    "hybrid": {
+      "engine_ms": {
+        "count": 12,
+        "mean": 11.0503,
+        "p05": 9.5656,
+        "p50": 11.3224,
+        "p95": 12.23565
+      },
+      "http_to_headers_ms": {
+        "count": 12,
+        "mean": 11.523433333333331,
+        "p05": 10.027305,
+        "p50": 11.7919,
+        "p95": 12.73849
+      },
+      "queue_ms": {
+        "count": 12,
+        "mean": 0.037066666666666664,
+        "p05": 0.026515,
+        "p50": 0.029150000000000002,
+        "p95": 0.07192
+      }
+    },
+    "hybrid_rerank": {
+      "engine_ms": {
+        "count": 12,
+        "mean": 17.636083333333332,
+        "p05": 15.61661,
+        "p50": 17.75,
+        "p95": 19.198880000000003
+      },
+      "http_to_headers_ms": {
+        "count": 12,
+        "mean": 18.1614,
+        "p05": 16.0655,
+        "p50": 18.2625,
+        "p95": 19.774065
+      },
+      "queue_ms": {
+        "count": 12,
+        "mean": 0.04095833333333333,
+        "p05": 0.028575,
+        "p50": 0.03175,
+        "p95": 0.07670999999999996
+      }
+    }
+  },
+  "passed": false,
+  "pipelines": {
+    "bm25": {
+      "request_count_after_one": 1,
+      "status": 200
+    },
+    "hybrid": {
+      "request_count_after_one": 1,
+      "status": 200
+    },
+    "hybrid_rerank": {
+      "request_count_after_one": 1,
+      "status": 200
+    }
+  },
+  "probes_excluded": true,
+  "restart_registry_reset": true,
+  "scope": "real loopback service, real frozen models; small controlled integration, no throughput claims"
+}
