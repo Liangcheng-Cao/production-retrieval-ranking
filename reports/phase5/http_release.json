@@ -1,0 +1,633 @@
+{
+  "boundary": {
+    "blocked_attempts": [],
+    "final_test_labels_accessed": false,
+    "opened_canonical_files": [
+      "data/processed/data_manifest.json",
+      "data/processed/products.jsonl",
+      "data/processed/queries.jsonl"
+    ],
+    "relevance_labels_opened": false
+  },
+  "endpoints": [
+    {
+      "endpoint": "/health",
+      "request_id_present": true,
+      "state": null,
+      "status": 200
+    },
+    {
+      "endpoint": "/ready",
+      "request_id_present": true,
+      "state": "READY",
+      "status": 200
+    },
+    {
+      "endpoint": "/version",
+      "request_id_present": true,
+      "state": null,
+      "status": 200
+    },
+    {
+      "endpoint": "/openapi.json",
+      "request_id_present": true,
+      "state": null,
+      "status": 200
+    }
+  ],
+  "execution": "sequential real loopback TCP requests, one service worker",
+  "fallback": {
+    "effective_pipeline": "hybrid",
+    "fallback_used": true,
+    "hybrid_order_equal": true,
+    "readiness": {
+      "detail": "Component degradation; fallback may apply",
+      "enabled_pipelines": [
+        "bm25",
+        "hybrid",
+        "hybrid_rerank"
+      ],
+      "ready": false,
+      "searchable": true,
+      "state": "DEGRADED"
+    },
+    "ready_status": 200,
+    "requested_pipeline": "hybrid_rerank",
+    "status": 200
+  },
+  "invalid_requests": [
+    {
+      "case": "pipeline",
+      "error": "invalid_request",
+      "status": 422
+    },
+    {
+      "case": "top_k",
+      "error": "invalid_request",
+      "status": 422
+    },
+    {
+      "case": "empty",
+      "error": "invalid_request",
+      "status": 422
+    },
+    {
+      "case": "ce_depth",
+      "error": "invalid_request",
+      "status": 422
+    },
+    {
+      "case": "malformed_json",
+      "status": 422
+    }
+  ],
+  "lifecycle": {
+    "close_count": 1,
+    "initialize_count": 1,
+    "shutdown_state": "CLOSED"
+  },
+  "parity": {
+    "all_passed": true,
+    "comparison_count": 18,
+    "comparisons": [
+      {
+        "effective_pipeline": "bm25",
+        "engine_total_ms": 0.3369000041857362,
+        "fallback_used": false,
+        "http_app_ms": 1.4375,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          2187,
+          209,
+          1616,
+          5450,
+          6170,
+          33691,
+          33689,
+          33690,
+          16301,
+          9234
+        ],
+        "passed": true,
+        "pipeline": "bm25",
+        "query_id": 0,
+        "serialization_ms": 0.0862,
+        "status": 200
+      },
+      {
+        "effective_pipeline": "hybrid",
+        "engine_total_ms": 12.793500005500391,
+        "fallback_used": false,
+        "http_app_ms": 13.412,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          9234,
+          24010,
+          18273,
+          18272,
+          18276,
+          18270,
+          24008,
+          2187,
+          18277,
+          24009
+        ],
+        "passed": true,
+        "pipeline": "hybrid",
+        "query_id": 0,
+        "serialization_ms": 0.0819,
+        "status": 200
+      },
+      {
+        "effective_pipeline": "hybrid_rerank",
+        "engine_total_ms": 16.064099996583536,
+        "fallback_used": false,
+        "http_app_ms": 16.7251,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0.0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          33690,
+          33689,
+          2187,
+          7465,
+          5450,
+          1616,
+          42329,
+          24010,
+          24009,
+          9234
+        ],
+        "passed": true,
+        "pipeline": "hybrid_rerank",
+        "query_id": 0,
+        "serialization_ms": 0.0896,
+        "status": 200
+      },
+      {
+        "effective_pipeline": "bm25",
+        "engine_total_ms": 0.3155000158585608,
+        "fallback_used": false,
+        "http_app_ms": 0.8541,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          33698,
+          34862,
+          19750,
+          24849,
+          876,
+          1108,
+          1129,
+          1136,
+          1422,
+          1722
+        ],
+        "passed": true,
+        "pipeline": "bm25",
+        "query_id": 1,
+        "serialization_ms": 0.0664,
+        "status": 200
+      },
+      {
+        "effective_pipeline": "hybrid",
+        "engine_total_ms": 12.705800007097423,
+        "fallback_used": false,
+        "http_app_ms": 13.3439,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          33698,
+          608,
+          34862,
+          5173,
+          19750,
+          20513,
+          24849,
+          876,
+          22679,
+          1108
+        ],
+        "passed": true,
+        "pipeline": "hybrid",
+        "query_id": 1,
+        "serialization_ms": 0.0881,
+        "status": 200
+      },
+      {
+        "effective_pipeline": "hybrid_rerank",
+        "engine_total_ms": 20.798199984710664,
+        "fallback_used": false,
+        "http_app_ms": 21.3774,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0.0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          33698,
+          34862,
+          608,
+          5173,
+          20513,
+          22679,
+          33290,
+          40418,
+          3408,
+          19750
+        ],
+        "passed": true,
+        "pipeline": "hybrid_rerank",
+        "query_id": 1,
+        "serialization_ms": 0.0905,
+        "status": 200
+      },
+      {
+        "effective_pipeline": "bm25",
+        "engine_total_ms": 0.11339999036863446,
+        "fallback_used": false,
+        "http_app_ms": 0.5921,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          14418,
+          11878,
+          14678,
+          30926,
+          34737,
+          195,
+          8142,
+          21094,
+          26729,
+          28472
+        ],
+        "passed": true,
+        "pipeline": "bm25",
+        "query_id": 2,
+        "serialization_ms": 0.0608,
+        "status": 200
+      },
+      {
+        "effective_pipeline": "hybrid",
+        "engine_total_ms": 9.11039998754859,
+        "fallback_used": false,
+        "http_app_ms": 10.0451,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          38628,
+          34737,
+          30926,
+          24094,
+          8504,
+          11878,
+          20664,
+          195,
+          14678,
+          20665
+        ],
+        "passed": true,
+        "pipeline": "hybrid",
+        "query_id": 2,
+        "serialization_ms": 0.2275,
+        "status": 200
+      },
+      {
+        "effective_pipeline": "hybrid_rerank",
+        "engine_total_ms": 13.901500002248213,
+        "fallback_used": false,
+        "http_app_ms": 14.5149,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0.0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          10552,
+          36620,
+          36621,
+          10550,
+          39880,
+          34737,
+          11878,
+          8504,
+          38628,
+          14678
+        ],
+        "passed": true,
+        "pipeline": "hybrid_rerank",
+        "query_id": 2,
+        "serialization_ms": 0.0846,
+        "status": 200
+      },
+      {
+        "effective_pipeline": "bm25",
+        "engine_total_ms": 0.2499000111129135,
+        "fallback_used": false,
+        "http_app_ms": 0.625,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          12201,
+          12436,
+          5998,
+          27814,
+          13577,
+          19100,
+          23599,
+          21244,
+          17920,
+          22986
+        ],
+        "passed": true,
+        "pipeline": "bm25",
+        "query_id": 3,
+        "serialization_ms": 0.0642,
+        "status": 200
+      },
+      {
+        "effective_pipeline": "hybrid",
+        "engine_total_ms": 9.622299985494465,
+        "fallback_used": false,
+        "http_app_ms": 10.2267,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          5998,
+          12436,
+          27814,
+          21244,
+          13577,
+          19100,
+          12065,
+          12201,
+          21028,
+          23599
+        ],
+        "passed": true,
+        "pipeline": "hybrid",
+        "query_id": 3,
+        "serialization_ms": 0.0802,
+        "status": 200
+      },
+      {
+        "effective_pipeline": "hybrid_rerank",
+        "engine_total_ms": 16.348600009223446,
+        "fallback_used": false,
+        "http_app_ms": 16.952,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0.0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          21244,
+          5998,
+          12436,
+          12201,
+          12065,
+          27814,
+          13577,
+          23599,
+          19100,
+          7965
+        ],
+        "passed": true,
+        "pipeline": "hybrid_rerank",
+        "query_id": 3,
+        "serialization_ms": 0.0827,
+        "status": 200
+      },
+      {
+        "effective_pipeline": "bm25",
+        "engine_total_ms": 0.34649998997338116,
+        "fallback_used": false,
+        "http_app_ms": 0.7473,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          38543,
+          9687,
+          9909,
+          23677,
+          2800,
+          6155,
+          7103,
+          9686,
+          14091,
+          15873
+        ],
+        "passed": true,
+        "pipeline": "bm25",
+        "query_id": 5,
+        "serialization_ms": 0.0594,
+        "status": 200
+      },
+      {
+        "effective_pipeline": "hybrid",
+        "engine_total_ms": 12.561299983644858,
+        "fallback_used": false,
+        "http_app_ms": 13.1792,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          38543,
+          9687,
+          9686,
+          7103,
+          9909,
+          15873,
+          6155,
+          40139,
+          2800,
+          19180
+        ],
+        "passed": true,
+        "pipeline": "hybrid",
+        "query_id": 5,
+        "serialization_ms": 0.0903,
+        "status": 200
+      },
+      {
+        "effective_pipeline": "hybrid_rerank",
+        "engine_total_ms": 14.604500000132248,
+        "fallback_used": false,
+        "http_app_ms": 15.3537,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0.0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          9687,
+          9909,
+          9686,
+          7103,
+          14091,
+          15873,
+          7102,
+          38543,
+          33252,
+          2800
+        ],
+        "passed": true,
+        "pipeline": "hybrid_rerank",
+        "query_id": 5,
+        "serialization_ms": 0.0833,
+        "status": 200
+      },
+      {
+        "effective_pipeline": "bm25",
+        "engine_total_ms": 0.37300001713447273,
+        "fallback_used": false,
+        "http_app_ms": 0.8665,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          26875,
+          3772,
+          26876,
+          23018,
+          37119,
+          33512,
+          26834,
+          29502,
+          29488,
+          19247
+        ],
+        "passed": true,
+        "pipeline": "bm25",
+        "query_id": 6,
+        "serialization_ms": 0.0584,
+        "status": 200
+      },
+      {
+        "effective_pipeline": "hybrid",
+        "engine_total_ms": 10.008100012782961,
+        "fallback_used": false,
+        "http_app_ms": 10.9698,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          26876,
+          29502,
+          32573,
+          27039,
+          21912,
+          21914,
+          14488,
+          29488,
+          29503,
+          32575
+        ],
+        "passed": true,
+        "pipeline": "hybrid",
+        "query_id": 6,
+        "serialization_ms": 0.0923,
+        "status": 200
+      },
+      {
+        "effective_pipeline": "hybrid_rerank",
+        "engine_total_ms": 19.08589998492971,
+        "fallback_used": false,
+        "http_app_ms": 19.8084,
+        "max_score_abs_errors": {
+          "final_score": 0.0,
+          "reranker_score": 0.0,
+          "retrieval_score": 0.0
+        },
+        "ordered_ids": [
+          26876,
+          29502,
+          26875,
+          23018,
+          3772,
+          29488,
+          14488,
+          32573,
+          34105,
+          29503
+        ],
+        "passed": true,
+        "pipeline": "hybrid_rerank",
+        "query_id": 6,
+        "serialization_ms": 0.0827,
+        "status": 200
+      }
+    ],
+    "query_count": 6
+  },
+  "passed": true,
+  "public_version": {
+    "api_contract": "search-http-v1",
+    "bm25": {
+      "b": 0.5,
+      "implementation": "bm25s",
+      "k1": 1.2,
+      "method": "lucene",
+      "representation": "B",
+      "version": "0.3.11"
+    },
+    "core_contract": "production-search-core-v1",
+    "cross_encoder": {
+      "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+      "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a"
+    },
+    "dataset_manifest_sha256": "0b79ce2061ada9574885b952e63f06c9516aa38682b1e91ba1f4334a5d6eb845",
+    "dense": {
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+    },
+    "package_version": "0.1.0",
+    "reranking_manifest_sha256": "fef7ff4e731b5bddd6beb83c611216191849745db663fabdce3de1ecad2cc4fb",
+    "retrieval_manifest_sha256": "197cf3325df537f10ce917ac604984ff500d2202719626b1aad8e432cbae34b3",
+    "runtime_manifest_sha256": "7adf8fcaace380db531b60765678da1dbe4461498e71e313c318cf82d52009b0"
+  },
+  "startup_failure": {
+    "engine_closed": true,
+    "missing_required_artifact": true,
+    "server_started": false,
+    "silent_rebuild": false,
+    "startup_thread_exited": true
+  }
+}
