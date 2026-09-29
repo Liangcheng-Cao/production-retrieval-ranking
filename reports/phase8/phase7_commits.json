@@ -1,0 +1,60 @@
+{
+  "clean_after_phase7_commits": true,
+  "commits": [
+    {
+      "files": [
+        "pyproject.toml",
+        "src/product_search/api.py",
+        "src/product_search/api_logging.py",
+        "src/product_search/observability.py",
+        "tests/test_observability.py"
+      ],
+      "hash": "a1f99e0ee1a36f46bcd7622d5186145fb23600ef",
+      "message": "feat: instrument search service with bounded metrics and private logs"
+    },
+    {
+      "files": [
+        "configs/phase7_monitoring.json",
+        "scripts/run_monitoring.py",
+        "src/product_search/monitoring.py",
+        "tests/test_monitoring.py"
+      ],
+      "hash": "a509d4d76af02f3be0b7cb5cf1ba538b9d4f106a",
+      "message": "feat: add deterministic train-only drift and ranking replay"
+    },
+    {
+      "files": [
+        "configs/phase7_diagnostics.json",
+        "scripts/validate_observability.py",
+        "scripts/validate_phase7.py"
+      ],
+      "hash": "b5b55bc4e17ce06facfb1f196e5aeb2eb7f59761",
+      "message": "test: validate real observability queue visibility and release boundaries"
+    },
+    {
+      "files": [
+        "reports/phase7/baseline.json",
+        "reports/phase7/checks.json",
+        "reports/phase7/monitoring.json",
+        "reports/phase7/observability_integration.json",
+        "reports/phase7/observability_verified.json",
+        "reports/phase7/parity.json",
+        "reports/phase7/release_checks.json"
+      ],
+      "hash": "03f6eb97cbf280ced433d9e080611faddc21d791",
+      "message": "report: retain monitoring rebuild parity and integration evidence"
+    },
+    {
+      "files": [
+        "README.md",
+        "docs/ml_monitoring.md",
+        "docs/observability.md",
+        "reports/phase7/REPORT.md"
+      ],
+      "hash": "d5f22df1bb2a51a57ddfc9fcf8f74cb5e3facf7a",
+      "message": "docs: explain observability privacy and offline monitoring limits"
+    }
+  ],
+  "observed_status": "On branch main; nothing to commit, working tree clean",
+  "pushed": false
+}

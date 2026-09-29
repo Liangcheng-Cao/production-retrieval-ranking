@@ -1,0 +1,85 @@
+{
+  "base_image": "python:3.14.4-slim-trixie@sha256:2409290aa375de35f6492db84c700067d5c4c2aacfaf770c155d7528fb68bcf1",
+  "blocker": "Docker Hub authentication endpoint connection timeout",
+  "boundary": {
+    "final_test_labels_accessed": false,
+    "final_test_relevance_artifacts_packaged": false,
+    "frozen_ml_configuration_modified": false,
+    "image_audit_completed": false
+  },
+  "build_attempts": [
+    {
+      "duration_seconds": 44.5032945,
+      "error": "failed to solve: failed to fetch anonymous token: Get \"https://auth.docker.io/token?scope=repository%3Alibrary%2Fpython%3Apull&service=registry.docker.io\": dial tcp 199.59.149.203:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.",
+      "exit_code": 1,
+      "log": "reports/tmp/phase8-real-build.log",
+      "log_sha256": "d56cd262e42944acad9019f3a6936ff07f06fd5b17ce33f4b2370c3968da4f9a"
+    },
+    {
+      "duration_seconds": 43.4214772,
+      "error": "failed to solve: failed to fetch anonymous token: Get \"https://auth.docker.io/token?scope=repository%3Alibrary%2Fpython%3Apull&service=registry.docker.io\": dial tcp 199.59.149.203:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.",
+      "exit_code": 1,
+      "log": "reports/tmp/phase8-real-build-retry.log",
+      "log_sha256": "d56cd262e42944acad9019f3a6936ff07f06fd5b17ce33f4b2370c3968da4f9a"
+    }
+  ],
+  "build_command": "docker compose --progress plain build",
+  "compose_config": "passed (installed Docker Compose; SEARCH_BUNDLE points to existing verified bundle)",
+  "connection_diagnostics": {
+    "docker_hub_auth_https": "direct curl connection timed out after 15 seconds",
+    "global_dns_proxy_or_docker_settings_changed": false,
+    "system_dns_auth_docker_io_ipv4": "199.59.149.203"
+  },
+  "created_utc": "2026-09-29T04:34:20.307463+00:00",
+  "docker": {
+    "architecture": "x86_64",
+    "client_version": "29.8.1",
+    "compose_version": "5.5.1",
+    "engine_version": "29.8.1",
+    "kernel": "6.18.33.2-microsoft-standard-WSL2",
+    "operating_system": "Docker Desktop",
+    "os_type": "linux",
+    "runtimes": [
+      "io.containerd.runc.v2",
+      "nvidia",
+      "runc"
+    ],
+    "server_platform": "Docker Desktop 4.93.0 (240920)"
+  },
+  "git_push": false,
+  "gpu_prerequisite": {
+    "command": "docker run --rm --gpus all nvidia/cuda:13.0.0-base-ubuntu24.04 nvidia-smi",
+    "driver": "581.08",
+    "driver_cuda_report": "13.0",
+    "gpu": "NVIDIA GeForce RTX 4070",
+    "image_source": "existing local image",
+    "log": "reports/tmp/phase8-real-gpu-prerequisite.log",
+    "log_sha256": "5680f1694bba627fe5f2d6c0925456b8abf9de90372a175812addc89a33747df",
+    "passed": true,
+    "project_pytorch_or_inference_validated": false
+  },
+  "image_push": false,
+  "no_cache_build": "not attempted: normal build cannot resolve base image",
+  "phase9_started": false,
+  "previous_missing_engine_log": {
+    "path": "reports/tmp/phase8-docker-build.log",
+    "sha256": "44ec3907191c8e15db7b256f168c949b281331be7ec7678943820dd23701ee96"
+  },
+  "project_container_validated": false,
+  "project_image_created": false,
+  "project_image_id": null,
+  "project_image_tag": "production-retrieval-ranking:phase8-local",
+  "unexecuted_project_gates": [
+    "image contents audit",
+    "GPU service startup and environment",
+    "CUDA tensor and dense/CrossEncoder inference",
+    "four probes and three search pipelines",
+    "native/container parity",
+    "two independent starts",
+    "missing artifact/bad checksum/no GPU faults",
+    "graceful shutdown",
+    "service resource snapshot",
+    "native/container performance smoke"
+  ],
+  "verdict": "NEEDS FIX"
+}

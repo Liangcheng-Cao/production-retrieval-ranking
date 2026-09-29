@@ -1,0 +1,653 @@
+{
+  "created_utc": "2026-09-29T05:20:04.060462+00:00",
+  "final_test_relevance_labels_accessed": false,
+  "frozen_phase1_to7_unchanged": true,
+  "git_push": false,
+  "image_push": false,
+  "observed_before_commits": true,
+  "original_docker_evidence_retained_sha256": "c64565b6a8fd3b9759a115242c794baee61609fc2abb3e95284030b2769692ec",
+  "passed": true,
+  "phase9_started": false,
+  "pip_check": "No broken requirements found.",
+  "purpose": "authorized Phase 8 precommit verification",
+  "pytest": "........................................................................ [ 46%]\n........................................................................ [ 92%]\n............                                                             [100%]\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\fastapi\\testclient.py:1\n  C:\\Users\\liang\\Python_Project\\production-retrieval-ranking\\.venv\\Lib\\site-packages\\fastapi\\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n156 passed, 1 warning in 2.13s",
+  "raw_report": "reports/tmp/phase8-precommit-docker/checks.json",
+  "raw_report_sha256": "0554b4788a18fe5b387c600a8b22240f88ae516d4fcead4740815ccb56fcb6c8",
+  "real_container_rerun": {
+    "boundary": {
+      "blocked": [],
+      "final_test_labels_accessed": false,
+      "opened": [
+        "data/processed/data_manifest.json",
+        "data/processed/products.jsonl"
+      ]
+    },
+    "bundle_sha256": "789d7f7644c9032ae85d324ede128e04b4f11eec21aedbdc41d07cb2ef3a9e02",
+    "bundle_unchanged": true,
+    "container_pip_check": "No broken requirements found.",
+    "environment": {
+      "bundle_manifest_present": true,
+      "cuda": "13.0",
+      "cuda_available": true,
+      "cuda_tensor_result": 14.0,
+      "gpu": "NVIDIA GeForce RTX 4070",
+      "probe_process_allocated_bytes": 512,
+      "probe_process_reserved_bytes": 2097152,
+      "python": "3.14.4",
+      "runtime_config_present": true,
+      "sentence_transformers": "6.1.0",
+      "torch": "2.14.0+cu130",
+      "transformers": "5.17.0",
+      "uid": 10001
+    },
+    "failures": [
+      {
+        "case": "missing_manifest",
+        "container_id": "c6b5ac7b40148c85e65e20d21ecda8580c9b04095019532233250140ec0d1d3b",
+        "exit_code": 3,
+        "gpu_devices_requested": true,
+        "layout_unchanged": true,
+        "startup_rejected": true
+      },
+      {
+        "case": "corrupt_manifest",
+        "container_id": "d2e8e713436e3648481996adf6850d8f4e2f54743027230de88d4fe372cacb34",
+        "exit_code": 3,
+        "gpu_devices_requested": true,
+        "layout_unchanged": true,
+        "startup_rejected": true
+      },
+      {
+        "case": "gpu_unavailable",
+        "container_id": "887623e60a36ada476d019b1172b418c1c27d4998e2c594c8011f8a8ec2c0684",
+        "exit_code": 3,
+        "gpu_devices_requested": false,
+        "layout_unchanged": true,
+        "startup_rejected": true
+      }
+    ],
+    "fixture_sha256": "00a629e1625816eb6c8f98ca8788546bb489277acd711e7285475e3b339783a0",
+    "image": "production-retrieval-ranking:phase8-local",
+    "image_audit": {
+      "application_package": "/opt/venv/lib/python3.14/site-packages/product_search",
+      "file_count": 45166,
+      "forbidden_paths": [],
+      "healthcheck_present": true,
+      "passed": true,
+      "runtime_payload_baked": false,
+      "scope": "actual final image filesystem plus retained layer history; runtime config/provenance supplied by read-only bundle",
+      "secret_environment_keys": [],
+      "uid": 10001,
+      "windows_home_paths": []
+    },
+    "image_bytes": 9684249609,
+    "image_config": {
+      "Entrypoint": [
+        "python",
+        "-m",
+        "product_search.deployment"
+      ],
+      "Healthcheck": {
+        "Interval": 15000000000,
+        "Retries": 3,
+        "StartPeriod": 120000000000,
+        "Test": [
+          "CMD",
+          "python",
+          "/app/healthcheck.py"
+        ],
+        "Timeout": 5000000000
+      },
+      "User": "10001:10001",
+      "WorkingDir": "/app"
+    },
+    "image_id": "sha256:d14f681b4c5dad9d62193f55dbbd3d0773508a4c691958918004e9f77d91180a",
+    "native": {
+      "final_request_count": 57.0,
+      "initial_request_count": 0,
+      "metrics_query_privacy": true,
+      "performance_smoke": {
+        "bm25": {
+          "p50_ms": 1.2515499984147027,
+          "p95_ms": 1.5860850078752262,
+          "requests": 12
+        },
+        "hybrid": {
+          "p50_ms": 11.533900003996678,
+          "p95_ms": 14.051070004643407,
+          "requests": 12
+        },
+        "hybrid_rerank": {
+          "p50_ms": 18.247350002638996,
+          "p95_ms": 20.96159500797512,
+          "requests": 12
+        }
+      },
+      "probes": {
+        "/health": 200,
+        "/metrics": 200,
+        "/ready": 200,
+        "/version": 200
+      },
+      "ready": {
+        "detail": null,
+        "enabled_pipelines": [
+          "bm25",
+          "hybrid",
+          "hybrid_rerank"
+        ],
+        "ready": true,
+        "searchable": true,
+        "state": "READY"
+      },
+      "validation_errors": [
+        422,
+        422,
+        422
+      ],
+      "version": {
+        "api_contract": "search-http-v1",
+        "bm25": {
+          "b": 0.5,
+          "implementation": "bm25s",
+          "k1": 1.2,
+          "method": "lucene",
+          "representation": "B",
+          "version": "0.3.11"
+        },
+        "core_contract": "production-search-core-v1",
+        "cross_encoder": {
+          "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+          "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a"
+        },
+        "dataset_manifest_sha256": "0b79ce2061ada9574885b952e63f06c9516aa38682b1e91ba1f4334a5d6eb845",
+        "dense": {
+          "model": "sentence-transformers/all-MiniLM-L6-v2",
+          "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+        },
+        "package_version": "0.1.0",
+        "reranking_manifest_sha256": "fef7ff4e731b5bddd6beb83c611216191849745db663fabdce3de1ecad2cc4fb",
+        "retrieval_manifest_sha256": "197cf3325df537f10ce917ac604984ff500d2202719626b1aad8e432cbae34b3",
+        "runtime_manifest_sha256": "7adf8fcaace380db531b60765678da1dbe4461498e71e313c318cf82d52009b0"
+      }
+    },
+    "passed": true,
+    "raw_evidence_sha256": {
+      "4cb5714ec8b0.log": "2d531b44eb969e7c1a0a57d1628b58b8146750c8f211a30cd95269afd4876709",
+      "887623e60a36.log": "3b8e0d029f4f557756e5599767f7d728094ed02528e1ecfe22c33b2ecc402536",
+      "c6b5ac7b4014.log": "0b5ef3c617dfc9e6a54ea3564d1227316aeaa34646804c74ae6d2df0f05b2f59",
+      "container-1-responses.json": "e2bed780bb5a9418ce57de2591ff5c30d1b6b6c1a07e2a1dcc5b5ffc9fb26b16",
+      "container-1.log": "0292c43ab71d865627394b2fd876e9976958259dcd942540e384b7b4a9bc42e9",
+      "container-2-responses.json": "3ca5d7c68351aa28cae712b50291c595712c3cdac70bc7525121d89a4de6f626",
+      "container-2.log": "2d531b44eb969e7c1a0a57d1628b58b8146750c8f211a30cd95269afd4876709",
+      "corrupt_manifest.log": "9d3cf9f15469def1c31dc10025ce550184a284308f04c66dc172ff966d145052",
+      "d2e8e713436e.log": "9d3cf9f15469def1c31dc10025ce550184a284308f04c66dc172ff966d145052",
+      "gpu_unavailable.log": "3b8e0d029f4f557756e5599767f7d728094ed02528e1ecfe22c33b2ecc402536",
+      "image-history.log": "f1250e9d7d2bafd2a0e32b1f7f35eec16f9f41dde2e8c5df8dcff435714323fd",
+      "missing_manifest.log": "0b5ef3c617dfc9e6a54ea3564d1227316aeaa34646804c74ae6d2df0f05b2f59",
+      "native-responses.json": "aeccf88b7c01c77a0c1eb2924b5be20ef8afe6bb03fe09f63758c0c7a1caf8ae",
+      "native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "resources": {
+      "docker_stats": {
+        "BlockIO": "1.79GB / 0B",
+        "CPUPerc": "0.19%",
+        "Container": "cc0e851b27aa1166a486d4812dd2b9498100435c5169a051679ab810dec6f472",
+        "ID": "cc0e851b27aa",
+        "MemPerc": "8.99%",
+        "MemUsage": "1.394GiB / 15.5GiB",
+        "Name": "phase8-phase8-precommit-docker-search-1",
+        "NetIO": "29.6kB / 277kB",
+        "PIDs": "7"
+      },
+      "gpu_snapshot": "NVIDIA GeForce RTX 4070, 581.08, 2865, 12282",
+      "loaded_components": "products/BM25/dense/CrossEncoder confirmed by READY and successful real three-pipeline inference",
+      "service_allocator": "not exposed; probe-process allocator is reported separately, not attributed to serving PID1",
+      "service_proc_status": "VmHWM:\t 1644124 kB\nVmRSS:\t 1644124 kB\nThreads:\t6"
+    },
+    "restart_reproducibility": true,
+    "starts": [
+      {
+        "compose_start_seconds": 0.9481949000037275,
+        "container_id": "cc0e851b27aa1166a486d4812dd2b9498100435c5169a051679ab810dec6f472",
+        "docker_health": "healthy",
+        "final_request_count": 57.0,
+        "initial_request_count": 0,
+        "metrics_query_privacy": true,
+        "nonroot_and_readonly_verified": true,
+        "parity": [
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "bm25"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid_rerank"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "bm25"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid_rerank"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "bm25"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid_rerank"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "bm25"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid_rerank"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "bm25"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid_rerank"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "bm25"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid_rerank"
+          }
+        ],
+        "performance_smoke": {
+          "bm25": {
+            "p50_ms": 1.3277499965624884,
+            "p95_ms": 1.6646000018226914,
+            "requests": 12
+          },
+          "hybrid": {
+            "p50_ms": 11.515750011312775,
+            "p95_ms": 14.69996000669198,
+            "requests": 12
+          },
+          "hybrid_rerank": {
+            "p50_ms": 16.925399977480993,
+            "p95_ms": 18.745510008011475,
+            "requests": 12
+          }
+        },
+        "probes": {
+          "/health": 200,
+          "/metrics": 200,
+          "/ready": 200,
+          "/version": 200
+        },
+        "ready": {
+          "detail": null,
+          "enabled_pipelines": [
+            "bm25",
+            "hybrid",
+            "hybrid_rerank"
+          ],
+          "ready": true,
+          "searchable": true,
+          "state": "READY"
+        },
+        "ready_seconds": 10.805332099989755,
+        "real_dense_and_crossencoder_inference": true,
+        "shutdown": {
+          "exit_code": 0,
+          "lifecycle_completed": true,
+          "resource_tracker_warning": false,
+          "seconds": 1.941389399988111
+        },
+        "validation_errors": [
+          422,
+          422,
+          422
+        ],
+        "version": {
+          "api_contract": "search-http-v1",
+          "bm25": {
+            "b": 0.5,
+            "implementation": "bm25s",
+            "k1": 1.2,
+            "method": "lucene",
+            "representation": "B",
+            "version": "0.3.11"
+          },
+          "core_contract": "production-search-core-v1",
+          "cross_encoder": {
+            "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+            "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a"
+          },
+          "dataset_manifest_sha256": "0b79ce2061ada9574885b952e63f06c9516aa38682b1e91ba1f4334a5d6eb845",
+          "dense": {
+            "model": "sentence-transformers/all-MiniLM-L6-v2",
+            "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+          },
+          "package_version": "0.1.0",
+          "reranking_manifest_sha256": "fef7ff4e731b5bddd6beb83c611216191849745db663fabdce3de1ecad2cc4fb",
+          "retrieval_manifest_sha256": "197cf3325df537f10ce917ac604984ff500d2202719626b1aad8e432cbae34b3",
+          "runtime_manifest_sha256": "7adf8fcaace380db531b60765678da1dbe4461498e71e313c318cf82d52009b0"
+        }
+      },
+      {
+        "compose_start_seconds": 1.3643719000101555,
+        "container_id": "4cb5714ec8b06c3d3534a93a510e9799c4bbd335b08426e34af8e8d24fc8a667",
+        "docker_health": "healthy",
+        "final_request_count": 21.0,
+        "initial_request_count": 0,
+        "metrics_query_privacy": true,
+        "nonroot_and_readonly_verified": true,
+        "parity": [
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "bm25"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid_rerank"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "bm25"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid_rerank"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "bm25"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid_rerank"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "bm25"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid_rerank"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "bm25"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid_rerank"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "bm25"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid"
+          },
+          {
+            "count_equal": true,
+            "fallback_equal": true,
+            "max_score_abs_error": 0.0,
+            "ordering_equal": true,
+            "passed": true,
+            "pipeline": "hybrid_rerank"
+          }
+        ],
+        "performance_smoke": {},
+        "probes": {
+          "/health": 200,
+          "/metrics": 200,
+          "/ready": 200,
+          "/version": 200
+        },
+        "ready": {
+          "detail": null,
+          "enabled_pipelines": [
+            "bm25",
+            "hybrid",
+            "hybrid_rerank"
+          ],
+          "ready": true,
+          "searchable": true,
+          "state": "READY"
+        },
+        "ready_seconds": 8.804956200008746,
+        "real_dense_and_crossencoder_inference": true,
+        "shutdown": {
+          "exit_code": 0,
+          "lifecycle_completed": true,
+          "resource_tracker_warning": false,
+          "seconds": 1.921288999990793
+        },
+        "validation_errors": [
+          422,
+          422,
+          422
+        ],
+        "version": {
+          "api_contract": "search-http-v1",
+          "bm25": {
+            "b": 0.5,
+            "implementation": "bm25s",
+            "k1": 1.2,
+            "method": "lucene",
+            "representation": "B",
+            "version": "0.3.11"
+          },
+          "core_contract": "production-search-core-v1",
+          "cross_encoder": {
+            "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+            "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a"
+          },
+          "dataset_manifest_sha256": "0b79ce2061ada9574885b952e63f06c9516aa38682b1e91ba1f4334a5d6eb845",
+          "dense": {
+            "model": "sentence-transformers/all-MiniLM-L6-v2",
+            "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+          },
+          "package_version": "0.1.0",
+          "reranking_manifest_sha256": "fef7ff4e731b5bddd6beb83c611216191849745db663fabdce3de1ecad2cc4fb",
+          "retrieval_manifest_sha256": "197cf3325df537f10ce917ac604984ff500d2202719626b1aad8e432cbae34b3",
+          "runtime_manifest_sha256": "7adf8fcaace380db531b60765678da1dbe4461498e71e313c318cf82d52009b0"
+        }
+      }
+    ]
+  },
+  "release_check_log": "reports/tmp/phase8-precommit-release-final.log",
+  "release_check_log_sha256": "e40459978c9265e4b1828c1a4798c11b7bf709ab87ca53bcc4e46df366ee44c3",
+  "release_verdict": "PASS"
+}

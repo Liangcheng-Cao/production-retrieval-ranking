@@ -1,0 +1,71 @@
+{
+  "boundary": {
+    "blocked": [],
+    "final_test_labels_accessed": false,
+    "opened": [
+      "data/processed/data_manifest.json"
+    ]
+  },
+  "bundle_file_count": 35,
+  "bundle_manifest_sha256": "789d7f7644c9032ae85d324ede128e04b4f11eec21aedbdc41d07cb2ef3a9e02",
+  "compose_schema": "passed",
+  "container_max_score_abs_error": 0.0,
+  "container_parity_comparisons": 36,
+  "container_pip_check": "No broken requirements found.",
+  "container_pytest": "156 passed, 1 warning; ephemeral pinned pytest overlay",
+  "created_utc": "2026-09-29T05:19:41.235430+00:00",
+  "dependency_runtime_wheel_count": 72,
+  "deterministic_wheel_sha256": "db751bb36fdc75f534f20c191758780f3a039a8eef932da36b1ecbd67e05ef00",
+  "diff_check": "passed",
+  "docker_build": "actual image build and two clean network-disabled application wheel rebuilds passed",
+  "docker_container_validated": true,
+  "docker_engine_available": true,
+  "docker_image_created": true,
+  "docker_image_id": "sha256:d14f681b4c5dad9d62193f55dbbd3d0773508a4c691958918004e9f77d91180a",
+  "docker_runtime_evidence_sha256": "c64565b6a8fd3b9759a115242c794baee61609fc2abb3e95284030b2769692ec",
+  "evidence_sha256": {
+    "reports/tmp/phase8-compose-config.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/tmp/phase8-docker-build.log": "44ec3907191c8e15db7b256f168c949b281331be7ec7678943820dd23701ee96",
+    "reports/tmp/phase8-linux-negative/checks.json": "92947ec2a6616d802c474d3a3a6572523bc4cb929d66495560b9bbbd6170a885",
+    "reports/tmp/phase8-linux-pip-check.log": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf",
+    "reports/tmp/phase8-linux-pytest.log": "d273593dca8d4d3da94dcc947d1cc7e13f8bc267e623d8ce1e18a28d4de31858",
+    "reports/tmp/phase8-linux-verified.json": "c10c53a1dd618d09af167599639d7ef4520677e84fba4ddac92c0f2962e997b6",
+    "reports/tmp/phase8-train-fixture.json": "00a629e1625816eb6c8f98ca8788546bb489277acd711e7285475e3b339783a0"
+  },
+  "frozen_prior_files_unchanged": true,
+  "head": "d5f22df1bb2a51a57ddfc9fcf8f74cb5e3facf7a",
+  "historical_docker_blocker": "missing Engine and registry connectivity failures retained separately",
+  "ignored_examples": [
+    "reports/tmp/phase8-bundle/runtime.json",
+    "reports/tmp/phase8-train-fixture.json",
+    "reports/tmp/phase8-tools/docker-compose-linux-x86_64",
+    "reports/tmp/phase6-full/run-1/core_raw.json",
+    "data/raw/WANDS/label.csv",
+    "artifacts/model_cache/weights.safetensors",
+    "artifacts/phase2/dense/embeddings.npy",
+    "artifacts/phase2/bm25/index.bin",
+    ".venv/Scripts/python.exe"
+  ],
+  "linux_gpu_max_score_abs_error": 0.0,
+  "linux_gpu_parity_comparisons": 18,
+  "linux_pip_check": "No broken requirements found.",
+  "linux_pytest": "156 passed, 1 warning in 1.79s",
+  "local_checks_passed": true,
+  "phase8_committed": false,
+  "phase8_complete": true,
+  "prospective_forbidden_or_large_files": [],
+  "protected_prior_tracked_file_count": 157,
+  "pushed": false,
+  "remaining_gates": [],
+  "shutdown_warning": {
+    "exit_code": -15,
+    "graceful_signal_supported": true,
+    "lifecycle_completed": true,
+    "resource_tracker_warning": true
+  },
+  "tested_wheel_payload_equal_to_reproducible_wheel": true,
+  "two_wheel_builds_equal": true,
+  "verdict": "PASS",
+  "windows_pip_check": "No broken requirements found.",
+  "windows_pytest": "........................................................................ [ 46%]\n........................................................................ [ 92%]\n............                                                             [100%]\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\fastapi\\testclient.py:1\n  C:\\Users\\liang\\Python_Project\\production-retrieval-ranking\\.venv\\Lib\\site-packages\\fastapi\\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n156 passed, 1 warning in 2.13s"
+}
