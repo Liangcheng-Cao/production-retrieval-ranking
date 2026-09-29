@@ -1,0 +1,197 @@
+{
+  "boundary": {
+    "blocked": [],
+    "bundle_has_no_query_or_judgment_files": true,
+    "final_test_labels_accessed": false,
+    "opened": [
+      "data/processed/data_manifest.json",
+      "data/processed/products.jsonl"
+    ]
+  },
+  "bundle_file_count": 35,
+  "bundle_manifest_sha256": "789d7f7644c9032ae85d324ede128e04b4f11eec21aedbdc41d07cb2ef3a9e02",
+  "bundle_unchanged_after_service": true,
+  "comparisons": [
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "bm25",
+      "query_id": 0
+    },
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "hybrid",
+      "query_id": 0
+    },
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "hybrid_rerank",
+      "query_id": 0
+    },
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "bm25",
+      "query_id": 1
+    },
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "hybrid",
+      "query_id": 1
+    },
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "hybrid_rerank",
+      "query_id": 1
+    },
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "bm25",
+      "query_id": 2
+    },
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "hybrid",
+      "query_id": 2
+    },
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "hybrid_rerank",
+      "query_id": 2
+    },
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "bm25",
+      "query_id": 3
+    },
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "hybrid",
+      "query_id": 3
+    },
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "hybrid_rerank",
+      "query_id": 3
+    },
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "bm25",
+      "query_id": 5
+    },
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "hybrid",
+      "query_id": 5
+    },
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "hybrid_rerank",
+      "query_id": 5
+    },
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "bm25",
+      "query_id": 6
+    },
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "hybrid",
+      "query_id": 6
+    },
+    {
+      "max_score_abs_error": 0.0,
+      "ordering_equal": true,
+      "passed": true,
+      "pipeline": "hybrid_rerank",
+      "query_id": 6
+    }
+  ],
+  "execution": "fresh subprocess from installed wheel, portable inference bundle",
+  "fixture_sha256": "00a629e1625816eb6c8f98ca8788546bb489277acd711e7285475e3b339783a0",
+  "initial_failed_check": {
+    "exit_code": -15,
+    "original_report_sha256": "34f07d14cc1eceb795172cb4e41a3b8318fab8b31a5b07c7a432afb8fadbe3a7",
+    "passed": false,
+    "reason": "Checker incorrectly required exit0; Uvicorn re-raises SIGTERM after completed lifespan cleanup."
+  },
+  "installed_inside_environment": true,
+  "installed_package_location": "fresh Linux venv/site-packages (not editable)",
+  "metrics_privacy": true,
+  "passed": true,
+  "python": "3.14.4",
+  "query_log_privacy": true,
+  "shutdown": {
+    "exit_code": -15,
+    "graceful_signal_supported": true,
+    "lifecycle_completed": true,
+    "resource_tracker_warning": true
+  },
+  "startup_faults": {
+    "boundary": {
+      "blocked": [],
+      "final_test_labels_accessed": false,
+      "opened": [
+        "data/processed/data_manifest.json",
+        "data/processed/products.jsonl"
+      ]
+    },
+    "cases": [
+      {
+        "case": "missing_manifest",
+        "exit_code": 3,
+        "no_ready_event": true,
+        "no_silent_repair": true,
+        "startup_rejected": true
+      },
+      {
+        "case": "corrupt_manifest",
+        "exit_code": 3,
+        "no_ready_event": true,
+        "no_silent_repair": true,
+        "startup_rejected": true
+      },
+      {
+        "case": "missing_model",
+        "exit_code": 3,
+        "no_ready_event": true,
+        "no_silent_repair": true,
+        "startup_rejected": true
+      }
+    ],
+    "original_bundle_unchanged": true,
+    "passed": true
+  }
+}
