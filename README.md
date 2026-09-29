@@ -1,347 +1,242 @@
-# Production Retrieval / Ranking System
+# Production Product Search — Retrieval, Ranking & Serving
 
-A compact WANDS product search project demonstrating retrieval, ranking, evaluation,
-serving, benchmarking, observability, reliability and deployment. The eventual
-comparison is ranking quality versus latency versus compute and system complexity.
+End-to-end product search combining BM25, dense retrieval, hybrid fusion and
+CrossEncoder reranking with frozen evaluation, FastAPI serving, benchmarking,
+observability and locally validated GPU Docker deployment.
 
-Planned flow: catalog → preprocessing → indexes → lexical + dense retrieval →
-hybrid candidates → optional CrossEncoder → Top-K → search engine → FastAPI →
-benchmarks/load tests → monitoring → Docker.
+**Measured evidence:**
+- Frozen final test: Hybrid **NDCG@10 0.7219**, **Recall@100 0.3905**;
+  Hybrid + CE-20 **NDCG@10 0.7431** (paired-bootstrap interval includes zero).
+- Local HTTP C=1 P95: **~3 ms BM25 / ~14 ms Hybrid / ~19 ms Hybrid + CE**.
+- Deployment: **36/36 native/container ranking comparisons matched**, including scores.
 
-Planned serving variants: BM25, hybrid, hybrid with CrossEncoder reranking.
+[Final evaluation](reports/phase9/REPORT.md) · [Serving measurements](reports/phase6/REPORT.md) ·
+[Docker evidence](reports/phase8/REPORT.md) · [Release provenance](reports/release_summary.json)
 
-## Current status
+## Overview
 
-Phase 6 complete: the local FastAPI service and frozen SearchEngine have reproducible
-direct-core latency and bounded closed-loop HTTP load measurements, with per-request
-correctness checks. Validated startup, provenance, readiness and explicit CE fallback
-remain unchanged. Offline ranking-quality evidence is retained.
-**No final-test or production benchmark results exist.** No online
-traffic or A/B experiment exists; future simulated comparisons must be described
-as offline replay or synthetic traffic simulation.
+Ranking quality alone is not enough for a production ML search system. This project
+connects retrieval and ranking quality to latency, throughput, queueing, reliability,
+observability, artifact reproducibility and deployment reproducibility. It is a
+production-style local system on WANDS, with measured operating limits and retained
+evidence; it has not been deployed as an enterprise-scale service.
 
-## Windows setup
+## Architecture
 
-Run in this repository using PowerShell. The verified local environment is Python
-3.14.3 on Windows. Phase 2 verified torch 2.14.0+cu130, CUDA 13.0 and a real tensor
-operation on RTX 4070 (driver 581.08); transformers 5.17.0 and sentence-transformers
-6.1.0 import successfully. No Python migration was required.
-
-```powershell
-py -3.14 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -e ".[dev]"
-.\.venv\Scripts\python.exe -m pip install torch==2.14.0 --index-url https://download.pytorch.org/whl/cu130
-.\.venv\Scripts\python.exe -m pip install -e ".[dev,retrieval]"
-.\.venv\Scripts\python.exe scripts/download_wands.py
-.\.venv\Scripts\python.exe -m pytest
-.\.venv\Scripts\python.exe -m pip check
+```mermaid
+flowchart TD
+    Catalog[Product catalog] --> BM25[BM25 index]
+    Catalog --> Dense[MiniLM embeddings / exact dense search]
+    Query[Query] --> BM25
+    Query --> Dense
+    BM25 --> RRF[RRF fusion: Top-100]
+    Dense --> RRF
+    RRF --> CE[Optional CrossEncoder: rerank first 20]
+    BM25 --> Engine[SearchEngine: initialized once]
+    RRF --> Engine
+    CE --> Engine
+    Engine --> API[FastAPI: one engine execution worker]
+    API --> Observe[Metrics / private logs / offline monitoring]
+    API --> Docker[GPU Docker runtime / read-only artifacts]
 ```
 
-Direct project dependencies are pinned in pyproject.toml; this is not a complete
-transitive lock or a claim of cross-platform reproducibility.
+Three HTTP pipeline modes:
 
-Read [data/README.md](data/README.md) for the verified schema, license and download
-details, [reports/dataset_audit.json](reports/dataset_audit.json) for hashes and
-measured counts, and [reports/split_protocol.md](reports/split_protocol.md) for the
-implemented methodology and frozen evaluation boundary.
+| Mode | Behavior |
+|---|---|
+| `bm25` | Low-cost lexical baseline; Top-K up to 100. |
+| `hybrid` | BM25 + MiniLM dense retrieval, equal-weight RRF; Top-K up to 100. |
+| `hybrid_rerank` | Hybrid Top-100 → CrossEncoder reranks the first 20; Top-K up to 20. |
 
-## Canonical data and freeze
+Frozen models: `sentence-transformers/all-MiniLM-L6-v2` and
+`cross-encoder/ms-marco-MiniLM-L6-v2`, both using product names for model input.
+Hybrid uses RRF k=60 and 100 candidates per component; dense search is exact cosine,
+not ANN. The serving default remains Hybrid. Dense-only is an offline baseline,
+not a fourth HTTP mode. [Retrieval identity](artifacts/phase2/manifest.json) ·
+[Reranker identity](artifacts/phase3/manifest.json) · [Runtime contracts](docs/runtime.md).
 
-Build with `.\.venv\Scripts\python.exe scripts/build_data.py`. The raw inputs must
-match the pinned hashes. A repeat run verifies identical outputs; changed frozen
-outputs are refused. Rebuilds inspect labels globally and are provenance operations,
-not routine model-development commands. See the methodology for clean reconstruction.
+## Final quality
 
-The supported interface is `product_search.data.load_dataset(directory, partition="train")`.
-It returns immutable Product, Query, Judgment and Conflict records, verifies hashes
-and validates contracts. Validation is available explicitly; test loading additionally
-requires `allow_test=True`. This is an accidental-access guard, not a security boundary.
+**Frozen held-out final test: 96 queries; 95 evaluable for relevance metrics.**
 
-Graded relevance is Irrelevant=0, Partial=1, Exact=2; proposed NDCG gain is 2**grade-1.
-Recall positives are Partial or Exact. Conflicting pairs are excluded, not relabeled.
-Query 366 has no positives; retain it but exclude undefined Recall/NDCG from future
-macro means and report exclusions. No metrics are implemented in Phase 1.
+| Pipeline | Recall@20 | Recall@100 | NDCG@10 | NDCG@20 |
+|---|---:|---:|---:|---:|
+| BM25 | 0.1060 | 0.3488 | 0.6518 | 0.6338 |
+| Dense | 0.1212 | 0.3635 | 0.6833 | 0.6793 |
+| Hybrid | 0.1311 | 0.3905 | 0.7219 | 0.7204 |
+| Hybrid + CE-20 | 0.1311 | N/A | 0.7431 | 0.7319 |
 
-Seed-42 query-group splits contain 288 train, 96 validation and 96 test queries.
-After Phase 1, final-test relevance labels must not guide selection, hyperparameter
-tuning or engineering decisions. Use train for engineering, validation for selection.
-Freeze model/metric settings before future final evaluation. Current global label
-inspection was structural and is explicitly recorded in the manifest.
+CE returns only 20 scored results, with no untouched tail; Recall@100 is therefore
+N/A. Recall counts Partial/Exact judgments as positive; NDCG uses graded gain
+2^grade − 1. One query has no positive judgments and undefined relevance metrics.
 
-Configuration lives in configs/default.toml. Call load_config with an explicit
-config path; data paths resolve relative to the repository, independent of cwd.
-Future pipeline names are declarations only; split rules are versioned in code and
-data/processed/data_manifest.json.
+**CE-20 increased final NDCG@10 from 0.7219 to 0.7431**, with mean paired delta
+**+0.0211**, 95% paired-bootstrap CI **[-0.0034, +0.0465]** (10,000 resamples).
+The observed held-out improvement was positive, but the interval included zero.
+CE remains a quality-prioritized optional mode; no statistically confirmed universal
+gain or post-test pipeline promotion is claimed.
 
-Raw data, processed data, weights, embeddings, indexes, caches, virtual environments
-and temporary benchmark outputs stay outside Git. Small reviewed reports and
-reproducibility manifests belong in Git. Preserve the upstream WANDS license when
-redistributing its material and cite Chen et al., ECIR 2022.
+BM25 and dense retrieval surfaced materially different relevant candidates.
+Hybrid increased final Recall@100 from **0.3488 to 0.3905** relative to BM25,
+supporting lexical/semantic complementarity on this dataset.
+See [exact final results, paired analysis and complementarity](reports/phase9/REPORT.md).
 
-## Retrieval architecture and evidence
+## Serving measurements
 
-Query → BM25 and/or Dense → optional RRF → structured product_id/score/rank/source.
-All retrievers expose search(query, top_k=100). Models/indexes initialize once;
-product embeddings are built once, and query embeddings are computed per search.
-Ties use ascending product_id. Blank queries return []; invalid top_k fails.
-BM25 omits zero-score results; hybrid top_k must not exceed its fixed depth of 100.
+Authoritative HTTP results use two independent service runs, 24 train queries,
+K=10, C=1/2/4/8 and 960 requests per case/run. Every measured response was checked
+against direct-core rankings. Quality above and performance below use separate data.
 
-- BM25Retriever: bm25s 0.3.11, Lucene method, k1=1.2, b=0.5; name + class/category.
-  NFKC/casefold/alphanumeric tokenization; no stemming or stopword removal.
-- DenseRetriever: sentence-transformers/all-MiniLM-L6-v2, revision
-  1110a243fdf4706b3f48f1d95db1a4f5529b4d41, Apache-2.0, 384 dimensions, masked mean
-  pooling, L2 normalization, float32, batch 128, max 256 wordpieces; product name only.
-  GPU encoding and exact NumPy CPU cosine search; no FAISS/ANN.
-- HybridRetriever: equal-weight RRF, 1/(60+rank), each component top-100, union then
-  truncate to 100. Component scores are not directly mixed.
+| Pipeline | C=1 P95 (ms) | C=8 P95 (ms) | Observed requests/s region |
+|---|---:|---:|---:|
+| BM25 | 2.99–3.21 | 27.38–31.51 | 363.35–526.02 |
+| Hybrid | 13.70–14.66 | 91.15–95.15 | 77.26–93.68 |
+| Hybrid + CE | 19.22–19.31 | 130.19–135.49 | 54.95–63.21 |
 
-Development used 288 queries and exactly nine configurations: BM25 A/B/C plus
-one parameter alternative on B, dense A/B/C with one model, and RRF constants 20/60.
-A=name; B=add class/category; C=add description/features. Longer dense text reduced
-development Recall@100 (A .3615, B .3406, C .3349). Selection was fixed before validation.
+P95 ranges span the two runs at the stated concurrency. Throughput ranges span
+all four concurrency levels across both runs; they are not C=8-only values or
+capacity guarantees. **Local controlled RTX 4070 benchmark; not a production SLA.**
 
-Validation (96 queries, zero excluded for these metrics):
+Under the single-engine execution worker, increasing HTTP concurrency primarily
+increased waiting and tail latency while Hybrid/CE throughput improved modestly.
+The benchmark separates engine execution from adapter time; the latter includes
+queueing and other HTTP work, not pure queue wait. Later observability validation
+measured queue visibility directly. BM25 also reflects substantial client/HTTP overhead.
+See [benchmark evidence](reports/phase6/REPORT.md) and [methodology](docs/benchmarking.md).
 
-| Pipeline | Recall@20 | Recall@50 | Recall@100 | NDCG@10 | NDCG@20 |
-|---|---:|---:|---:|---:|---:|
-| BM25 | .1202 | .2408 | .3587 | .6672 | .6672 |
-| Dense | .1045 | .2162 | .3465 | .6639 | .6454 |
-| Hybrid | .1187 | .2442 | .3805 | .7130 | .7033 |
+## Reliability
 
-Hybrid improves coverage at 100 and NDCG here, but not Recall@20. At depth 100,
-BM25/dense share 35.98 candidates per query; BM25-only and dense-only relevant hits
-average 30.39 and 31.83. Hybrid recovers 16.93 relevant items beyond BM25 while losing
-14.09, showing both complementarity and truncation cost. Unjudged items get zero
-measured gain, not known-negative labels; incomplete qrels limit interpretation.
+Frozen version/checksum validation rejects missing or corrupt required artifacts
+before readiness. One SearchEngine loads models and indexes at startup, avoiding
+per-request initialization. CE inference failure explicitly falls back to Hybrid,
+with requested/effective pipelines, fallback reason and degraded readiness visible.
+Dense failure is explicit. Request IDs and structured logs support diagnosis.
 
-Warm single-query P50/P95 (ms): BM25 .250/.543, Dense 9.180/9.943, Hybrid 9.779/10.819.
-This used 24 train queries x three repeats, five warmups, top-100, one BLAS thread;
-it is not a production SLA or QPS benchmark. Startup is reported separately.
-See [full measured report](reports/phase2/REPORT.md) and [retrieval manifest](artifacts/phase2/manifest.json).
+The GPU deployment runs as non-root with a read-only filesystem and read-only
+artifact mounts. It rejects unavailable GPU rather than silently substituting a CPU
+runtime. Native/container parity checks protect the ranking contract.
+[HTTP lifecycle and failure semantics](docs/http_service.md).
 
-The experiment entry point is scripts/run_phase2.py with development and validation
-stages. It refuses to overwrite completed selections/results. Existing evidence must
-be preserved; future authorized reproduction should use a separate workspace.
-For normal use, load selected BM25/dense artifacts with the configs in
-configs/phase2_selected.json. Persisted artifacts validate config and file checksums.
+## Observability and monitoring
 
-**Final test remains untouched by Phase 2 retrieval and evaluation. Final-test
-relevance labels were not opened.** The scoped loader byte-scans the shared queries
-file for IDs but only decodes/encodes train or validation query text. A process guard
-blocks raw labels, final-test judgment files and the mixed conflict audit. Phase 1
-code and the frozen split were not modified; test-access unit tests use synthetic data.
+`/health`, `/ready`, `/version` and `/metrics` expose liveness, readiness, frozen
+identity and bounded-cardinality Prometheus metrics. Instrumentation tracks latency,
+queue wait, fallback, pipeline usage, result count and query-length distributions.
+**Raw query text is not logged by default.**
 
-## CrossEncoder reranking and offline comparison
+ML monitoring uses a deterministic train-only baseline, synthetic drift scenarios,
+query length/category/embedding statistics, CE-score distributions and offline
+champion/challenger replay. Drift signals are diagnostics, not proof of ranking
+quality degradation. **No real production traffic is available. No online A/B test
+has been performed.** [Observability](docs/observability.md) ·
+[ML monitoring](docs/ml_monitoring.md).
 
-Actual selected path: query → Hybrid top-100 → first 20 candidates → CrossEncoder
-→ ranked 20 (top-10 is a prefix). `CrossEncoderReranker.rerank` in
-`src/product_search/reranking.py` accepts candidates without retrieving them and
-preserves original score, rank and source. Model errors return retrieval ordering
-with null reranker scores and an explicit fallback flag; malformed requests raise.
-Experiments disable fallback so failed inference cannot silently affect evidence.
+## Deployment
 
-Selected model: `cross-encoder/ms-marco-MiniLM-L6-v2`, revision
-`233902d25c440f23af6f7d6e94d2946bac0bee0a`, Apache-2.0, 22,713,601 parameters.
-Use product name, raw relevance logits, RTX 4070, float32, batch 32, max length 256,
-paired longest-first/right truncation and dynamic batch padding. No fine-tuning.
+The real Docker image was validated on RTX 4070: two independent READY starts,
+36/36 exact native/container ordering and score comparisons, endpoint checks,
+startup rejection for missing artifacts/bad checksums/unavailable GPU, and graceful
+shutdown. Models, indexes and inference catalog are provisioned separately and
+mounted read-only; relevance labels are absent from the image and runtime bundle.
 
-The predefined development rule maximized NDCG@10 subject to reranker P95 ≤150 ms.
-One model, two representations and depths 20/50/100 produced six trials on 288
-train queries. Name-only at depth 20 won; selection was frozen before validation.
-Batch size was fixed, not exhaustively optimized. No observed pairs were truncated.
+The Linux Python/CUDA dependencies and base image are hash-pinned. Bit-identical
+full Docker rebuilds and a completed full no-cache build are not claimed; clean
+application-wheel rebuilds were verified. [Deployment procedure](docs/deployment.md) ·
+[Verified container evidence](reports/phase8/REPORT.md).
 
-Validation (96 queries, zero metric exclusions):
+## Evaluation discipline and reproducibility
 
-| Pipeline | Recall@20 | Recall@50 | Recall@100 | NDCG@10 | NDCG@20 |
-|---|---:|---:|---:|---:|---:|
-| Hybrid | .1187 | .2442 | .3805 | .7130 | .7033 |
-| Hybrid + CE-20 | .1187 | N/A | N/A | .7522 | .7180 |
+Development → validation selection → frozen retrieval/reranker/runtime/deployment
+→ pre-access final-test freeze → one primary final evaluation → one exact rerun.
 
-CE-20 returns only 20 items, with no unscored tail. Recall@20 is invariant;
-larger cutoffs are N/A, not inherited candidate-pool recall. Paired mean NDCG@10
-delta is +.03919, 95% bootstrap CI [.01522, .06373] (45 improved /35 unchanged /
-16 worsened). NDCG@20 delta is +.01465, CI [.00483, .02486] (43/27/26).
-Both median deltas are zero. These 10,000 paired query resamples quantify validation
-query uncertainty, not production effects or uncertainty from model selection.
+Final-test relevance labels stayed sealed through Phase 8. The freeze record was
+written before first authorized access. No post-test tuning occurred; the sole
+rerun matched all six deterministic result files and raw rankings/scores exactly.
+The test set is now spent and is not a development or quick-start input.
 
-Warm sequential pipeline P50/P95 is 15.370/17.113 ms for CE-20,
-20.803/23.323 ms for CE-50 and 32.200/36.322 ms for CE-100. Measurements use
-24 train queries, five warmups and three repeats; startup is separate.
-Hybrid alone measured 9.779/10.819 ms in the prior Phase 2 session.
-CE-20 supports an optional quality-oriented mode; deeper reranking did not improve
-the primary development objective, although CE-50 improved development NDCG@20.
-These are diagnostic timings, not production latency, an SLA or an A/B test.
-Incomplete relevance judgments can penalize promoted unjudged items, and the
-small validation set does not establish general performance beyond WANDS.
+The [release-candidate manifest](reports/phase9/release_candidate_manifest.json)
+links source, model, artifact and evidence identities. Evaluation used system commit
+`75c72d0` plus the pre-access hash-frozen evaluation harness, subsequently committed
+without changing its bytes. Later documentation commits do not redefine that evaluated
+system identity. [Current release summary](reports/release_summary.json) records the
+separate documentation baseline and pending final documentation commit.
 
-See [Phase 3 evidence](reports/phase3/REPORT.md),
-[error analysis](reports/phase3/error_analysis.md),
-[artifact provenance](artifacts/phase3/manifest.json), and
-[Phase 2 commit history](reports/phase2_commits.json).
-`scripts/run_phase3.py` separates development and validation and refuses to
-overwrite completed results. `scripts/smoke_reranker.py` checks the real model
-using synthetic text; ordinary unit tests do not download or load model weights.
+## Quick start
 
-**Final-test relevance labels remained untouched throughout Phase 3.** The guard
-blocks raw data, actual test judgments and the global conflict audit. Shared query
-bytes are hashed/scanned for IDs; only train/validation text is decoded for inference.
-Phase 1 frozen files and Phase 2 reports/configuration remain unchanged.
+Use PowerShell from the repository root. The validated native environment uses
+Windows Python 3.14 and an RTX 4070 CUDA runtime. These are **serving workflows for
+already provisioned frozen artifacts**, not a self-contained fresh-clone demo.
+Git intentionally excludes raw/processed data, model weights, indexes and embeddings.
+For data provenance and licensing see [data documentation](data/README.md).
+For artifact requirements and pinned Linux dependencies see [deployment](docs/deployment.md).
+Do not run final evaluation or rebuild/select models as part of setup.
 
-## Production search core
+### Local
 
-Frozen ML artifacts → RuntimeConfig → ArtifactLoader → SearchEngine → future API.
-The core reuses the unchanged offline ranking implementations and loads resources
-once at startup. Supported modes are `bm25` and `hybrid` (K=1–100), and
-`hybrid_rerank` (Hybrid top-100 → CE rerank first 20 → K=1–20). Larger CE requests
-are rejected; no unscored tail is appended.
-
-```python
-from product_search.search_engine import SearchEngine
-
-engine = SearchEngine.from_config("configs/runtime.json")
-result = engine.search("wooden office desk", top_k=10, pipeline="hybrid_rerank")
-print(result.effective_pipeline, result.results, engine.readiness())
-engine.close()
-```
-
-Enabled components load eagerly. A BM25-only configuration needs no dense or CE
-payload; a Hybrid-only configuration needs no CE payload. Missing, corrupt or
-incompatible required artifacts fail startup rather than rebuild. Frozen manifests
-and selected settings supply ranking configuration; the runtime manifest seals
-local model snapshots. Startup retains version metadata and checksums, so requests
-do not hash artifacts or reload models.
-
-Empty/invalid requests fail before inference. Dense failure raises explicitly.
-CE inference failure may return Hybrid ordering with `fallback_used=true`, a reason,
-and distinct requested/effective pipelines. Readiness reports degradation; failed
-metadata hydration is explicit. Results contain small title/ID/rank/score records
-and diagnostic stage timings, with startup measured separately.
-
-Real parity checks compare six train queries across all three modes and supported
-cutoffs (48 comparisons), then repeat in a fresh process. The core matches the
-existing offline single-query interfaces. A diagnosed batch-shape limitation remains:
-query 1 has near-tied dense scores whose ordering differs from historical batch-128
-evaluation. The original batch context reproduces that historical result. Both the
-initial failed check and diagnosis are retained; Phase 2/3 metrics were not rewritten.
-No cross-batch or cross-GPU bitwise equivalence is claimed.
-
-See [runtime contracts and lifecycle](docs/runtime.md),
-[Phase 4 report](reports/phase4/REPORT.md), and
-[sealed runtime artifacts](artifacts/phase4/manifest.json).
-Real validation uses `scripts/validate_runtime.py`; normal unit tests use fakes and
-tiny local artifacts. **Phase 4 opened no relevance labels, including final test.**
-The service is local only. Phase 6 measurements are bounded local experiments, not
-production capacity or SLA claims.
-
-## Run locally
-
-With the existing frozen artifacts provisioned:
+With the validated environment and `configs/runtime.json` artifact closure present:
 
 ```powershell
-.\.venv\Scripts\python.exe -m pip install -e ".[dev,retrieval,api]"
 .\.venv\Scripts\python.exe scripts/serve.py --port 8000
-```
-
-The runner binds `127.0.0.1`, uses one worker and local model snapshots. Supply
-`--config PATH` or `SEARCH_RUNTIME_CONFIG` to select runtime configuration.
-
-## Endpoints
-
-- `POST /search`: strict request validation and existing SearchEngine results.
-- `GET /health`: cheap process liveness, without inference or artifact hashing.
-- `GET /ready`: 200 for READY/DEGRADED, otherwise 503; degradation remains explicit.
-- `GET /version`: compact frozen provenance without filesystem paths or inventories.
-
-FastAPI exposes the generated schema at `/openapi.json` and standard docs at `/docs`.
-Query length is 1–512 Unicode characters with non-whitespace content. Pipeline is
-required; top_k defaults to 10 and must be a strict integer (BM25/Hybrid ≤100, CE ≤20).
-
-## Search example
-
-```powershell
+Invoke-RestMethod http://127.0.0.1:8000/ready
 Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/search `
   -ContentType 'application/json' `
-  -Body '{"query":"wooden office desk","top_k":10,"pipeline":"hybrid_rerank"}'
+  -Body '{"query":"wooden office desk","pipeline":"hybrid","top_k":10}'
 ```
 
-Response fields include query, requested/effective pipeline, fallback_used,
-request_id, results with ID/title/final_rank/final_score and retrieval provenance,
-timing_ms and a compact version object. A fallback response includes, for example:
+### Docker GPU
 
-```json
-{"requested_pipeline":"hybrid_rerank","effective_pipeline":"hybrid","fallback_used":true,"fallback_reason":"reranker_unavailable"}
-```
-
-This fragment illustrates metadata only; actual responses also contain results,
-timings and provenance. Request IDs are returned in `X-Request-ID`.
-
-## Lifecycle
-
-Startup → artifact validation → one initialized engine → READY → requests → shutdown
-and engine close. A dedicated worker owns engine calls; no model is created per request.
-HTTP timing headers separate application elapsed time, core time and serialization.
-These are diagnostics, not a production SLA or load study.
-
-## Failure semantics
-
-Invalid requests return 422; unavailable engines return 503; controlled core failures
-return 500 without tracebacks or internal paths. CE fallback returns 200 with explicit
-metadata. Missing/corrupt required artifacts abort startup and are never silently rebuilt.
-No hard inference timeout is claimed; safe cancellation/admission policies are deferred.
-
-See [HTTP lifecycle and contracts](docs/http_service.md) and
-[Phase 5 evidence](reports/phase5/REPORT.md). Real loopback HTTP/core parity and
-startup/fallback tests are separate from ordinary fake-engine unit tests.
-Final-test relevance labels remain untouched. No cloud deployment or Dockerization.
-
-## Reproducible benchmark
-
-The frozen Phase 6 protocol uses 24 train queries, three modes, K=10, concurrency
-1/2/4/8 and two independent service processes. Each formal case measures 960 requests
-after warmup; direct-core timings and startup are measured separately. The client
-runs in a separate process on the same host and checks every response against the
-direct-core fixture. No relevance labels are needed.
+Requires Linux amd64 Docker/Compose with NVIDIA GPU exposure and the separately
+provisioned, verified inference-only bundle at `reports/tmp/phase8-bundle`.
+The [bundle packaging procedure](docs/deployment.md#build-the-inference-bundle)
+can package existing frozen artifacts; it does not download or rebuild models.
 
 ```powershell
-.\.venv\Scripts\python.exe scripts/run_benchmark.py `
-  --report reports/tmp/phase6-repeat-summary.json --raw-root reports/tmp/phase6-repeat
+$env:SEARCH_BUNDLE = (Resolve-Path reports/tmp/phase8-bundle).Path
+docker compose config --quiet
+docker compose build
+docker compose up -d
+Invoke-RestMethod http://127.0.0.1:8000/ready
+docker compose stop
 ```
 
-Use fresh output paths; the harness refuses overwrite. Raw observations and service
-logs remain Git-ignored, with checksums in compact summaries. Reports retain both
-repetitions and the preliminary failed starts/pilot rather than choosing faster runs.
+These commands reproduce the validated workflow; they were not rerun for this
+documentation update. Historical phase documents retain their original status
+statements; [release preparation notes](docs/release_preparation.md) explain their scope.
 
-The service still has one engine worker. More outstanding requests can reduce idle
-gaps, but ultimately increase waiting and tail latency. Closed-loop completion rate
-does not establish an open-loop capacity limit; shared host/client/logging work also
-affects measured throughput. No admission control or hard compute cancellation was
-added. See [protocol and limitations](docs/benchmarking.md),
-[formal results](reports/phase6/REPORT.md) and
-[machine-readable evidence](reports/phase6/benchmark_full.json).
-No frontend, LLM features, distributed services or additional infrastructure are planned.
+## Repository layout
 
-## Observability and offline ML monitoring
+```text
+src/product_search/   core retrieval, ranking, API, observability
+configs/              frozen runtime/evaluation configuration
+scripts/              build, validation, benchmark, deployment tooling
+tests/                unit/regression tests
+docs/                 methodology and deployment documentation
+reports/              measured evidence
+artifacts/            small provenance manifests
+```
 
-Phase 7 adds `GET /metrics` (Prometheus text), bounded pipeline/outcome metrics,
-direct queue/in-flight measurements, and structured privacy-conscious logs without
-changing the one-worker execution model or ranking configuration. A train-only
-288-query baseline and three synthetic drift scenarios are rebuilt twice with
-the existing encoder/CE20; champion/challenger comparisons remain offline.
+## Evidence
 
-See [observability contracts](docs/observability.md), [ML monitoring and limitations](docs/ml_monitoring.md),
-and [Phase 7 report](reports/phase7/REPORT.md). Real integration and fake-only unit
-tests are separate. No real production traffic is available.
-No online A/B test has been performed. Phase 7 does not add Docker or deployment.
+- [Final held-out evaluation](reports/phase9/REPORT.md)
+- [Serving benchmark](reports/phase6/REPORT.md) and [methodology](docs/benchmarking.md)
+- [Observability](docs/observability.md) and [ML monitoring](docs/ml_monitoring.md)
+- [Docker deployment](docs/deployment.md) and [deployment validation](reports/phase8/REPORT.md)
+- [Release-candidate manifest](reports/phase9/release_candidate_manifest.json)
+- [Release preparation and metadata](docs/release_preparation.md)
+- [Resume bullets](docs/resume_bullets.md) and [interview topics](docs/interview_talking_points.md)
 
-## Deployment packaging (Phase 8 validated)
+## Limitations
 
-An inference-only artifact bundle, ordinary Python wheel, hash-locked Linux/CUDA
-dependencies, Dockerfile and Compose configuration are now available. Independent
-Linux GPU validation passes unit tests and source-runtime ranking parity. Data/model
-payloads stay outside the image and are mounted read-only; no labels are packaged.
+- WANDS is an offline benchmark; unjudged query-product pairs are not confirmed negatives.
+- No real production traffic or online A/B test; drift scenarios are synthetic.
+- The final CE paired-bootstrap interval includes zero.
+- A single engine worker limits concurrency scaling; no hard inference cancellation or admission cap.
+- Measurements use one local RTX 4070 environment; no cross-hardware guarantee.
+- No cloud autoscaling/orchestration or public production deployment.
 
-The real project image and GPU container now pass Phase 8 validation: two independent
-READY starts, 36 exact native/container ranking comparisons, expected startup failures,
-graceful shutdown and 156 tests inside the image. Earlier build failures are retained. See
-[deployment instructions and remaining gates](docs/deployment.md) and
-[Phase 8 evidence](reports/phase8/REPORT.md). No image has been pushed or deployed to production.
+## Future work
+
+Evidence motivates evaluating parallel execution and batching for queueing, ANN at
+larger catalog scale, and real traffic feedback/online experimentation before
+learned ranking or calibration. Cloud orchestration would require separate capacity
+and reliability validation. None of these extensions is implemented here.
