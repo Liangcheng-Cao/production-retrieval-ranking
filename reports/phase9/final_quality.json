@@ -1,0 +1,82 @@
+{
+  "partition": "test",
+  "pipelines": {
+    "BM25": {
+      "excluded_queries": {
+        "NDCG@10": 1,
+        "NDCG@20": 1,
+        "Recall@10": 1,
+        "Recall@100": 1,
+        "Recall@20": 1,
+        "Recall@50": 1
+      },
+      "metrics": {
+        "NDCG@10": 0.6517681258082371,
+        "NDCG@20": 0.6338445631102873,
+        "Recall@10": 0.0602174332206688,
+        "Recall@100": 0.34878622651904456,
+        "Recall@20": 0.1060190178177867,
+        "Recall@50": 0.22484778124419344
+      },
+      "query_count": 96
+    },
+    "Dense": {
+      "excluded_queries": {
+        "NDCG@10": 1,
+        "NDCG@20": 1,
+        "Recall@10": 1,
+        "Recall@100": 1,
+        "Recall@20": 1,
+        "Recall@50": 1
+      },
+      "metrics": {
+        "NDCG@10": 0.6833122018887664,
+        "NDCG@20": 0.6792631869384826,
+        "Recall@10": 0.061192369815341874,
+        "Recall@100": 0.3634559709690651,
+        "Recall@20": 0.12120330961606735,
+        "Recall@50": 0.2461171755183927
+      },
+      "query_count": 96
+    },
+    "Hybrid": {
+      "excluded_queries": {
+        "NDCG@10": 1,
+        "NDCG@20": 1,
+        "Recall@10": 1,
+        "Recall@100": 1,
+        "Recall@20": 1,
+        "Recall@50": 1
+      },
+      "metrics": {
+        "NDCG@10": 0.7219467955623396,
+        "NDCG@20": 0.7204251454955242,
+        "Recall@10": 0.07138103031856942,
+        "Recall@100": 0.39049936597986223,
+        "Recall@20": 0.13114896324585246,
+        "Recall@50": 0.2584276115622111
+      },
+      "query_count": 96
+    },
+    "Hybrid + CE-20": {
+      "excluded_queries": {
+        "NDCG@10": 1,
+        "NDCG@20": 1,
+        "Recall@10": 1,
+        "Recall@100": null,
+        "Recall@20": 1,
+        "Recall@50": null
+      },
+      "metrics": {
+        "NDCG@10": 0.7430739967727269,
+        "NDCG@20": 0.7318755401394635,
+        "Recall@10": 0.0734840716309544,
+        "Recall@100": null,
+        "Recall@20": 0.13114896324585246,
+        "Recall@50": null
+      },
+      "query_count": 96
+    }
+  },
+  "test_query_count": 96
+}

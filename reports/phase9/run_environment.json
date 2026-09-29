@@ -1,0 +1,20 @@
+{
+  "device": "cuda",
+  "numerical_runtime": {
+    "cuda_matmul_allow_tf32": false,
+    "cuda_runtime": "13.0",
+    "cudnn_allow_tf32": false,
+    "torch_deterministic_algorithms": true,
+    "torch_num_threads": 1
+  },
+  "runtime_manifest_sha256": "7adf8fcaace380db531b60765678da1dbe4461498e71e313c318cf82d52009b0",
+  "software": {
+    "bm25s": "0.3.11",
+    "numpy": "2.5.3",
+    "safetensors": "0.8.0",
+    "sentence-transformers": "6.1.0",
+    "tokenizers": "0.23.2",
+    "torch": "2.14.0+cu130",
+    "transformers": "5.17.0"
+  }
+}
