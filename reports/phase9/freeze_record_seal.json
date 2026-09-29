@@ -1,0 +1,10 @@
+{
+  "final_test_labels_opened": false,
+  "freeze_file_mtime_ns": 1790660025783411600,
+  "freeze_record": {
+    "path": "reports/phase9/freeze_record.json",
+    "sha256": "00214f9d55af60528a8420664204b73bfdccefc63a8f7223e63c1685118dbcea"
+  },
+  "write_completed_monotonic_ns": 257124020919700,
+  "write_completed_utc": "2026-09-29T05:33:45.788739+00:00"
+}
