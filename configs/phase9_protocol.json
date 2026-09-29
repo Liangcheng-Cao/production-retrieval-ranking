@@ -1,0 +1,63 @@
+{
+  "allow_tf32": false,
+  "blas_threads": 1,
+  "bootstrap": {
+    "confidence": 0.95,
+    "pairing": "same sorted query IDs; include only pairs with both metrics defined",
+    "samples": 10000,
+    "seed": 42,
+    "tie_tolerance": 1e-12
+  },
+  "candidate_depth": 100,
+  "ce_deeper_recall": "N/A; no tail append",
+  "ce_depth": 20,
+  "complementarity_depths": [
+    20,
+    50,
+    100
+  ],
+  "deterministic_algorithms": true,
+  "failure_policy": "stop and retain evidence; no post-access code or configuration changes; no repeated primary evaluation",
+  "maximum_exact_reruns": 1,
+  "metric_protocol_version": "phase2-judged-recall-graded-ndcg-v1",
+  "model_selection": "none; four preselected pipelines retained regardless of outcomes",
+  "ndcg_cutoffs": [
+    10,
+    20
+  ],
+  "ndcg_gain": "2**relevance - 1",
+  "pipelines": [
+    "BM25",
+    "Dense",
+    "Hybrid",
+    "Hybrid + CE-20"
+  ],
+  "pre_access_worktree_policy": "Phase 8 baseline clean; user-authorized uncommitted Phase 9 additions recorded with hashes; no pre-evaluation commit",
+  "primary_runs": 1,
+  "qualitative_test_examples": false,
+  "ranking_diagnostics_k": 10,
+  "recall_cutoffs": [
+    10,
+    20,
+    50,
+    100
+  ],
+  "recall_positive": [
+    "Partial",
+    "Exact"
+  ],
+  "relevance_mapping": {
+    "Exact": 2,
+    "Irrelevant": 0,
+    "Partial": 1
+  },
+  "rerun_planned": true,
+  "seed": 42,
+  "serving_evidence": "Phase 6 HTTP; both runs retained, C1/C8 p95 ranges; QPS min/max across all frozen concurrency levels and both runs",
+  "torch_threads": 1,
+  "unjudged_policy": "zero evaluation gain, not known negatives",
+  "validation_comparison": "only after primary quality outputs are written and checksummed; descriptive only",
+  "version": "phase9-frozen-final-v1",
+  "zero_idcg_policy": "exclude from NDCG macro; report counts",
+  "zero_positive_policy": "exclude from Recall macro; report counts"
+}
