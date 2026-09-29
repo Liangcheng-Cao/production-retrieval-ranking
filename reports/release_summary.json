@@ -1,0 +1,48 @@
+{
+  "schema": "portfolio-release-summary-v1",
+  "recorded_before_documentation_edits_utc": "2026-09-29T06:37:36.285467+00:00",
+  "evaluated_system_commit": "75c72d09e9af756a11888ef216afd4c2ee6a6f0d",
+  "current_documentation_base_commit": "9926c29991dc1ec26072c681d8989f324b3f0837",
+  "final_documentation_commit": null,
+  "final_documentation_commit_status": "pending explicit authorization and documentation commits",
+  "phase9_release_candidate_manifest_sha": "c4df8c3a572ff546dbda8c2bf8cb5d0f21f11c50819db8a3b4a23e2bba3e7aee",
+  "phase9_final_report_sha": "99556a6898455e2db2b2460d3220a650d9798b910cc23fa58ba1a9ee285adf52",
+  "final_test_protocol_sha": "dc986b4974170f9daee6dbc74d7059dc6bd550affcdddf00937f3ebbab15138d",
+  "evidence_identities": [
+    {
+      "path": "reports/phase9/release_candidate_manifest.json",
+      "sha256": "c4df8c3a572ff546dbda8c2bf8cb5d0f21f11c50819db8a3b4a23e2bba3e7aee"
+    },
+    {
+      "path": "reports/phase9/REPORT.md",
+      "sha256": "99556a6898455e2db2b2460d3220a650d9798b910cc23fa58ba1a9ee285adf52"
+    },
+    {
+      "path": "configs/phase9_protocol.json",
+      "sha256": "dc986b4974170f9daee6dbc74d7059dc6bd550affcdddf00937f3ebbab15138d"
+    },
+    {
+      "path": "scripts/run_phase9.py",
+      "sha256": "2542010941b0dab65e24f8663ee90b75fa438f2735896cb4373d9d32ad3fa649"
+    },
+    {
+      "path": "reports/phase6/REPORT.md",
+      "sha256": "ac396c41a747c4a6f2cda9b03c6c9ca8aa7b91d08988ecbf1e29e042bb960ff1"
+    },
+    {
+      "path": "reports/phase6/benchmark_full.json",
+      "sha256": "ee815d8a219018a1d1906134d59e71aafcc9433eeeb868f74595e798781ecc50"
+    },
+    {
+      "path": "reports/phase8/REPORT.md",
+      "sha256": "f557d699d79a97f90980efc2b241330403e8f10e5d1cb8903adc2c87690340e1"
+    },
+    {
+      "path": "reports/phase8/docker_runtime.json",
+      "sha256": "c64565b6a8fd3b9759a115242c794baee61609fc2abb3e95284030b2769692ec"
+    }
+  ],
+  "provenance_note": "Evaluation used the Phase 8 committed system plus the pre-access hash-frozen Phase 9 harness. Later Phase 9 commits preserve those exact bytes. Documentation HEAD is not the evaluated system identity.",
+  "final_test_spent": true,
+  "post_test_tuning": false
+}

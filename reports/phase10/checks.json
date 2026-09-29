@@ -1,0 +1,61 @@
+{
+  "checked_utc": "2026-09-29T06:43:00.559208+00:00",
+  "scope": "Documentation and retained evidence only; no labels opened, evaluation or benchmarks rerun.",
+  "pytest": {
+    "exit_code": 0,
+    "passed": 165,
+    "warnings": 1,
+    "warning": "Existing Starlette TestClient/httpx deprecation"
+  },
+  "pip_check": {
+    "exit_code": 0,
+    "result": "No broken requirements found."
+  },
+  "git_diff_check": "PASS",
+  "relative_link_validation": {
+    "result": "PASS",
+    "scope": "All tracked Markdown plus new portfolio Markdown, excluding fenced code and remote URLs",
+    "links_checked": 37,
+    "broken_links": []
+  },
+  "hygiene_scan": {
+    "result": "PASS for current portfolio documents",
+    "new_document_path_todo_placeholder_findings": [],
+    "historical_markdown_findings_retained": [],
+    "historical_status_caveats": [
+      "docs/deployment.md:14 phase-relative Phase 9 not started statement",
+      "docs/deployment.md:63 early Docker compatibility statement superseded by completed evidence"
+    ],
+    "narrative_review": "One current conceptual README; historical documents preserved. Package and image identifiers unchanged. Pending documentation commit is intentional.",
+    "validator_correction": "Initial path regex falsely matched the final p in http://; corrected to require a token boundary. No documentation change was needed."
+  },
+  "release_evidence_integrity": {
+    "result": "PASS",
+    "hash_comparisons": 369,
+    "historical_readme_exception": "README intentionally updated; every other historical tracked-file hash unchanged",
+    "phase1_to_9_evidence_unchanged": true,
+    "source_config_model_selection_unchanged": true,
+    "final_result_files_unchanged": true,
+    "final_test_access_audit_preserved": true,
+    "retained_exact_reproducibility_evidence_verified": true
+  },
+  "artifact_hygiene": {
+    "large_tracked_payloads_detected": false,
+    "ignored_paths_verified": [
+      ".venv/pyvenv.cfg",
+      "data/processed/judgments.test.jsonl",
+      "reports/tmp/phase9/primary/rankings.jsonl",
+      "artifacts/model_cache/hub/cache-probe"
+    ]
+  },
+  "working_tree_policy": "README modified and new Phase 10 documentation/release artifacts remain uncommitted, pending approval.",
+  "documentation_file_sha256": {
+    "README.md": "e4c5952036b1369863760e23b855b10188676846dbb6b4ca50a99c5ac337bd2a",
+    "docs/resume_bullets.md": "dab15fa8414b0c32b77d2b02d076cc2f15fb4f659faad27e6ee95a3a075a6a33",
+    "docs/interview_talking_points.md": "4ecd4860ff195e43bdd80a67cbecd4bf2a22650c0aa743dca6f66a191ddc47d7",
+    "docs/release_preparation.md": "88081b2f01e47c3f64d257013ee82337be8c1eb8a4c79378b56ed6722c2a1880",
+    "reports/release_summary.json": "ca03e99e500063625975005d11c95c6aa7ee40b5c9826adc2e8e4111e7f4c135"
+  },
+  "no_commit_push_tag_release_or_image_push": true,
+  "verdict": "PASS"
+}
