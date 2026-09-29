@@ -3,8 +3,8 @@
   "recorded_before_documentation_edits_utc": "2026-09-29T06:37:36.285467+00:00",
   "evaluated_system_commit": "75c72d09e9af756a11888ef216afd4c2ee6a6f0d",
   "current_documentation_base_commit": "9926c29991dc1ec26072c681d8989f324b3f0837",
-  "final_documentation_commit": null,
-  "final_documentation_commit_status": "pending explicit authorization and documentation commits",
+  "final_documentation_commit": "ed5188d9879fa606d541bfa6464e06e91487fd63",
+  "final_documentation_commit_status": "sealed: documentation content commit before the metadata-only follow-up",
   "phase9_release_candidate_manifest_sha": "c4df8c3a572ff546dbda8c2bf8cb5d0f21f11c50819db8a3b4a23e2bba3e7aee",
   "phase9_final_report_sha": "99556a6898455e2db2b2460d3220a650d9798b910cc23fa58ba1a9ee285adf52",
   "final_test_protocol_sha": "dc986b4974170f9daee6dbc74d7059dc6bd550affcdddf00937f3ebbab15138d",
@@ -44,5 +44,6 @@
   ],
   "provenance_note": "Evaluation used the Phase 8 committed system plus the pre-access hash-frozen Phase 9 harness. Later Phase 9 commits preserve those exact bytes. Documentation HEAD is not the evaluated system identity.",
   "final_test_spent": true,
-  "post_test_tuning": false
+  "post_test_tuning": false,
+  "documentation_identity_note": "The final_documentation_commit identifies completed portfolio content and its precommit checks. This metadata-only follow-up records that identity; historical checksum snapshots describe the content at that commit."
 }
