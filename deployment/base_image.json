@@ -1,0 +1,6 @@
+{
+  "image": "python:3.14.4-slim-trixie",
+  "index_digest": "sha256:2ca02f32b4d9d893863367ce07ec1972819f476dd38d8612f2a9cb6a41cbb727",
+  "linux_amd64_digest": "sha256:2409290aa375de35f6492db84c700067d5c4c2aacfaf770c155d7528fb68bcf1",
+  "source": "https://registry-1.docker.io/v2/library/python/manifests/3.14.4-slim-trixie"
+}
