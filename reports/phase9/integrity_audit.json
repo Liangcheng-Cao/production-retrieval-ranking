@@ -1,0 +1,21 @@
+{
+  "ce_depth_changed": false,
+  "checked_utc": "2026-09-29T05:35:19.323257+00:00",
+  "frozen_historical_files_unchanged": true,
+  "git_head": "75c72d09e9af756a11888ef216afd4c2ee6a6f0d",
+  "git_status": "?? configs/phase9_protocol.json\n?? reports/phase9/\n?? scripts/run_phase9.py\n?? tests/test_phase9.py",
+  "label_opens": {
+    "exact_rerun": 1,
+    "primary": 1
+  },
+  "metric_aggregation_validated": true,
+  "metric_semantics_changed": false,
+  "model_configs_changed": false,
+  "paired_bootstrap_validated": true,
+  "passed": true,
+  "primary_and_rerun_checksums_verified": true,
+  "primary_first_access_utc": "2026-09-29T05:34:03.130126+00:00",
+  "retrieval_parameters_changed": false,
+  "source_files_changed_after_first_label_access": false,
+  "tuning_using_test_results": false
+}

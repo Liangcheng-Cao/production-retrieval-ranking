@@ -1,0 +1,67 @@
+{
+  "all_deterministic_hashes_equal": true,
+  "exact_reruns": 1,
+  "files": {
+    "complementarity_final.json": {
+      "hash_equal": true,
+      "max_absolute_difference": 0.0,
+      "primary_sha256": "9792b6a6d2235b2fd730ad2fef346def71ac480c0fc583da1953ec0aedd1d157",
+      "rerun_sha256": "9792b6a6d2235b2fd730ad2fef346def71ac480c0fc583da1953ec0aedd1d157"
+    },
+    "final_quality.json": {
+      "hash_equal": true,
+      "max_absolute_difference": 0.0,
+      "primary_sha256": "b89360e8e409ae25225febda338da5935cfc0a546809ac0c540e9c05b8707471",
+      "rerun_sha256": "b89360e8e409ae25225febda338da5935cfc0a546809ac0c540e9c05b8707471"
+    },
+    "paired_deltas_final.json": {
+      "hash_equal": true,
+      "max_absolute_difference": 0.0,
+      "primary_sha256": "301d1b3af004f580a67c95f377f1db5d0474beab398076b4cf47d4439ddc62a0",
+      "rerun_sha256": "301d1b3af004f580a67c95f377f1db5d0474beab398076b4cf47d4439ddc62a0"
+    },
+    "paired_final.json": {
+      "hash_equal": true,
+      "max_absolute_difference": 0,
+      "primary_sha256": "e0fd78a9fbd55b2c9dff05442e69ba38a918bab621c01ab544ab6a3d667c681c",
+      "rerun_sha256": "e0fd78a9fbd55b2c9dff05442e69ba38a918bab621c01ab544ab6a3d667c681c"
+    },
+    "per_query_final.json": {
+      "hash_equal": true,
+      "max_absolute_difference": 0.0,
+      "primary_sha256": "678f00328dfa89501831d9e005af66791236999d329ac0b5bfdd982c406f7da9",
+      "rerun_sha256": "678f00328dfa89501831d9e005af66791236999d329ac0b5bfdd982c406f7da9"
+    },
+    "ranking_diagnostics_final.json": {
+      "hash_equal": true,
+      "max_absolute_difference": 0.0,
+      "primary_sha256": "eba706e599056e941f4f4395f77b0b96b0dd55cde5a214334af162e0c1ad6db0",
+      "rerun_sha256": "eba706e599056e941f4f4395f77b0b96b0dd55cde5a214334af162e0c1ad6db0"
+    }
+  },
+  "performed": true,
+  "primary_runs": 1,
+  "primary_seal": {
+    "path": "reports/phase9/primary_seal.json",
+    "sha256": "f5ca5c893388a9503b155a36419ac4bec4109322076cf0b2d32b61c51c85256e"
+  },
+  "raw_outputs": {
+    "rankings.json": {
+      "hash_equal": true,
+      "max_absolute_difference": 0,
+      "primary_sha256": "e452256b4ff3c6c09a6ddd51bec6d026b8897a8d6e4274b5f01a099843a7c125",
+      "rerun_sha256": "e452256b4ff3c6c09a6ddd51bec6d026b8897a8d6e4274b5f01a099843a7c125"
+    },
+    "scores.json": {
+      "hash_equal": true,
+      "max_absolute_difference": 0.0,
+      "primary_sha256": "8760cd23547c8f474b105df89f49c0a2bc69efcda0a5d545b383cfe83633790c",
+      "rerun_sha256": "8760cd23547c8f474b105df89f49c0a2bc69efcda0a5d545b383cfe83633790c"
+    }
+  },
+  "rerun_seal": {
+    "path": "reports/tmp/phase9/rerun/rerun_seal.json",
+    "sha256": "b0c4e5014746a9bc70465824674fb76b572513eea87000bcf6125c1ab92a9a39"
+  },
+  "same_head_protocol_code_models": true
+}
