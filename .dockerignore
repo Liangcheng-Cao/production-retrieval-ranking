@@ -1,0 +1,13 @@
+# Explicit source allowlist. Runtime data/models are mounted, never sent as build context.
+**
+!Dockerfile
+!pyproject.toml
+!src/
+!src/**
+!deployment/
+!deployment/*.txt
+!deployment/*.lock
+!deployment/*.py
+src/**/__pycache__/
+src/**/*.pyc
+src/**/*.egg-info/

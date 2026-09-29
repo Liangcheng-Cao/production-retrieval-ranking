@@ -1,0 +1,34 @@
+services:
+  search:
+    platform: linux/amd64
+    build:
+      context: .
+    image: production-retrieval-ranking:phase8-local
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      SEARCH_RUNTIME_CONFIG: /runtime/runtime.json
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+    volumes:
+      - type: bind
+        source: ${SEARCH_BUNDLE:?Set SEARCH_BUNDLE to the packaged inference-only directory}
+        target: /runtime
+        read_only: true
+        bind:
+          create_host_path: false
+    read_only: true
+    tmpfs:
+      - /tmp:size=256m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 60s
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
