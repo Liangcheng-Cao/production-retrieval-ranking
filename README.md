@@ -332,3 +332,16 @@ See [observability contracts](docs/observability.md), [ML monitoring and limitat
 and [Phase 7 report](reports/phase7/REPORT.md). Real integration and fake-only unit
 tests are separate. No real production traffic is available.
 No online A/B test has been performed. Phase 7 does not add Docker or deployment.
+
+## Deployment packaging (Phase 8 validated)
+
+An inference-only artifact bundle, ordinary Python wheel, hash-locked Linux/CUDA
+dependencies, Dockerfile and Compose configuration are now available. Independent
+Linux GPU validation passes unit tests and source-runtime ranking parity. Data/model
+payloads stay outside the image and are mounted read-only; no labels are packaged.
+
+The real project image and GPU container now pass Phase 8 validation: two independent
+READY starts, 36 exact native/container ranking comparisons, expected startup failures,
+graceful shutdown and 156 tests inside the image. Earlier build failures are retained. See
+[deployment instructions and remaining gates](docs/deployment.md) and
+[Phase 8 evidence](reports/phase8/REPORT.md). No image has been pushed or deployed to production.
