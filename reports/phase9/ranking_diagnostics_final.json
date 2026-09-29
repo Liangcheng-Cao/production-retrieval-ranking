@@ -1,0 +1,7 @@
+{
+  "mean_overlap_at_10": 0.6239583333333333,
+  "mean_shared_rank_displacement": 2.597788525132275,
+  "ordering_changed_fraction": 1.0,
+  "query_count": 96,
+  "shared_displacement_excluded_queries": 0
+}

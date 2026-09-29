@@ -1,0 +1,104 @@
+{
+  "100": {
+    "bm25_only_relevant": {
+      "mean_per_query": 26.34375,
+      "sum": 2529
+    },
+    "dense_only_relevant": {
+      "mean_per_query": 29.03125,
+      "sum": 2787
+    },
+    "hybrid_lost_vs_bm25": {
+      "mean_per_query": 12.59375,
+      "sum": 1209
+    },
+    "hybrid_recovered_beyond_bm25": {
+      "mean_per_query": 15.6875,
+      "sum": 1506
+    },
+    "hybrid_relevant": {
+      "mean_per_query": 62.770833333333336,
+      "sum": 6026
+    },
+    "jaccard": {
+      "mean_per_query": 0.2684980615125689,
+      "sum": 25.775813905206615
+    },
+    "overlap_count": {
+      "mean_per_query": 37.385416666666664,
+      "sum": 3589
+    },
+    "shared_relevant": {
+      "mean_per_query": 33.333333333333336,
+      "sum": 3200
+    }
+  },
+  "20": {
+    "bm25_only_relevant": {
+      "mean_per_query": 8.78125,
+      "sum": 843
+    },
+    "dense_only_relevant": {
+      "mean_per_query": 10.447916666666666,
+      "sum": 1003
+    },
+    "hybrid_lost_vs_bm25": {
+      "mean_per_query": 4.78125,
+      "sum": 459
+    },
+    "hybrid_recovered_beyond_bm25": {
+      "mean_per_query": 7.21875,
+      "sum": 693
+    },
+    "hybrid_relevant": {
+      "mean_per_query": 16.354166666666668,
+      "sum": 1570
+    },
+    "jaccard": {
+      "mean_per_query": 0.18026614225427892,
+      "sum": 17.30554965641078
+    },
+    "overlap_count": {
+      "mean_per_query": 5.395833333333333,
+      "sum": 518
+    },
+    "shared_relevant": {
+      "mean_per_query": 5.135416666666667,
+      "sum": 493
+    }
+  },
+  "50": {
+    "bm25_only_relevant": {
+      "mean_per_query": 16.885416666666668,
+      "sum": 1621
+    },
+    "dense_only_relevant": {
+      "mean_per_query": 19.90625,
+      "sum": 1911
+    },
+    "hybrid_lost_vs_bm25": {
+      "mean_per_query": 8.5625,
+      "sum": 822
+    },
+    "hybrid_recovered_beyond_bm25": {
+      "mean_per_query": 12.09375,
+      "sum": 1161
+    },
+    "hybrid_relevant": {
+      "mean_per_query": 36.239583333333336,
+      "sum": 3479
+    },
+    "jaccard": {
+      "mean_per_query": 0.23910075543800402,
+      "sum": 22.95367252204839
+    },
+    "overlap_count": {
+      "mean_per_query": 17.114583333333332,
+      "sum": 1643
+    },
+    "shared_relevant": {
+      "mean_per_query": 15.822916666666666,
+      "sum": 1519
+    }
+  }
+}

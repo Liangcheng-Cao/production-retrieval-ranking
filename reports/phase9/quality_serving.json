@@ -1,0 +1,66 @@
+{
+  "benchmark": {
+    "path": "reports/phase6/benchmark_full.json",
+    "sha256": "ee815d8a219018a1d1906134d59e71aafcc9433eeeb868f74595e798781ecc50"
+  },
+  "dense_performance": "N/A: Dense is not an existing HTTP serving pipeline",
+  "performance_source": "Phase 6 local controlled HTTP benchmark; separate train traffic; both runs, concurrency 1/2/4/8",
+  "pipelines": {
+    "BM25": {
+      "QPS_range": [
+        363.34784617829536,
+        526.0237367138568
+      ],
+      "final_NDCG@10": 0.6517681258082371,
+      "final_Recall@100": 0.34878622651904456,
+      "local_C1_P95_ms_range": [
+        2.9865200092899613,
+        3.2111099964822634
+      ],
+      "local_C8_P95_ms_range": [
+        27.375709991611068,
+        31.506899993109975
+      ]
+    },
+    "Dense": {
+      "QPS_range": null,
+      "final_NDCG@10": 0.6833122018887664,
+      "final_Recall@100": 0.3634559709690651,
+      "local_C1_P95_ms_range": null,
+      "local_C8_P95_ms_range": null
+    },
+    "Hybrid": {
+      "QPS_range": [
+        77.25859403466411,
+        93.68351032448965
+      ],
+      "final_NDCG@10": 0.7219467955623396,
+      "final_Recall@100": 0.39049936597986223,
+      "local_C1_P95_ms_range": [
+        13.69659501069691,
+        14.664475017343648
+      ],
+      "local_C8_P95_ms_range": [
+        91.15418001019862,
+        95.15490500489248
+      ]
+    },
+    "Hybrid + CE-20": {
+      "QPS_range": [
+        54.94908586548776,
+        63.21135907071319
+      ],
+      "final_NDCG@10": 0.7430739967727269,
+      "final_Recall@100": null,
+      "local_C1_P95_ms_range": [
+        19.215455000812653,
+        19.307990015659016
+      ],
+      "local_C8_P95_ms_range": [
+        130.18922000483144,
+        135.48583500669338
+      ]
+    }
+  },
+  "quality_source": "Phase 9 frozen offline final test"
+}
